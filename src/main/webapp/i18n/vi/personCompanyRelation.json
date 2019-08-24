@@ -1,0 +1,24 @@
+{
+  "vnstartupdirApp": {
+    "personCompanyRelation": {
+      "home": {
+        "title": "Person Company Relations",
+        "createLabel": "Thêm mới một Person Company Relation",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Person Company Relation",
+        "notFound": "No Person Company Relations found"
+      },
+      "created": "Một Person Company Relation mới được tạo với định danh {{ param }}",
+      "updated": "Một Person Company Relation cập nhật với định danh {{ param }}",
+      "deleted": "Một Person Company Relation đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Person Company Relation {{ id }}?"
+      },
+      "detail": {
+        "title": "Person Company Relation"
+      },
+      "relationCode": "Relation Code",
+      "company": "Company",
+      "person": "Person"
+    }
+  }
+}
