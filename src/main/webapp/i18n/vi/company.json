@@ -1,0 +1,60 @@
+{
+  "vnstartupdirApp": {
+    "company": {
+      "home": {
+        "title": "Companies",
+        "createLabel": "Thêm mới một Company",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Company",
+        "notFound": "No Companies found"
+      },
+      "created": "Một Company mới được tạo với định danh {{ param }}",
+      "updated": "Một Company cập nhật với định danh {{ param }}",
+      "deleted": "Một Company đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Company {{ id }}?"
+      },
+      "detail": {
+        "title": "Company"
+      },
+      "uuid": "Uuid",
+      "permalink": "Permalink",
+      "name": "Name",
+      "alsoknownas": "Alsoknownas",
+      "shortdescription": "Shortdescription",
+      "description": "Description",
+      "profileimageid": "Profileimageid",
+      "primaryrole": "Primaryrole",
+      "foundedon": "Foundedon",
+      "foundedontrustcode": "Foundedontrustcode",
+      "closedon": "Closedon",
+      "numemployeesmin": "Numemployeesmin",
+      "numemployeesmax": "Numemployeesmax",
+      "totalfundingusd": "Totalfundingusd",
+      "totalfundingvnd": "Totalfundingvnd",
+      "stockexchange": "Stockexchange",
+      "stocksymbol": "Stocksymbol",
+      "numberofinvestments": "Numberofinvestments",
+      "createdat": "Createdat",
+      "updatedat": "Updatedat",
+      "permalinkaliases": "Permalinkaliases",
+      "investortype": "Investortype",
+      "contactemail": "Contactemail",
+      "phonenumber": "Phonenumber",
+      "rank": "Rank",
+      "primaryimageid": "Primaryimageid",
+      "ownedbyid": "Ownedbyid",
+      "headquartersid": "Headquartersid",
+      "acquiredbyid": "Acquiredbyid",
+      "ipoid": "Ipoid",
+      "homepageurl": "Homepageurl",
+      "facebookurl": "Facebookurl",
+      "twitterurl": "Twitterurl",
+      "linkedinurl": "Linkedinurl",
+      "cityname": "Cityname",
+      "regionname": "Regionname",
+      "countrycode": "Countrycode",
+      "owner": "Owner",
+      "assignee": "Assignee"
+    }
+  }
+}
