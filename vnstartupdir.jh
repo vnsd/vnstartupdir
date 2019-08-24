@@ -1,0 +1,99 @@
+entity Company{
+  uuid UUID required,
+    permalink String required,
+    name String required,
+    alsoknownas String,
+    shortdescription String,
+    description String,
+    profileimageid Integer,
+    primaryrole String,
+    foundedon Instant ,
+    foundedontrustcode Integer,
+    closedon Instant ,
+    numemployeesmin Integer,
+    numemployeesmax Integer,
+    totalfundingusd Integer,
+    totalfundingvnd Integer,
+    stockexchange String,
+    stocksymbol String,
+    numberofinvestments Integer,
+    createdat Instant ,
+    updatedat Instant ,
+    permalinkaliases String,
+    investortype String,
+    contactemail String,
+    phonenumber String,
+    rank Integer,
+    primaryimageid Integer,
+    ownedbyid Integer,
+    headquartersid Integer,
+    acquiredbyid Integer,
+    ipoid Integer,
+    homepageurl String,
+    facebookurl String,
+    twitterurl String,
+    linkedinurl String,
+    cityname String,
+    regionname String,
+    countrycode String
+}
+
+entity Person{
+  uuid UUID required,
+    permalink String required,
+    firstname String required,
+    lastname String required,
+    alsoknownas String,
+    bio String,
+    profileimageid Integer,
+    roleinvestor Boolean,
+    bornon Instant ,
+    bornontrustcode Integer,
+    diedon Instant ,
+    createdat Instant ,
+    updatedat Instant ,
+    permalinkaliases String,
+    gender String,
+    rank Integer,
+    primaryaffiliationid Integer,
+    primarylocationid Integer,
+    primaryimageid Integer,
+    title String,
+    homepageurl String,
+    facebookurl String,
+    twitterurl String,
+    linkedinurl String,
+    cityname String,
+    regionname String,
+    countrycode String
+}
+
+entity PersonCompanyRelation{
+ relationCode String
+}
+relationship ManyToOne{
+ PersonCompanyRelation{company} to Company,
+ PersonCompanyRelation{person} to Person
+}
+
+relationship ManyToOne{
+ Company{owner} to User,
+ Company{assignee} to User
+}
+
+// Set pagination options
+paginate Company with infinite-scroll
+paginate Person with pagination
+
+// Use Data Transfert Objects (DTO)
+ dto Company with mapstruct
+ dto Person with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except PersonCompanyRelation
+
+// Filter
+filter Company, Person
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
