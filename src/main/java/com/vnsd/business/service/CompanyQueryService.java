@@ -92,7 +92,7 @@ public class CompanyQueryService extends QueryService<Company> {
                 specification = specification.and(buildSpecification(criteria.getId(), Company_.id));
             }
             if (criteria.getUuid() != null) {
-                specification = specification.and(buildSpecification(criteria.getUuid(), Company_.uuid));
+                specification = specification.and(buildStringSpecification(criteria.getUuid(), Company_.uuid));
             }
             if (criteria.getPermalink() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getPermalink(), Company_.permalink));

@@ -28,7 +28,6 @@ import javax.persistence.EntityManager;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.UUID;
 
 import static com.vnsd.business.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,8 +41,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = VnstartupdirApp.class)
 public class CompanyResourceIT {
 
-    private static final UUID DEFAULT_UUID = UUID.randomUUID();
-    private static final UUID UPDATED_UUID = UUID.randomUUID();
+    private static final String DEFAULT_UUID = "AAAAAAAAAA";
+    private static final String UPDATED_UUID = "BBBBBBBBBB";
 
     private static final String DEFAULT_PERMALINK = "AAAAAAAAAA";
     private static final String UPDATED_PERMALINK = "BBBBBBBBBB";
@@ -2725,7 +2724,7 @@ public class CompanyResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(company.getId().intValue())))
-            .andExpect(jsonPath("$.[*].uuid").value(hasItem(DEFAULT_UUID.toString())))
+            .andExpect(jsonPath("$.[*].uuid").value(hasItem(DEFAULT_UUID)))
             .andExpect(jsonPath("$.[*].permalink").value(hasItem(DEFAULT_PERMALINK)))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].alsoknownas").value(hasItem(DEFAULT_ALSOKNOWNAS)))
