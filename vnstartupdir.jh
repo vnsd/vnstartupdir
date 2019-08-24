@@ -1,5 +1,5 @@
 entity Company{
-  uuid UUID required,
+  uuid String required,
     permalink String required,
     name String required,
     alsoknownas String,
@@ -39,7 +39,7 @@ entity Company{
 }
 
 entity Person{
-  uuid UUID required,
+  uuid String required,
     permalink String required,
     firstname String required,
     lastname String required,

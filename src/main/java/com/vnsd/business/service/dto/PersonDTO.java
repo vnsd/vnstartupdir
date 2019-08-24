@@ -3,7 +3,6 @@ import java.time.Instant;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * A DTO for the {@link com.vnsd.business.domain.Person} entity.
@@ -13,7 +12,7 @@ public class PersonDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private UUID uuid;
+    private String uuid;
 
     @NotNull
     private String permalink;
@@ -79,11 +78,11 @@ public class PersonDTO implements Serializable {
         this.id = id;
     }
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 

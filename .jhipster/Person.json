@@ -3,7 +3,7 @@
     "fields": [
         {
             "fieldName": "uuid",
-            "fieldType": "UUID",
+            "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]

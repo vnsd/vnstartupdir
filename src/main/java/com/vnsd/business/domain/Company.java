@@ -6,7 +6,6 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.UUID;
 
 /**
  * A Company.
@@ -24,7 +23,7 @@ public class Company implements Serializable {
 
     @NotNull
     @Column(name = "uuid", nullable = false)
-    private UUID uuid;
+    private String uuid;
 
     @NotNull
     @Column(name = "permalink", nullable = false)
@@ -153,16 +152,16 @@ public class Company implements Serializable {
         this.id = id;
     }
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
-    public Company uuid(UUID uuid) {
+    public Company uuid(String uuid) {
         this.uuid = uuid;
         return this;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 

@@ -11,7 +11,6 @@ import io.github.jhipster.service.filter.IntegerFilter;
 import io.github.jhipster.service.filter.LongFilter;
 import io.github.jhipster.service.filter.StringFilter;
 import io.github.jhipster.service.filter.InstantFilter;
-import io.github.jhipster.service.filter.UUIDFilter;
 
 /**
  * Criteria class for the {@link com.vnsd.business.domain.Company} entity. This class is used
@@ -28,7 +27,7 @@ public class CompanyCriteria implements Serializable, Criteria {
 
     private LongFilter id;
 
-    private UUIDFilter uuid;
+    private StringFilter uuid;
 
     private StringFilter permalink;
 
@@ -165,11 +164,11 @@ public class CompanyCriteria implements Serializable, Criteria {
         this.id = id;
     }
 
-    public UUIDFilter getUuid() {
+    public StringFilter getUuid() {
         return uuid;
     }
 
-    public void setUuid(UUIDFilter uuid) {
+    public void setUuid(StringFilter uuid) {
         this.uuid = uuid;
     }
 

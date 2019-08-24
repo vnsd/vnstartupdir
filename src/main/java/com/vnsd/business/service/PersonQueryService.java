@@ -92,7 +92,7 @@ public class PersonQueryService extends QueryService<Person> {
                 specification = specification.and(buildSpecification(criteria.getId(), Person_.id));
             }
             if (criteria.getUuid() != null) {
-                specification = specification.and(buildSpecification(criteria.getUuid(), Person_.uuid));
+                specification = specification.and(buildStringSpecification(criteria.getUuid(), Person_.uuid));
             }
             if (criteria.getPermalink() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getPermalink(), Person_.permalink));
