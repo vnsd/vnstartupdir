@@ -94,14 +94,11 @@ public class CompanyQueryService extends QueryService<Company> {
             if (criteria.getUuid() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getUuid(), Company_.uuid));
             }
-            if (criteria.getPermalink() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getPermalink(), Company_.permalink));
+            if (criteria.getType() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getType(), Company_.type));
             }
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), Company_.name));
-            }
-            if (criteria.getAlsoknownas() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getAlsoknownas(), Company_.alsoknownas));
             }
             if (criteria.getShortdescription() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getShortdescription(), Company_.shortdescription));
@@ -109,17 +106,8 @@ public class CompanyQueryService extends QueryService<Company> {
             if (criteria.getDescription() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getDescription(), Company_.description));
             }
-            if (criteria.getProfileimageid() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getProfileimageid(), Company_.profileimageid));
-            }
-            if (criteria.getPrimaryrole() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getPrimaryrole(), Company_.primaryrole));
-            }
             if (criteria.getFoundedon() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getFoundedon(), Company_.foundedon));
-            }
-            if (criteria.getFoundedontrustcode() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getFoundedontrustcode(), Company_.foundedontrustcode));
             }
             if (criteria.getClosedon() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getClosedon(), Company_.closedon));
@@ -136,12 +124,6 @@ public class CompanyQueryService extends QueryService<Company> {
             if (criteria.getTotalfundingvnd() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getTotalfundingvnd(), Company_.totalfundingvnd));
             }
-            if (criteria.getStockexchange() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getStockexchange(), Company_.stockexchange));
-            }
-            if (criteria.getStocksymbol() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getStocksymbol(), Company_.stocksymbol));
-            }
             if (criteria.getNumberofinvestments() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getNumberofinvestments(), Company_.numberofinvestments));
             }
@@ -151,35 +133,11 @@ public class CompanyQueryService extends QueryService<Company> {
             if (criteria.getUpdatedat() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getUpdatedat(), Company_.updatedat));
             }
-            if (criteria.getPermalinkaliases() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getPermalinkaliases(), Company_.permalinkaliases));
-            }
-            if (criteria.getInvestortype() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getInvestortype(), Company_.investortype));
-            }
             if (criteria.getContactemail() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getContactemail(), Company_.contactemail));
             }
             if (criteria.getPhonenumber() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getPhonenumber(), Company_.phonenumber));
-            }
-            if (criteria.getRank() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getRank(), Company_.rank));
-            }
-            if (criteria.getPrimaryimageid() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getPrimaryimageid(), Company_.primaryimageid));
-            }
-            if (criteria.getOwnedbyid() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getOwnedbyid(), Company_.ownedbyid));
-            }
-            if (criteria.getHeadquartersid() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getHeadquartersid(), Company_.headquartersid));
-            }
-            if (criteria.getAcquiredbyid() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getAcquiredbyid(), Company_.acquiredbyid));
-            }
-            if (criteria.getIpoid() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getIpoid(), Company_.ipoid));
             }
             if (criteria.getHomepageurl() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getHomepageurl(), Company_.homepageurl));
@@ -202,13 +160,21 @@ public class CompanyQueryService extends QueryService<Company> {
             if (criteria.getCountrycode() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getCountrycode(), Company_.countrycode));
             }
-            if (criteria.getOwnerId() != null) {
-                specification = specification.and(buildSpecification(criteria.getOwnerId(),
-                    root -> root.join(Company_.owner, JoinType.LEFT).get(User_.id)));
+            if (criteria.getPeopleId() != null) {
+                specification = specification.and(buildSpecification(criteria.getPeopleId(),
+                    root -> root.join(Company_.people, JoinType.LEFT).get(PersonCompanyRelation_.id)));
             }
-            if (criteria.getAssigneeId() != null) {
-                specification = specification.and(buildSpecification(criteria.getAssigneeId(),
-                    root -> root.join(Company_.assignee, JoinType.LEFT).get(User_.id)));
+            if (criteria.getCreatedById() != null) {
+                specification = specification.and(buildSpecification(criteria.getCreatedById(),
+                    root -> root.join(Company_.createdBy, JoinType.LEFT).get(User_.id)));
+            }
+            if (criteria.getUpdatedById() != null) {
+                specification = specification.and(buildSpecification(criteria.getUpdatedById(),
+                    root -> root.join(Company_.updatedBy, JoinType.LEFT).get(User_.id)));
+            }
+            if (criteria.getAssignedToId() != null) {
+                specification = specification.and(buildSpecification(criteria.getAssignedToId(),
+                    root -> root.join(Company_.assignedTo, JoinType.LEFT).get(User_.id)));
             }
         }
         return specification;

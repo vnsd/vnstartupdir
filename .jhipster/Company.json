@@ -9,7 +9,7 @@
             ]
         },
         {
-            "fieldName": "permalink",
+            "fieldName": "type",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
@@ -23,10 +23,6 @@
             ]
         },
         {
-            "fieldName": "alsoknownas",
-            "fieldType": "String"
-        },
-        {
             "fieldName": "shortdescription",
             "fieldType": "String"
         },
@@ -35,20 +31,8 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "profileimageid",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "primaryrole",
-            "fieldType": "String"
-        },
-        {
             "fieldName": "foundedon",
             "fieldType": "Instant"
-        },
-        {
-            "fieldName": "foundedontrustcode",
-            "fieldType": "Integer"
         },
         {
             "fieldName": "closedon",
@@ -71,14 +55,6 @@
             "fieldType": "Integer"
         },
         {
-            "fieldName": "stockexchange",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "stocksymbol",
-            "fieldType": "String"
-        },
-        {
             "fieldName": "numberofinvestments",
             "fieldType": "Integer"
         },
@@ -91,44 +67,12 @@
             "fieldType": "Instant"
         },
         {
-            "fieldName": "permalinkaliases",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "investortype",
-            "fieldType": "String"
-        },
-        {
             "fieldName": "contactemail",
             "fieldType": "String"
         },
         {
             "fieldName": "phonenumber",
             "fieldType": "String"
-        },
-        {
-            "fieldName": "rank",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "primaryimageid",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "ownedbyid",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "headquartersid",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "acquiredbyid",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "ipoid",
-            "fieldType": "Integer"
         },
         {
             "fieldName": "homepageurl",
@@ -161,17 +105,30 @@
     ],
     "relationships": [
         {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "personCompanyRelation",
+            "otherEntityRelationshipName": "company",
+            "relationshipName": "people"
+        },
+        {
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
             "otherEntityRelationshipName": "company",
-            "relationshipName": "owner",
+            "relationshipName": "createdBy",
             "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
             "otherEntityRelationshipName": "company",
-            "relationshipName": "assignee",
+            "relationshipName": "updatedBy",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "company",
+            "relationshipName": "assignedTo",
             "otherEntityField": "id"
         }
     ],

@@ -11,12 +11,16 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface CompanyMapper extends EntityMapper<CompanyDTO, Company> {
 
-    @Mapping(source = "owner.id", target = "ownerId")
-    @Mapping(source = "assignee.id", target = "assigneeId")
+    @Mapping(source = "createdBy.id", target = "createdById")
+    @Mapping(source = "updatedBy.id", target = "updatedById")
+    @Mapping(source = "assignedTo.id", target = "assignedToId")
     CompanyDTO toDto(Company company);
 
-    @Mapping(source = "ownerId", target = "owner")
-    @Mapping(source = "assigneeId", target = "assignee")
+    @Mapping(target = "people", ignore = true)
+    @Mapping(target = "removePeople", ignore = true)
+    @Mapping(source = "createdById", target = "createdBy")
+    @Mapping(source = "updatedById", target = "updatedBy")
+    @Mapping(source = "assignedToId", target = "assignedTo")
     Company toEntity(CompanyDTO companyDTO);
 
     default Company fromId(Long id) {

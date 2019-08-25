@@ -17,24 +17,13 @@
         "title": "Person"
       },
       "uuid": "Uuid",
-      "permalink": "Permalink",
       "firstname": "Firstname",
       "lastname": "Lastname",
-      "alsoknownas": "Alsoknownas",
-      "bio": "Bio",
-      "profileimageid": "Profileimageid",
-      "roleinvestor": "Roleinvestor",
       "bornon": "Bornon",
-      "bornontrustcode": "Bornontrustcode",
       "diedon": "Diedon",
       "createdat": "Createdat",
       "updatedat": "Updatedat",
-      "permalinkaliases": "Permalinkaliases",
       "gender": "Gender",
-      "rank": "Rank",
-      "primaryaffiliationid": "Primaryaffiliationid",
-      "primarylocationid": "Primarylocationid",
-      "primaryimageid": "Primaryimageid",
       "title": "Title",
       "homepageurl": "Homepageurl",
       "facebookurl": "Facebookurl",
@@ -42,7 +31,11 @@
       "linkedinurl": "Linkedinurl",
       "cityname": "Cityname",
       "regionname": "Regionname",
-      "countrycode": "Countrycode"
+      "countrycode": "Countrycode",
+      "companies": "Companies",
+      "createdBy": "Created By",
+      "updatedBy": "Updated By",
+      "assignedTo": "Assigned To"
     }
   }
 }

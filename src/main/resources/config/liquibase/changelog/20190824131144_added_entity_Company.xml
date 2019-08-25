@@ -19,16 +19,12 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="permalink" type="varchar(255)">
+            <column name="type" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
             <column name="name" type="varchar(255)">
                 <constraints nullable="false" />
-            </column>
-
-            <column name="alsoknownas" type="varchar(255)">
-                <constraints nullable="true" />
             </column>
 
             <column name="shortdescription" type="varchar(255)">
@@ -39,19 +35,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="profileimageid" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="primaryrole" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
             <column name="foundedon" type="datetime">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="foundedontrustcode" type="integer">
                 <constraints nullable="true" />
             </column>
 
@@ -75,14 +59,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="stockexchange" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="stocksymbol" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
             <column name="numberofinvestments" type="integer">
                 <constraints nullable="true" />
             </column>
@@ -95,43 +71,11 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="permalinkaliases" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="investortype" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
             <column name="contactemail" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
             <column name="phonenumber" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="rank" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="primaryimageid" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="ownedbyid" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="headquartersid" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="acquiredbyid" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="ipoid" type="integer">
                 <constraints nullable="true" />
             </column>
 
@@ -163,11 +107,15 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="owner_id" type="bigint">
+            <column name="created_by_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
-            <column name="assignee_id" type="bigint">
+            <column name="updated_by_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="assigned_to_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
@@ -200,35 +148,21 @@
                   tableName="company">
             <column name="id" type="numeric"/>
             <column name="uuid" type="string"/>
-            <column name="permalink" type="string"/>
+            <column name="type" type="string"/>
             <column name="name" type="string"/>
-            <column name="alsoknownas" type="string"/>
             <column name="shortdescription" type="string"/>
             <column name="description" type="string"/>
-            <column name="profileimageid" type="numeric"/>
-            <column name="primaryrole" type="string"/>
             <column name="foundedon" type="datetime"/>
-            <column name="foundedontrustcode" type="numeric"/>
             <column name="closedon" type="datetime"/>
             <column name="numemployeesmin" type="numeric"/>
             <column name="numemployeesmax" type="numeric"/>
             <column name="totalfundingusd" type="numeric"/>
             <column name="totalfundingvnd" type="numeric"/>
-            <column name="stockexchange" type="string"/>
-            <column name="stocksymbol" type="string"/>
             <column name="numberofinvestments" type="numeric"/>
             <column name="createdat" type="datetime"/>
             <column name="updatedat" type="datetime"/>
-            <column name="permalinkaliases" type="string"/>
-            <column name="investortype" type="string"/>
             <column name="contactemail" type="string"/>
             <column name="phonenumber" type="string"/>
-            <column name="rank" type="numeric"/>
-            <column name="primaryimageid" type="numeric"/>
-            <column name="ownedbyid" type="numeric"/>
-            <column name="headquartersid" type="numeric"/>
-            <column name="acquiredbyid" type="numeric"/>
-            <column name="ipoid" type="numeric"/>
             <column name="homepageurl" type="string"/>
             <column name="facebookurl" type="string"/>
             <column name="twitterurl" type="string"/>

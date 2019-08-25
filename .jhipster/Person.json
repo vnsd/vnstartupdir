@@ -9,13 +9,6 @@
             ]
         },
         {
-            "fieldName": "permalink",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "firstname",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -30,28 +23,8 @@
             ]
         },
         {
-            "fieldName": "alsoknownas",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "bio",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "profileimageid",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "roleinvestor",
-            "fieldType": "Boolean"
-        },
-        {
             "fieldName": "bornon",
             "fieldType": "Instant"
-        },
-        {
-            "fieldName": "bornontrustcode",
-            "fieldType": "Integer"
         },
         {
             "fieldName": "diedon",
@@ -66,28 +39,8 @@
             "fieldType": "Instant"
         },
         {
-            "fieldName": "permalinkaliases",
-            "fieldType": "String"
-        },
-        {
             "fieldName": "gender",
             "fieldType": "String"
-        },
-        {
-            "fieldName": "rank",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "primaryaffiliationid",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "primarylocationid",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "primaryimageid",
-            "fieldType": "Integer"
         },
         {
             "fieldName": "title",
@@ -122,7 +75,35 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "personCompanyRelation",
+            "otherEntityRelationshipName": "person",
+            "relationshipName": "companies"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "person",
+            "relationshipName": "createdBy",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "person",
+            "relationshipName": "updatedBy",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "person",
+            "relationshipName": "assignedTo",
+            "otherEntityField": "id"
+        }
+    ],
     "changelogDate": "20190824131145",
     "entityTableName": "person",
     "dto": "mapstruct",

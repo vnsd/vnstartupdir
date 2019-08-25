@@ -71,33 +71,14 @@ export class Person extends React.Component<IPersonProps, IPersonState> {
                   <th className="hand" onClick={this.sort('uuid')}>
                     <Translate contentKey="vnstartupdirApp.person.uuid">Uuid</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('permalink')}>
-                    <Translate contentKey="vnstartupdirApp.person.permalink">Permalink</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
                   <th className="hand" onClick={this.sort('firstname')}>
                     <Translate contentKey="vnstartupdirApp.person.firstname">Firstname</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th className="hand" onClick={this.sort('lastname')}>
                     <Translate contentKey="vnstartupdirApp.person.lastname">Lastname</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('alsoknownas')}>
-                    <Translate contentKey="vnstartupdirApp.person.alsoknownas">Alsoknownas</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('bio')}>
-                    <Translate contentKey="vnstartupdirApp.person.bio">Bio</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('profileimageid')}>
-                    <Translate contentKey="vnstartupdirApp.person.profileimageid">Profileimageid</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('roleinvestor')}>
-                    <Translate contentKey="vnstartupdirApp.person.roleinvestor">Roleinvestor</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
                   <th className="hand" onClick={this.sort('bornon')}>
                     <Translate contentKey="vnstartupdirApp.person.bornon">Bornon</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('bornontrustcode')}>
-                    <Translate contentKey="vnstartupdirApp.person.bornontrustcode">Bornontrustcode</Translate>{' '}
-                    <FontAwesomeIcon icon="sort" />
                   </th>
                   <th className="hand" onClick={this.sort('diedon')}>
                     <Translate contentKey="vnstartupdirApp.person.diedon">Diedon</Translate> <FontAwesomeIcon icon="sort" />
@@ -108,26 +89,8 @@ export class Person extends React.Component<IPersonProps, IPersonState> {
                   <th className="hand" onClick={this.sort('updatedat')}>
                     <Translate contentKey="vnstartupdirApp.person.updatedat">Updatedat</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('permalinkaliases')}>
-                    <Translate contentKey="vnstartupdirApp.person.permalinkaliases">Permalinkaliases</Translate>{' '}
-                    <FontAwesomeIcon icon="sort" />
-                  </th>
                   <th className="hand" onClick={this.sort('gender')}>
                     <Translate contentKey="vnstartupdirApp.person.gender">Gender</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('rank')}>
-                    <Translate contentKey="vnstartupdirApp.person.rank">Rank</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('primaryaffiliationid')}>
-                    <Translate contentKey="vnstartupdirApp.person.primaryaffiliationid">Primaryaffiliationid</Translate>{' '}
-                    <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('primarylocationid')}>
-                    <Translate contentKey="vnstartupdirApp.person.primarylocationid">Primarylocationid</Translate>{' '}
-                    <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('primaryimageid')}>
-                    <Translate contentKey="vnstartupdirApp.person.primaryimageid">Primaryimageid</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th className="hand" onClick={this.sort('title')}>
                     <Translate contentKey="vnstartupdirApp.person.title">Title</Translate> <FontAwesomeIcon icon="sort" />
@@ -153,6 +116,15 @@ export class Person extends React.Component<IPersonProps, IPersonState> {
                   <th className="hand" onClick={this.sort('countrycode')}>
                     <Translate contentKey="vnstartupdirApp.person.countrycode">Countrycode</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
+                  <th>
+                    <Translate contentKey="vnstartupdirApp.person.createdBy">Created By</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th>
+                    <Translate contentKey="vnstartupdirApp.person.updatedBy">Updated By</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th>
+                    <Translate contentKey="vnstartupdirApp.person.assignedTo">Assigned To</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
                   <th />
                 </tr>
               </thead>
@@ -165,17 +137,11 @@ export class Person extends React.Component<IPersonProps, IPersonState> {
                       </Button>
                     </td>
                     <td>{person.uuid}</td>
-                    <td>{person.permalink}</td>
                     <td>{person.firstname}</td>
                     <td>{person.lastname}</td>
-                    <td>{person.alsoknownas}</td>
-                    <td>{person.bio}</td>
-                    <td>{person.profileimageid}</td>
-                    <td>{person.roleinvestor ? 'true' : 'false'}</td>
                     <td>
                       <TextFormat type="date" value={person.bornon} format={APP_DATE_FORMAT} />
                     </td>
-                    <td>{person.bornontrustcode}</td>
                     <td>
                       <TextFormat type="date" value={person.diedon} format={APP_DATE_FORMAT} />
                     </td>
@@ -185,12 +151,7 @@ export class Person extends React.Component<IPersonProps, IPersonState> {
                     <td>
                       <TextFormat type="date" value={person.updatedat} format={APP_DATE_FORMAT} />
                     </td>
-                    <td>{person.permalinkaliases}</td>
                     <td>{person.gender}</td>
-                    <td>{person.rank}</td>
-                    <td>{person.primaryaffiliationid}</td>
-                    <td>{person.primarylocationid}</td>
-                    <td>{person.primaryimageid}</td>
                     <td>{person.title}</td>
                     <td>{person.homepageurl}</td>
                     <td>{person.facebookurl}</td>
@@ -199,6 +160,9 @@ export class Person extends React.Component<IPersonProps, IPersonState> {
                     <td>{person.cityname}</td>
                     <td>{person.regionname}</td>
                     <td>{person.countrycode}</td>
+                    <td>{person.createdById ? person.createdById : ''}</td>
+                    <td>{person.updatedById ? person.updatedById : ''}</td>
+                    <td>{person.assignedToId ? person.assignedToId : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${person.id}`} color="info" size="sm">

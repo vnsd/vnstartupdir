@@ -35,12 +35,6 @@ export class PersonDetail extends React.Component<IPersonDetailProps> {
             </dt>
             <dd>{personEntity.uuid}</dd>
             <dt>
-              <span id="permalink">
-                <Translate contentKey="vnstartupdirApp.person.permalink">Permalink</Translate>
-              </span>
-            </dt>
-            <dd>{personEntity.permalink}</dd>
-            <dt>
               <span id="firstname">
                 <Translate contentKey="vnstartupdirApp.person.firstname">Firstname</Translate>
               </span>
@@ -53,30 +47,6 @@ export class PersonDetail extends React.Component<IPersonDetailProps> {
             </dt>
             <dd>{personEntity.lastname}</dd>
             <dt>
-              <span id="alsoknownas">
-                <Translate contentKey="vnstartupdirApp.person.alsoknownas">Alsoknownas</Translate>
-              </span>
-            </dt>
-            <dd>{personEntity.alsoknownas}</dd>
-            <dt>
-              <span id="bio">
-                <Translate contentKey="vnstartupdirApp.person.bio">Bio</Translate>
-              </span>
-            </dt>
-            <dd>{personEntity.bio}</dd>
-            <dt>
-              <span id="profileimageid">
-                <Translate contentKey="vnstartupdirApp.person.profileimageid">Profileimageid</Translate>
-              </span>
-            </dt>
-            <dd>{personEntity.profileimageid}</dd>
-            <dt>
-              <span id="roleinvestor">
-                <Translate contentKey="vnstartupdirApp.person.roleinvestor">Roleinvestor</Translate>
-              </span>
-            </dt>
-            <dd>{personEntity.roleinvestor ? 'true' : 'false'}</dd>
-            <dt>
               <span id="bornon">
                 <Translate contentKey="vnstartupdirApp.person.bornon">Bornon</Translate>
               </span>
@@ -84,12 +54,6 @@ export class PersonDetail extends React.Component<IPersonDetailProps> {
             <dd>
               <TextFormat value={personEntity.bornon} type="date" format={APP_DATE_FORMAT} />
             </dd>
-            <dt>
-              <span id="bornontrustcode">
-                <Translate contentKey="vnstartupdirApp.person.bornontrustcode">Bornontrustcode</Translate>
-              </span>
-            </dt>
-            <dd>{personEntity.bornontrustcode}</dd>
             <dt>
               <span id="diedon">
                 <Translate contentKey="vnstartupdirApp.person.diedon">Diedon</Translate>
@@ -115,41 +79,11 @@ export class PersonDetail extends React.Component<IPersonDetailProps> {
               <TextFormat value={personEntity.updatedat} type="date" format={APP_DATE_FORMAT} />
             </dd>
             <dt>
-              <span id="permalinkaliases">
-                <Translate contentKey="vnstartupdirApp.person.permalinkaliases">Permalinkaliases</Translate>
-              </span>
-            </dt>
-            <dd>{personEntity.permalinkaliases}</dd>
-            <dt>
               <span id="gender">
                 <Translate contentKey="vnstartupdirApp.person.gender">Gender</Translate>
               </span>
             </dt>
             <dd>{personEntity.gender}</dd>
-            <dt>
-              <span id="rank">
-                <Translate contentKey="vnstartupdirApp.person.rank">Rank</Translate>
-              </span>
-            </dt>
-            <dd>{personEntity.rank}</dd>
-            <dt>
-              <span id="primaryaffiliationid">
-                <Translate contentKey="vnstartupdirApp.person.primaryaffiliationid">Primaryaffiliationid</Translate>
-              </span>
-            </dt>
-            <dd>{personEntity.primaryaffiliationid}</dd>
-            <dt>
-              <span id="primarylocationid">
-                <Translate contentKey="vnstartupdirApp.person.primarylocationid">Primarylocationid</Translate>
-              </span>
-            </dt>
-            <dd>{personEntity.primarylocationid}</dd>
-            <dt>
-              <span id="primaryimageid">
-                <Translate contentKey="vnstartupdirApp.person.primaryimageid">Primaryimageid</Translate>
-              </span>
-            </dt>
-            <dd>{personEntity.primaryimageid}</dd>
             <dt>
               <span id="title">
                 <Translate contentKey="vnstartupdirApp.person.title">Title</Translate>
@@ -198,6 +132,18 @@ export class PersonDetail extends React.Component<IPersonDetailProps> {
               </span>
             </dt>
             <dd>{personEntity.countrycode}</dd>
+            <dt>
+              <Translate contentKey="vnstartupdirApp.person.createdBy">Created By</Translate>
+            </dt>
+            <dd>{personEntity.createdById ? personEntity.createdById : ''}</dd>
+            <dt>
+              <Translate contentKey="vnstartupdirApp.person.updatedBy">Updated By</Translate>
+            </dt>
+            <dd>{personEntity.updatedById ? personEntity.updatedById : ''}</dd>
+            <dt>
+              <Translate contentKey="vnstartupdirApp.person.assignedTo">Assigned To</Translate>
+            </dt>
+            <dd>{personEntity.assignedToId ? personEntity.assignedToId : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/person" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

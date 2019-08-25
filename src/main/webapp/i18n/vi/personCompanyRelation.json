@@ -18,6 +18,8 @@
       },
       "relationCode": "Relation Code",
       "company": "Company",
+      "person": "Person",
+      "company": "Company",
       "person": "Person"
     }
   }

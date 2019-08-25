@@ -91,15 +91,53 @@ export class Company extends React.Component<ICompanyProps, ICompanyState> {
                     <th className="hand" onClick={this.sort('id')}>
                       <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
+                    <th className="hand" onClick={this.sort('uuid')}>
+                      <Translate contentKey="vnstartupdirApp.company.uuid">Uuid</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('type')}>
+                      <Translate contentKey="vnstartupdirApp.company.type">Type</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
                     <th className="hand" onClick={this.sort('name')}>
                       <Translate contentKey="vnstartupdirApp.company.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('shortdescription')}>
+                      <Translate contentKey="vnstartupdirApp.company.shortdescription">Shortdescription</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('description')}>
+                      <Translate contentKey="vnstartupdirApp.company.description">Description</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
                     <th className="hand" onClick={this.sort('foundedon')}>
                       <Translate contentKey="vnstartupdirApp.company.foundedon">Foundedon</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
+                    <th className="hand" onClick={this.sort('closedon')}>
+                      <Translate contentKey="vnstartupdirApp.company.closedon">Closedon</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('numemployeesmin')}>
+                      <Translate contentKey="vnstartupdirApp.company.numemployeesmin">Numemployeesmin</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('numemployeesmax')}>
+                      <Translate contentKey="vnstartupdirApp.company.numemployeesmax">Numemployeesmax</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
                     <th className="hand" onClick={this.sort('totalfundingusd')}>
                       <Translate contentKey="vnstartupdirApp.company.totalfundingusd">Totalfundingusd</Translate>{' '}
                       <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('totalfundingvnd')}>
+                      <Translate contentKey="vnstartupdirApp.company.totalfundingvnd">Totalfundingvnd</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('numberofinvestments')}>
+                      <Translate contentKey="vnstartupdirApp.company.numberofinvestments">Numberofinvestments</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('createdat')}>
+                      <Translate contentKey="vnstartupdirApp.company.createdat">Createdat</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('updatedat')}>
+                      <Translate contentKey="vnstartupdirApp.company.updatedat">Updatedat</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
                     <th className="hand" onClick={this.sort('contactemail')}>
                       <Translate contentKey="vnstartupdirApp.company.contactemail">Contactemail</Translate> <FontAwesomeIcon icon="sort" />
@@ -110,11 +148,32 @@ export class Company extends React.Component<ICompanyProps, ICompanyState> {
                     <th className="hand" onClick={this.sort('homepageurl')}>
                       <Translate contentKey="vnstartupdirApp.company.homepageurl">Homepageurl</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
+                    <th className="hand" onClick={this.sort('facebookurl')}>
+                      <Translate contentKey="vnstartupdirApp.company.facebookurl">Facebookurl</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('twitterurl')}>
+                      <Translate contentKey="vnstartupdirApp.company.twitterurl">Twitterurl</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('linkedinurl')}>
+                      <Translate contentKey="vnstartupdirApp.company.linkedinurl">Linkedinurl</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
                     <th className="hand" onClick={this.sort('cityname')}>
                       <Translate contentKey="vnstartupdirApp.company.cityname">Cityname</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
+                    <th className="hand" onClick={this.sort('regionname')}>
+                      <Translate contentKey="vnstartupdirApp.company.regionname">Regionname</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('countrycode')}>
+                      <Translate contentKey="vnstartupdirApp.company.countrycode">Countrycode</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
                     <th>
-                      <Translate contentKey="vnstartupdirApp.company.assignee">Assignee</Translate> <FontAwesomeIcon icon="sort" />
+                      <Translate contentKey="vnstartupdirApp.company.createdBy">Created By</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th>
+                      <Translate contentKey="vnstartupdirApp.company.updatedBy">Updated By</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th>
+                      <Translate contentKey="vnstartupdirApp.company.assignedTo">Assigned To</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
                     <th />
                   </tr>
@@ -127,16 +186,40 @@ export class Company extends React.Component<ICompanyProps, ICompanyState> {
                           {company.id}
                         </Button>
                       </td>
+                      <td>{company.uuid}</td>
+                      <td>{company.type}</td>
                       <td>{company.name}</td>
+                      <td>{company.shortdescription}</td>
+                      <td>{company.description}</td>
                       <td>
                         <TextFormat type="date" value={company.foundedon} format={APP_DATE_FORMAT} />
                       </td>
+                      <td>
+                        <TextFormat type="date" value={company.closedon} format={APP_DATE_FORMAT} />
+                      </td>
+                      <td>{company.numemployeesmin}</td>
+                      <td>{company.numemployeesmax}</td>
                       <td>{company.totalfundingusd}</td>
+                      <td>{company.totalfundingvnd}</td>
+                      <td>{company.numberofinvestments}</td>
+                      <td>
+                        <TextFormat type="date" value={company.createdat} format={APP_DATE_FORMAT} />
+                      </td>
+                      <td>
+                        <TextFormat type="date" value={company.updatedat} format={APP_DATE_FORMAT} />
+                      </td>
                       <td>{company.contactemail}</td>
                       <td>{company.phonenumber}</td>
                       <td>{company.homepageurl}</td>
+                      <td>{company.facebookurl}</td>
+                      <td>{company.twitterurl}</td>
+                      <td>{company.linkedinurl}</td>
                       <td>{company.cityname}</td>
-                      <td>{company.assigneeId ? company.assigneeId : ''}</td>
+                      <td>{company.regionname}</td>
+                      <td>{company.countrycode}</td>
+                      <td>{company.createdById ? company.createdById : ''}</td>
+                      <td>{company.updatedById ? company.updatedById : ''}</td>
+                      <td>{company.assignedToId ? company.assignedToId : ''}</td>
                       <td className="text-right">
                         <div className="btn-group flex-btn-group-container">
                           <Button tag={Link} to={`${match.url}/${company.id}`} color="info" size="sm">

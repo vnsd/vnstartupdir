@@ -6,6 +6,8 @@ export interface IPersonCompanyRelation {
   relationCode?: string;
   company?: ICompany;
   person?: IPerson;
+  company?: ICompany;
+  person?: IPerson;
 }
 
 export const defaultValue: Readonly<IPersonCompanyRelation> = {};

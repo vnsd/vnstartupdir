@@ -15,24 +15,16 @@ public class CompanyDTO implements Serializable {
     private String uuid;
 
     @NotNull
-    private String permalink;
+    private String type;
 
     @NotNull
     private String name;
-
-    private String alsoknownas;
 
     private String shortdescription;
 
     private String description;
 
-    private Integer profileimageid;
-
-    private String primaryrole;
-
     private Instant foundedon;
-
-    private Integer foundedontrustcode;
 
     private Instant closedon;
 
@@ -44,35 +36,15 @@ public class CompanyDTO implements Serializable {
 
     private Integer totalfundingvnd;
 
-    private String stockexchange;
-
-    private String stocksymbol;
-
     private Integer numberofinvestments;
 
     private Instant createdat;
 
     private Instant updatedat;
 
-    private String permalinkaliases;
-
-    private String investortype;
-
     private String contactemail;
 
     private String phonenumber;
-
-    private Integer rank;
-
-    private Integer primaryimageid;
-
-    private Integer ownedbyid;
-
-    private Integer headquartersid;
-
-    private Integer acquiredbyid;
-
-    private Integer ipoid;
 
     private String homepageurl;
 
@@ -89,9 +61,11 @@ public class CompanyDTO implements Serializable {
     private String countrycode;
 
 
-    private Long ownerId;
+    private Long createdById;
 
-    private Long assigneeId;
+    private Long updatedById;
+
+    private Long assignedToId;
 
     public Long getId() {
         return id;
@@ -109,12 +83,12 @@ public class CompanyDTO implements Serializable {
         this.uuid = uuid;
     }
 
-    public String getPermalink() {
-        return permalink;
+    public String getType() {
+        return type;
     }
 
-    public void setPermalink(String permalink) {
-        this.permalink = permalink;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getName() {
@@ -123,14 +97,6 @@ public class CompanyDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getAlsoknownas() {
-        return alsoknownas;
-    }
-
-    public void setAlsoknownas(String alsoknownas) {
-        this.alsoknownas = alsoknownas;
     }
 
     public String getShortdescription() {
@@ -149,36 +115,12 @@ public class CompanyDTO implements Serializable {
         this.description = description;
     }
 
-    public Integer getProfileimageid() {
-        return profileimageid;
-    }
-
-    public void setProfileimageid(Integer profileimageid) {
-        this.profileimageid = profileimageid;
-    }
-
-    public String getPrimaryrole() {
-        return primaryrole;
-    }
-
-    public void setPrimaryrole(String primaryrole) {
-        this.primaryrole = primaryrole;
-    }
-
     public Instant getFoundedon() {
         return foundedon;
     }
 
     public void setFoundedon(Instant foundedon) {
         this.foundedon = foundedon;
-    }
-
-    public Integer getFoundedontrustcode() {
-        return foundedontrustcode;
-    }
-
-    public void setFoundedontrustcode(Integer foundedontrustcode) {
-        this.foundedontrustcode = foundedontrustcode;
     }
 
     public Instant getClosedon() {
@@ -221,22 +163,6 @@ public class CompanyDTO implements Serializable {
         this.totalfundingvnd = totalfundingvnd;
     }
 
-    public String getStockexchange() {
-        return stockexchange;
-    }
-
-    public void setStockexchange(String stockexchange) {
-        this.stockexchange = stockexchange;
-    }
-
-    public String getStocksymbol() {
-        return stocksymbol;
-    }
-
-    public void setStocksymbol(String stocksymbol) {
-        this.stocksymbol = stocksymbol;
-    }
-
     public Integer getNumberofinvestments() {
         return numberofinvestments;
     }
@@ -261,22 +187,6 @@ public class CompanyDTO implements Serializable {
         this.updatedat = updatedat;
     }
 
-    public String getPermalinkaliases() {
-        return permalinkaliases;
-    }
-
-    public void setPermalinkaliases(String permalinkaliases) {
-        this.permalinkaliases = permalinkaliases;
-    }
-
-    public String getInvestortype() {
-        return investortype;
-    }
-
-    public void setInvestortype(String investortype) {
-        this.investortype = investortype;
-    }
-
     public String getContactemail() {
         return contactemail;
     }
@@ -291,54 +201,6 @@ public class CompanyDTO implements Serializable {
 
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
-    }
-
-    public Integer getRank() {
-        return rank;
-    }
-
-    public void setRank(Integer rank) {
-        this.rank = rank;
-    }
-
-    public Integer getPrimaryimageid() {
-        return primaryimageid;
-    }
-
-    public void setPrimaryimageid(Integer primaryimageid) {
-        this.primaryimageid = primaryimageid;
-    }
-
-    public Integer getOwnedbyid() {
-        return ownedbyid;
-    }
-
-    public void setOwnedbyid(Integer ownedbyid) {
-        this.ownedbyid = ownedbyid;
-    }
-
-    public Integer getHeadquartersid() {
-        return headquartersid;
-    }
-
-    public void setHeadquartersid(Integer headquartersid) {
-        this.headquartersid = headquartersid;
-    }
-
-    public Integer getAcquiredbyid() {
-        return acquiredbyid;
-    }
-
-    public void setAcquiredbyid(Integer acquiredbyid) {
-        this.acquiredbyid = acquiredbyid;
-    }
-
-    public Integer getIpoid() {
-        return ipoid;
-    }
-
-    public void setIpoid(Integer ipoid) {
-        this.ipoid = ipoid;
     }
 
     public String getHomepageurl() {
@@ -397,20 +259,28 @@ public class CompanyDTO implements Serializable {
         this.countrycode = countrycode;
     }
 
-    public Long getOwnerId() {
-        return ownerId;
+    public Long getCreatedById() {
+        return createdById;
     }
 
-    public void setOwnerId(Long userId) {
-        this.ownerId = userId;
+    public void setCreatedById(Long userId) {
+        this.createdById = userId;
     }
 
-    public Long getAssigneeId() {
-        return assigneeId;
+    public Long getUpdatedById() {
+        return updatedById;
     }
 
-    public void setAssigneeId(Long userId) {
-        this.assigneeId = userId;
+    public void setUpdatedById(Long userId) {
+        this.updatedById = userId;
+    }
+
+    public Long getAssignedToId() {
+        return assignedToId;
+    }
+
+    public void setAssignedToId(Long userId) {
+        this.assignedToId = userId;
     }
 
     @Override
@@ -439,35 +309,21 @@ public class CompanyDTO implements Serializable {
         return "CompanyDTO{" +
             "id=" + getId() +
             ", uuid='" + getUuid() + "'" +
-            ", permalink='" + getPermalink() + "'" +
+            ", type='" + getType() + "'" +
             ", name='" + getName() + "'" +
-            ", alsoknownas='" + getAlsoknownas() + "'" +
             ", shortdescription='" + getShortdescription() + "'" +
             ", description='" + getDescription() + "'" +
-            ", profileimageid=" + getProfileimageid() +
-            ", primaryrole='" + getPrimaryrole() + "'" +
             ", foundedon='" + getFoundedon() + "'" +
-            ", foundedontrustcode=" + getFoundedontrustcode() +
             ", closedon='" + getClosedon() + "'" +
             ", numemployeesmin=" + getNumemployeesmin() +
             ", numemployeesmax=" + getNumemployeesmax() +
             ", totalfundingusd=" + getTotalfundingusd() +
             ", totalfundingvnd=" + getTotalfundingvnd() +
-            ", stockexchange='" + getStockexchange() + "'" +
-            ", stocksymbol='" + getStocksymbol() + "'" +
             ", numberofinvestments=" + getNumberofinvestments() +
             ", createdat='" + getCreatedat() + "'" +
             ", updatedat='" + getUpdatedat() + "'" +
-            ", permalinkaliases='" + getPermalinkaliases() + "'" +
-            ", investortype='" + getInvestortype() + "'" +
             ", contactemail='" + getContactemail() + "'" +
             ", phonenumber='" + getPhonenumber() + "'" +
-            ", rank=" + getRank() +
-            ", primaryimageid=" + getPrimaryimageid() +
-            ", ownedbyid=" + getOwnedbyid() +
-            ", headquartersid=" + getHeadquartersid() +
-            ", acquiredbyid=" + getAcquiredbyid() +
-            ", ipoid=" + getIpoid() +
             ", homepageurl='" + getHomepageurl() + "'" +
             ", facebookurl='" + getFacebookurl() + "'" +
             ", twitterurl='" + getTwitterurl() + "'" +
@@ -475,8 +331,9 @@ public class CompanyDTO implements Serializable {
             ", cityname='" + getCityname() + "'" +
             ", regionname='" + getRegionname() + "'" +
             ", countrycode='" + getCountrycode() + "'" +
-            ", owner=" + getOwnerId() +
-            ", assignee=" + getAssigneeId() +
+            ", createdBy=" + getCreatedById() +
+            ", updatedBy=" + getUpdatedById() +
+            ", assignedTo=" + getAssignedToId() +
             "}";
     }
 }
