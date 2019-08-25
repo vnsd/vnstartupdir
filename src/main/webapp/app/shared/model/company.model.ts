@@ -1,4 +1,5 @@
 import { Moment } from 'moment';
+import { IPersonCompanyRelation } from 'app/shared/model/person-company-relation.model';
 
 export interface ICompany {
   id?: number;
@@ -39,6 +40,7 @@ export interface ICompany {
   cityname?: string;
   regionname?: string;
   countrycode?: string;
+  people?: IPersonCompanyRelation[];
   ownerId?: number;
   assigneeId?: number;
 }

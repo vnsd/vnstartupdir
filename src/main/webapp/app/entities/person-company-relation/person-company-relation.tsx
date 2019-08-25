@@ -48,6 +48,12 @@ export class PersonCompanyRelation extends React.Component<IPersonCompanyRelatio
                   <th>
                     <Translate contentKey="vnstartupdirApp.personCompanyRelation.person">Person</Translate>
                   </th>
+                  <th>
+                    <Translate contentKey="vnstartupdirApp.personCompanyRelation.company">Company</Translate>
+                  </th>
+                  <th>
+                    <Translate contentKey="vnstartupdirApp.personCompanyRelation.person">Person</Translate>
+                  </th>
                   <th />
                 </tr>
               </thead>
@@ -60,6 +66,20 @@ export class PersonCompanyRelation extends React.Component<IPersonCompanyRelatio
                       </Button>
                     </td>
                     <td>{personCompanyRelation.relationCode}</td>
+                    <td>
+                      {personCompanyRelation.company ? (
+                        <Link to={`company/${personCompanyRelation.company.id}`}>{personCompanyRelation.company.id}</Link>
+                      ) : (
+                        ''
+                      )}
+                    </td>
+                    <td>
+                      {personCompanyRelation.person ? (
+                        <Link to={`person/${personCompanyRelation.person.id}`}>{personCompanyRelation.person.id}</Link>
+                      ) : (
+                        ''
+                      )}
+                    </td>
                     <td>
                       {personCompanyRelation.company ? (
                         <Link to={`company/${personCompanyRelation.company.id}`}>{personCompanyRelation.company.id}</Link>

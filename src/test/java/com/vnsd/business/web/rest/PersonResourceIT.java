@@ -2,6 +2,7 @@ package com.vnsd.business.web.rest;
 
 import com.vnsd.business.VnstartupdirApp;
 import com.vnsd.business.domain.Person;
+import com.vnsd.business.domain.PersonCompanyRelation;
 import com.vnsd.business.repository.PersonRepository;
 import com.vnsd.business.service.PersonService;
 import com.vnsd.business.service.dto.PersonDTO;
@@ -1846,6 +1847,26 @@ public class PersonResourceIT {
         // Get all the personList where countrycode is null
         defaultPersonShouldNotBeFound("countrycode.specified=false");
     }
+
+    @Test
+    @Transactional
+    public void getAllPeopleByCompaniesIsEqualToSomething() throws Exception {
+        // Initialize the database
+        personRepository.saveAndFlush(person);
+        PersonCompanyRelation companies = PersonCompanyRelationResourceIT.createEntity(em);
+        em.persist(companies);
+        em.flush();
+        person.addCompanies(companies);
+        personRepository.saveAndFlush(person);
+        Long companiesId = companies.getId();
+
+        // Get all the personList where companies equals to companiesId
+        defaultPersonShouldBeFound("companiesId.equals=" + companiesId);
+
+        // Get all the personList where companies equals to companiesId + 1
+        defaultPersonShouldNotBeFound("companiesId.equals=" + (companiesId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */

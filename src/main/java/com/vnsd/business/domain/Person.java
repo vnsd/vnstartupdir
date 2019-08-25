@@ -5,6 +5,8 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Person.
@@ -104,6 +106,9 @@ public class Person implements Serializable {
 
     @Column(name = "countrycode")
     private String countrycode;
+
+    @OneToMany(mappedBy = "person")
+    private Set<PersonCompanyRelation> companies = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -463,6 +468,31 @@ public class Person implements Serializable {
 
     public void setCountrycode(String countrycode) {
         this.countrycode = countrycode;
+    }
+
+    public Set<PersonCompanyRelation> getCompanies() {
+        return companies;
+    }
+
+    public Person companies(Set<PersonCompanyRelation> personCompanyRelations) {
+        this.companies = personCompanyRelations;
+        return this;
+    }
+
+    public Person addCompanies(PersonCompanyRelation personCompanyRelation) {
+        this.companies.add(personCompanyRelation);
+        personCompanyRelation.setPerson(this);
+        return this;
+    }
+
+    public Person removeCompanies(PersonCompanyRelation personCompanyRelation) {
+        this.companies.remove(personCompanyRelation);
+        personCompanyRelation.setPerson(null);
+        return this;
+    }
+
+    public void setCompanies(Set<PersonCompanyRelation> personCompanyRelations) {
+        this.companies = personCompanyRelations;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
