@@ -23,6 +23,8 @@ export interface IPersonCompanyRelationUpdateProps extends StateProps, DispatchP
 export interface IPersonCompanyRelationUpdateState {
   isNew: boolean;
   companyId: string;
+  companyId: string;
+  personId: string;
   personId: string;
 }
 
@@ -31,6 +33,8 @@ export class PersonCompanyRelationUpdate extends React.Component<IPersonCompanyR
     super(props);
     this.state = {
       companyId: '0',
+      companyId: '0',
+      personId: '0',
       personId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
@@ -107,6 +111,36 @@ export class PersonCompanyRelationUpdate extends React.Component<IPersonCompanyR
                     <Translate contentKey="vnstartupdirApp.personCompanyRelation.relationCode">Relation Code</Translate>
                   </Label>
                   <AvField id="person-company-relation-relationCode" type="text" name="relationCode" />
+                </AvGroup>
+                <AvGroup>
+                  <Label for="person-company-relation-company">
+                    <Translate contentKey="vnstartupdirApp.personCompanyRelation.company">Company</Translate>
+                  </Label>
+                  <AvInput id="person-company-relation-company" type="select" className="form-control" name="company.id">
+                    <option value="" key="0" />
+                    {companies
+                      ? companies.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
+                <AvGroup>
+                  <Label for="person-company-relation-person">
+                    <Translate contentKey="vnstartupdirApp.personCompanyRelation.person">Person</Translate>
+                  </Label>
+                  <AvInput id="person-company-relation-person" type="select" className="form-control" name="person.id">
+                    <option value="" key="0" />
+                    {people
+                      ? people.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
                 </AvGroup>
                 <AvGroup>
                   <Label for="person-company-relation-company">

@@ -6,6 +6,8 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Company.
@@ -134,6 +136,9 @@ public class Company implements Serializable {
 
     @Column(name = "countrycode")
     private String countrycode;
+
+    @OneToMany(mappedBy = "company")
+    private Set<PersonCompanyRelation> people = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties("companies")
@@ -631,6 +636,31 @@ public class Company implements Serializable {
 
     public void setCountrycode(String countrycode) {
         this.countrycode = countrycode;
+    }
+
+    public Set<PersonCompanyRelation> getPeople() {
+        return people;
+    }
+
+    public Company people(Set<PersonCompanyRelation> personCompanyRelations) {
+        this.people = personCompanyRelations;
+        return this;
+    }
+
+    public Company addPeople(PersonCompanyRelation personCompanyRelation) {
+        this.people.add(personCompanyRelation);
+        personCompanyRelation.setCompany(this);
+        return this;
+    }
+
+    public Company removePeople(PersonCompanyRelation personCompanyRelation) {
+        this.people.remove(personCompanyRelation);
+        personCompanyRelation.setCompany(null);
+        return this;
+    }
+
+    public void setPeople(Set<PersonCompanyRelation> personCompanyRelations) {
+        this.people = personCompanyRelations;
     }
 
     public User getOwner() {

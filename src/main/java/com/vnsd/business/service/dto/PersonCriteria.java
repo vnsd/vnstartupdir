@@ -81,6 +81,8 @@ public class PersonCriteria implements Serializable, Criteria {
 
     private StringFilter countrycode;
 
+    private LongFilter companiesId;
+
     public PersonCriteria(){
     }
 
@@ -113,6 +115,7 @@ public class PersonCriteria implements Serializable, Criteria {
         this.cityname = other.cityname == null ? null : other.cityname.copy();
         this.regionname = other.regionname == null ? null : other.regionname.copy();
         this.countrycode = other.countrycode == null ? null : other.countrycode.copy();
+        this.companiesId = other.companiesId == null ? null : other.companiesId.copy();
     }
 
     @Override
@@ -344,6 +347,14 @@ public class PersonCriteria implements Serializable, Criteria {
         this.countrycode = countrycode;
     }
 
+    public LongFilter getCompaniesId() {
+        return companiesId;
+    }
+
+    public void setCompaniesId(LongFilter companiesId) {
+        this.companiesId = companiesId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -382,7 +393,8 @@ public class PersonCriteria implements Serializable, Criteria {
             Objects.equals(linkedinurl, that.linkedinurl) &&
             Objects.equals(cityname, that.cityname) &&
             Objects.equals(regionname, that.regionname) &&
-            Objects.equals(countrycode, that.countrycode);
+            Objects.equals(countrycode, that.countrycode) &&
+            Objects.equals(companiesId, that.companiesId);
     }
 
     @Override
@@ -415,7 +427,8 @@ public class PersonCriteria implements Serializable, Criteria {
         linkedinurl,
         cityname,
         regionname,
-        countrycode
+        countrycode,
+        companiesId
         );
     }
 
@@ -450,6 +463,7 @@ public class PersonCriteria implements Serializable, Criteria {
                 (cityname != null ? "cityname=" + cityname + ", " : "") +
                 (regionname != null ? "regionname=" + regionname + ", " : "") +
                 (countrycode != null ? "countrycode=" + countrycode + ", " : "") +
+                (companiesId != null ? "companiesId=" + companiesId + ", " : "") +
             "}";
     }
 

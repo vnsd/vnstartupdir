@@ -42,7 +42,8 @@
       "linkedinurl": "Linkedinurl",
       "cityname": "Cityname",
       "regionname": "Regionname",
-      "countrycode": "Countrycode"
+      "countrycode": "Countrycode",
+      "companies": "Companies"
     }
   }
 }

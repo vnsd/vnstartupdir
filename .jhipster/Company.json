@@ -161,6 +161,12 @@
     ],
     "relationships": [
         {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "personCompanyRelation",
+            "otherEntityRelationshipName": "company",
+            "relationshipName": "people"
+        },
+        {
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
             "otherEntityRelationshipName": "company",

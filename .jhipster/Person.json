@@ -122,7 +122,14 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "personCompanyRelation",
+            "otherEntityRelationshipName": "person",
+            "relationshipName": "companies"
+        }
+    ],
     "changelogDate": "20190824131145",
     "entityTableName": "person",
     "dto": "mapstruct",

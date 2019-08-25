@@ -1,4 +1,5 @@
 import { Moment } from 'moment';
+import { IPersonCompanyRelation } from 'app/shared/model/person-company-relation.model';
 
 export interface IPerson {
   id?: number;
@@ -29,6 +30,7 @@ export interface IPerson {
   cityname?: string;
   regionname?: string;
   countrycode?: string;
+  companies?: IPersonCompanyRelation[];
 }
 
 export const defaultValue: Readonly<IPerson> = {

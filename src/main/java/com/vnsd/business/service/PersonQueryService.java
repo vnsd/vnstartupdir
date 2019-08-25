@@ -172,6 +172,10 @@ public class PersonQueryService extends QueryService<Person> {
             if (criteria.getCountrycode() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getCountrycode(), Person_.countrycode));
             }
+            if (criteria.getCompaniesId() != null) {
+                specification = specification.and(buildSpecification(criteria.getCompaniesId(),
+                    root -> root.join(Person_.companies, JoinType.LEFT).get(PersonCompanyRelation_.id)));
+            }
         }
         return specification;
     }

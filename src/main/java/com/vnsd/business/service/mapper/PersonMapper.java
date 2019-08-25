@@ -12,6 +12,9 @@ import org.mapstruct.*;
 public interface PersonMapper extends EntityMapper<PersonDTO, Person> {
 
 
+    @Mapping(target = "companies", ignore = true)
+    @Mapping(target = "removeCompanies", ignore = true)
+    Person toEntity(PersonDTO personDTO);
 
     default Person fromId(Long id) {
         if (id == null) {

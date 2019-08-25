@@ -53,6 +53,7 @@
       "cityname": "Cityname",
       "regionname": "Regionname",
       "countrycode": "Countrycode",
+      "people": "People",
       "owner": "Owner",
       "assignee": "Assignee"
     }

@@ -101,6 +101,8 @@ public class CompanyCriteria implements Serializable, Criteria {
 
     private StringFilter countrycode;
 
+    private LongFilter peopleId;
+
     private LongFilter ownerId;
 
     private LongFilter assigneeId;
@@ -147,6 +149,7 @@ public class CompanyCriteria implements Serializable, Criteria {
         this.cityname = other.cityname == null ? null : other.cityname.copy();
         this.regionname = other.regionname == null ? null : other.regionname.copy();
         this.countrycode = other.countrycode == null ? null : other.countrycode.copy();
+        this.peopleId = other.peopleId == null ? null : other.peopleId.copy();
         this.ownerId = other.ownerId == null ? null : other.ownerId.copy();
         this.assigneeId = other.assigneeId == null ? null : other.assigneeId.copy();
     }
@@ -460,6 +463,14 @@ public class CompanyCriteria implements Serializable, Criteria {
         this.countrycode = countrycode;
     }
 
+    public LongFilter getPeopleId() {
+        return peopleId;
+    }
+
+    public void setPeopleId(LongFilter peopleId) {
+        this.peopleId = peopleId;
+    }
+
     public LongFilter getOwnerId() {
         return ownerId;
     }
@@ -525,6 +536,7 @@ public class CompanyCriteria implements Serializable, Criteria {
             Objects.equals(cityname, that.cityname) &&
             Objects.equals(regionname, that.regionname) &&
             Objects.equals(countrycode, that.countrycode) &&
+            Objects.equals(peopleId, that.peopleId) &&
             Objects.equals(ownerId, that.ownerId) &&
             Objects.equals(assigneeId, that.assigneeId);
     }
@@ -570,6 +582,7 @@ public class CompanyCriteria implements Serializable, Criteria {
         cityname,
         regionname,
         countrycode,
+        peopleId,
         ownerId,
         assigneeId
         );
@@ -616,6 +629,7 @@ public class CompanyCriteria implements Serializable, Criteria {
                 (cityname != null ? "cityname=" + cityname + ", " : "") +
                 (regionname != null ? "regionname=" + regionname + ", " : "") +
                 (countrycode != null ? "countrycode=" + countrycode + ", " : "") +
+                (peopleId != null ? "peopleId=" + peopleId + ", " : "") +
                 (ownerId != null ? "ownerId=" + ownerId + ", " : "") +
                 (assigneeId != null ? "assigneeId=" + assigneeId + ", " : "") +
             "}";

@@ -91,15 +91,81 @@ export class Company extends React.Component<ICompanyProps, ICompanyState> {
                     <th className="hand" onClick={this.sort('id')}>
                       <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
+                    <th className="hand" onClick={this.sort('uuid')}>
+                      <Translate contentKey="vnstartupdirApp.company.uuid">Uuid</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('permalink')}>
+                      <Translate contentKey="vnstartupdirApp.company.permalink">Permalink</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
                     <th className="hand" onClick={this.sort('name')}>
                       <Translate contentKey="vnstartupdirApp.company.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('alsoknownas')}>
+                      <Translate contentKey="vnstartupdirApp.company.alsoknownas">Alsoknownas</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('shortdescription')}>
+                      <Translate contentKey="vnstartupdirApp.company.shortdescription">Shortdescription</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('description')}>
+                      <Translate contentKey="vnstartupdirApp.company.description">Description</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('profileimageid')}>
+                      <Translate contentKey="vnstartupdirApp.company.profileimageid">Profileimageid</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('primaryrole')}>
+                      <Translate contentKey="vnstartupdirApp.company.primaryrole">Primaryrole</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
                     <th className="hand" onClick={this.sort('foundedon')}>
                       <Translate contentKey="vnstartupdirApp.company.foundedon">Foundedon</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
+                    <th className="hand" onClick={this.sort('foundedontrustcode')}>
+                      <Translate contentKey="vnstartupdirApp.company.foundedontrustcode">Foundedontrustcode</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('closedon')}>
+                      <Translate contentKey="vnstartupdirApp.company.closedon">Closedon</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('numemployeesmin')}>
+                      <Translate contentKey="vnstartupdirApp.company.numemployeesmin">Numemployeesmin</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('numemployeesmax')}>
+                      <Translate contentKey="vnstartupdirApp.company.numemployeesmax">Numemployeesmax</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
                     <th className="hand" onClick={this.sort('totalfundingusd')}>
                       <Translate contentKey="vnstartupdirApp.company.totalfundingusd">Totalfundingusd</Translate>{' '}
                       <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('totalfundingvnd')}>
+                      <Translate contentKey="vnstartupdirApp.company.totalfundingvnd">Totalfundingvnd</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('stockexchange')}>
+                      <Translate contentKey="vnstartupdirApp.company.stockexchange">Stockexchange</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('stocksymbol')}>
+                      <Translate contentKey="vnstartupdirApp.company.stocksymbol">Stocksymbol</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('numberofinvestments')}>
+                      <Translate contentKey="vnstartupdirApp.company.numberofinvestments">Numberofinvestments</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('createdat')}>
+                      <Translate contentKey="vnstartupdirApp.company.createdat">Createdat</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('updatedat')}>
+                      <Translate contentKey="vnstartupdirApp.company.updatedat">Updatedat</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('permalinkaliases')}>
+                      <Translate contentKey="vnstartupdirApp.company.permalinkaliases">Permalinkaliases</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('investortype')}>
+                      <Translate contentKey="vnstartupdirApp.company.investortype">Investortype</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
                     <th className="hand" onClick={this.sort('contactemail')}>
                       <Translate contentKey="vnstartupdirApp.company.contactemail">Contactemail</Translate> <FontAwesomeIcon icon="sort" />
@@ -107,11 +173,49 @@ export class Company extends React.Component<ICompanyProps, ICompanyState> {
                     <th className="hand" onClick={this.sort('phonenumber')}>
                       <Translate contentKey="vnstartupdirApp.company.phonenumber">Phonenumber</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
+                    <th className="hand" onClick={this.sort('rank')}>
+                      <Translate contentKey="vnstartupdirApp.company.rank">Rank</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('primaryimageid')}>
+                      <Translate contentKey="vnstartupdirApp.company.primaryimageid">Primaryimageid</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('ownedbyid')}>
+                      <Translate contentKey="vnstartupdirApp.company.ownedbyid">Ownedbyid</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('headquartersid')}>
+                      <Translate contentKey="vnstartupdirApp.company.headquartersid">Headquartersid</Translate>{' '}
+                      <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('acquiredbyid')}>
+                      <Translate contentKey="vnstartupdirApp.company.acquiredbyid">Acquiredbyid</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('ipoid')}>
+                      <Translate contentKey="vnstartupdirApp.company.ipoid">Ipoid</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
                     <th className="hand" onClick={this.sort('homepageurl')}>
                       <Translate contentKey="vnstartupdirApp.company.homepageurl">Homepageurl</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
+                    <th className="hand" onClick={this.sort('facebookurl')}>
+                      <Translate contentKey="vnstartupdirApp.company.facebookurl">Facebookurl</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('twitterurl')}>
+                      <Translate contentKey="vnstartupdirApp.company.twitterurl">Twitterurl</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('linkedinurl')}>
+                      <Translate contentKey="vnstartupdirApp.company.linkedinurl">Linkedinurl</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
                     <th className="hand" onClick={this.sort('cityname')}>
                       <Translate contentKey="vnstartupdirApp.company.cityname">Cityname</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('regionname')}>
+                      <Translate contentKey="vnstartupdirApp.company.regionname">Regionname</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th className="hand" onClick={this.sort('countrycode')}>
+                      <Translate contentKey="vnstartupdirApp.company.countrycode">Countrycode</Translate> <FontAwesomeIcon icon="sort" />
+                    </th>
+                    <th>
+                      <Translate contentKey="vnstartupdirApp.company.owner">Owner</Translate> <FontAwesomeIcon icon="sort" />
                     </th>
                     <th>
                       <Translate contentKey="vnstartupdirApp.company.assignee">Assignee</Translate> <FontAwesomeIcon icon="sort" />
@@ -127,15 +231,52 @@ export class Company extends React.Component<ICompanyProps, ICompanyState> {
                           {company.id}
                         </Button>
                       </td>
+                      <td>{company.uuid}</td>
+                      <td>{company.permalink}</td>
                       <td>{company.name}</td>
+                      <td>{company.alsoknownas}</td>
+                      <td>{company.shortdescription}</td>
+                      <td>{company.description}</td>
+                      <td>{company.profileimageid}</td>
+                      <td>{company.primaryrole}</td>
                       <td>
                         <TextFormat type="date" value={company.foundedon} format={APP_DATE_FORMAT} />
                       </td>
+                      <td>{company.foundedontrustcode}</td>
+                      <td>
+                        <TextFormat type="date" value={company.closedon} format={APP_DATE_FORMAT} />
+                      </td>
+                      <td>{company.numemployeesmin}</td>
+                      <td>{company.numemployeesmax}</td>
                       <td>{company.totalfundingusd}</td>
+                      <td>{company.totalfundingvnd}</td>
+                      <td>{company.stockexchange}</td>
+                      <td>{company.stocksymbol}</td>
+                      <td>{company.numberofinvestments}</td>
+                      <td>
+                        <TextFormat type="date" value={company.createdat} format={APP_DATE_FORMAT} />
+                      </td>
+                      <td>
+                        <TextFormat type="date" value={company.updatedat} format={APP_DATE_FORMAT} />
+                      </td>
+                      <td>{company.permalinkaliases}</td>
+                      <td>{company.investortype}</td>
                       <td>{company.contactemail}</td>
                       <td>{company.phonenumber}</td>
+                      <td>{company.rank}</td>
+                      <td>{company.primaryimageid}</td>
+                      <td>{company.ownedbyid}</td>
+                      <td>{company.headquartersid}</td>
+                      <td>{company.acquiredbyid}</td>
+                      <td>{company.ipoid}</td>
                       <td>{company.homepageurl}</td>
+                      <td>{company.facebookurl}</td>
+                      <td>{company.twitterurl}</td>
+                      <td>{company.linkedinurl}</td>
                       <td>{company.cityname}</td>
+                      <td>{company.regionname}</td>
+                      <td>{company.countrycode}</td>
+                      <td>{company.ownerId ? company.ownerId : ''}</td>
                       <td>{company.assigneeId ? company.assigneeId : ''}</td>
                       <td className="text-right">
                         <div className="btn-group flex-btn-group-container">

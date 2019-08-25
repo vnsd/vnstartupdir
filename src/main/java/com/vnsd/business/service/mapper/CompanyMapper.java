@@ -15,6 +15,8 @@ public interface CompanyMapper extends EntityMapper<CompanyDTO, Company> {
     @Mapping(source = "assignee.id", target = "assigneeId")
     CompanyDTO toDto(Company company);
 
+    @Mapping(target = "people", ignore = true)
+    @Mapping(target = "removePeople", ignore = true)
     @Mapping(source = "ownerId", target = "owner")
     @Mapping(source = "assigneeId", target = "assignee")
     Company toEntity(CompanyDTO companyDTO);

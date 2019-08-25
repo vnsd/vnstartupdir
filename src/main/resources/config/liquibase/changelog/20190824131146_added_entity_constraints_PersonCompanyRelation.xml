@@ -20,5 +20,17 @@
                                  referencedColumnNames="id"
                                  referencedTableName="person"/>
 
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="person_company_relation"
+                                 constraintName="fk_person_company_relation_company_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"/>
+
+        <addForeignKeyConstraint baseColumnNames="person_id"
+                                 baseTableName="person_company_relation"
+                                 constraintName="fk_person_company_relation_person_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+
     </changeSet>
 </databaseChangeLog>
