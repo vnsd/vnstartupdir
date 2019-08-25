@@ -1,34 +1,20 @@
 entity Company{
   uuid String required,
-    permalink String required,
+    type String required,
     name String required,
-    alsoknownas String,
     shortdescription String,
     description String,
-    profileimageid Integer,
-    primaryrole String,
     foundedon Instant ,
-    foundedontrustcode Integer,
     closedon Instant ,
     numemployeesmin Integer,
     numemployeesmax Integer,
     totalfundingusd Integer,
     totalfundingvnd Integer,
-    stockexchange String,
-    stocksymbol String,
     numberofinvestments Integer,
     createdat Instant ,
     updatedat Instant ,
-    permalinkaliases String,
-    investortype String,
     contactemail String,
     phonenumber String,
-    rank Integer,
-    primaryimageid Integer,
-    ownedbyid Integer,
-    headquartersid Integer,
-    acquiredbyid Integer,
-    ipoid Integer,
     homepageurl String,
     facebookurl String,
     twitterurl String,
@@ -38,26 +24,21 @@ entity Company{
     countrycode String
 }
 
+relationship ManyToOne{
+ Company{createdBy} to User,
+ Company{updatedBy} to User,
+ Company{assignedTo} to User
+}
+
 entity Person{
   uuid String required,
-    permalink String required,
     firstname String required,
     lastname String required,
-    alsoknownas String,
-    bio String,
-    profileimageid Integer,
-    roleinvestor Boolean,
     bornon Instant ,
-    bornontrustcode Integer,
     diedon Instant ,
     createdat Instant ,
     updatedat Instant ,
-    permalinkaliases String,
     gender String,
-    rank Integer,
-    primaryaffiliationid Integer,
-    primarylocationid Integer,
-    primaryimageid Integer,
     title String,
     homepageurl String,
     facebookurl String,
@@ -68,17 +49,27 @@ entity Person{
     countrycode String
 }
 
+relationship ManyToOne{
+ Person{createdBy} to User,
+ Person{updatedBy} to User,
+ Person{assignedTo} to User
+}
+
 entity PersonCompanyRelation{
  relationCode String
 }
-relationship ManyToOne{
- PersonCompanyRelation{company} to Company,
- PersonCompanyRelation{person} to Person
+
+relationship OneToMany{
+Company{people} to PersonCompanyRelation
+}
+
+relationship OneToMany{
+Person{companies} to PersonCompanyRelation
 }
 
 relationship ManyToOne{
- Company{owner} to User,
- Company{assignee} to User
+ PersonCompanyRelation{company} to Company,
+ PersonCompanyRelation{person} to Person
 }
 
 // Set pagination options
