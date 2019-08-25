@@ -94,32 +94,14 @@ public class PersonQueryService extends QueryService<Person> {
             if (criteria.getUuid() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getUuid(), Person_.uuid));
             }
-            if (criteria.getPermalink() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getPermalink(), Person_.permalink));
-            }
             if (criteria.getFirstname() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getFirstname(), Person_.firstname));
             }
             if (criteria.getLastname() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getLastname(), Person_.lastname));
             }
-            if (criteria.getAlsoknownas() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getAlsoknownas(), Person_.alsoknownas));
-            }
-            if (criteria.getBio() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getBio(), Person_.bio));
-            }
-            if (criteria.getProfileimageid() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getProfileimageid(), Person_.profileimageid));
-            }
-            if (criteria.getRoleinvestor() != null) {
-                specification = specification.and(buildSpecification(criteria.getRoleinvestor(), Person_.roleinvestor));
-            }
             if (criteria.getBornon() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getBornon(), Person_.bornon));
-            }
-            if (criteria.getBornontrustcode() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getBornontrustcode(), Person_.bornontrustcode));
             }
             if (criteria.getDiedon() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getDiedon(), Person_.diedon));
@@ -130,23 +112,8 @@ public class PersonQueryService extends QueryService<Person> {
             if (criteria.getUpdatedat() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getUpdatedat(), Person_.updatedat));
             }
-            if (criteria.getPermalinkaliases() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getPermalinkaliases(), Person_.permalinkaliases));
-            }
             if (criteria.getGender() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getGender(), Person_.gender));
-            }
-            if (criteria.getRank() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getRank(), Person_.rank));
-            }
-            if (criteria.getPrimaryaffiliationid() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getPrimaryaffiliationid(), Person_.primaryaffiliationid));
-            }
-            if (criteria.getPrimarylocationid() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getPrimarylocationid(), Person_.primarylocationid));
-            }
-            if (criteria.getPrimaryimageid() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getPrimaryimageid(), Person_.primaryimageid));
             }
             if (criteria.getTitle() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getTitle(), Person_.title));
@@ -171,6 +138,22 @@ public class PersonQueryService extends QueryService<Person> {
             }
             if (criteria.getCountrycode() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getCountrycode(), Person_.countrycode));
+            }
+            if (criteria.getCompaniesId() != null) {
+                specification = specification.and(buildSpecification(criteria.getCompaniesId(),
+                    root -> root.join(Person_.companies, JoinType.LEFT).get(PersonCompanyRelation_.id)));
+            }
+            if (criteria.getCreatedById() != null) {
+                specification = specification.and(buildSpecification(criteria.getCreatedById(),
+                    root -> root.join(Person_.createdBy, JoinType.LEFT).get(User_.id)));
+            }
+            if (criteria.getUpdatedById() != null) {
+                specification = specification.and(buildSpecification(criteria.getUpdatedById(),
+                    root -> root.join(Person_.updatedBy, JoinType.LEFT).get(User_.id)));
+            }
+            if (criteria.getAssignedToId() != null) {
+                specification = specification.and(buildSpecification(criteria.getAssignedToId(),
+                    root -> root.join(Person_.assignedTo, JoinType.LEFT).get(User_.id)));
             }
         }
         return specification;

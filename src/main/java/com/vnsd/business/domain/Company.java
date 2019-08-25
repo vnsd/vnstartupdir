@@ -6,6 +6,8 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Company.
@@ -26,15 +28,12 @@ public class Company implements Serializable {
     private String uuid;
 
     @NotNull
-    @Column(name = "permalink", nullable = false)
-    private String permalink;
+    @Column(name = "type", nullable = false)
+    private String type;
 
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "alsoknownas")
-    private String alsoknownas;
 
     @Column(name = "shortdescription")
     private String shortdescription;
@@ -42,17 +41,8 @@ public class Company implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "profileimageid")
-    private Integer profileimageid;
-
-    @Column(name = "primaryrole")
-    private String primaryrole;
-
     @Column(name = "foundedon")
     private Instant foundedon;
-
-    @Column(name = "foundedontrustcode")
-    private Integer foundedontrustcode;
 
     @Column(name = "closedon")
     private Instant closedon;
@@ -69,12 +59,6 @@ public class Company implements Serializable {
     @Column(name = "totalfundingvnd")
     private Integer totalfundingvnd;
 
-    @Column(name = "stockexchange")
-    private String stockexchange;
-
-    @Column(name = "stocksymbol")
-    private String stocksymbol;
-
     @Column(name = "numberofinvestments")
     private Integer numberofinvestments;
 
@@ -84,35 +68,11 @@ public class Company implements Serializable {
     @Column(name = "updatedat")
     private Instant updatedat;
 
-    @Column(name = "permalinkaliases")
-    private String permalinkaliases;
-
-    @Column(name = "investortype")
-    private String investortype;
-
     @Column(name = "contactemail")
     private String contactemail;
 
     @Column(name = "phonenumber")
     private String phonenumber;
-
-    @Column(name = "rank")
-    private Integer rank;
-
-    @Column(name = "primaryimageid")
-    private Integer primaryimageid;
-
-    @Column(name = "ownedbyid")
-    private Integer ownedbyid;
-
-    @Column(name = "headquartersid")
-    private Integer headquartersid;
-
-    @Column(name = "acquiredbyid")
-    private Integer acquiredbyid;
-
-    @Column(name = "ipoid")
-    private Integer ipoid;
 
     @Column(name = "homepageurl")
     private String homepageurl;
@@ -135,13 +95,20 @@ public class Company implements Serializable {
     @Column(name = "countrycode")
     private String countrycode;
 
-    @ManyToOne
-    @JsonIgnoreProperties("companies")
-    private User owner;
+    @OneToMany(mappedBy = "company")
+    private Set<PersonCompanyRelation> people = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties("companies")
-    private User assignee;
+    private User createdBy;
+
+    @ManyToOne
+    @JsonIgnoreProperties("companies")
+    private User updatedBy;
+
+    @ManyToOne
+    @JsonIgnoreProperties("companies")
+    private User assignedTo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -165,17 +132,17 @@ public class Company implements Serializable {
         this.uuid = uuid;
     }
 
-    public String getPermalink() {
-        return permalink;
+    public String getType() {
+        return type;
     }
 
-    public Company permalink(String permalink) {
-        this.permalink = permalink;
+    public Company type(String type) {
+        this.type = type;
         return this;
     }
 
-    public void setPermalink(String permalink) {
-        this.permalink = permalink;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getName() {
@@ -189,19 +156,6 @@ public class Company implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getAlsoknownas() {
-        return alsoknownas;
-    }
-
-    public Company alsoknownas(String alsoknownas) {
-        this.alsoknownas = alsoknownas;
-        return this;
-    }
-
-    public void setAlsoknownas(String alsoknownas) {
-        this.alsoknownas = alsoknownas;
     }
 
     public String getShortdescription() {
@@ -230,32 +184,6 @@ public class Company implements Serializable {
         this.description = description;
     }
 
-    public Integer getProfileimageid() {
-        return profileimageid;
-    }
-
-    public Company profileimageid(Integer profileimageid) {
-        this.profileimageid = profileimageid;
-        return this;
-    }
-
-    public void setProfileimageid(Integer profileimageid) {
-        this.profileimageid = profileimageid;
-    }
-
-    public String getPrimaryrole() {
-        return primaryrole;
-    }
-
-    public Company primaryrole(String primaryrole) {
-        this.primaryrole = primaryrole;
-        return this;
-    }
-
-    public void setPrimaryrole(String primaryrole) {
-        this.primaryrole = primaryrole;
-    }
-
     public Instant getFoundedon() {
         return foundedon;
     }
@@ -267,19 +195,6 @@ public class Company implements Serializable {
 
     public void setFoundedon(Instant foundedon) {
         this.foundedon = foundedon;
-    }
-
-    public Integer getFoundedontrustcode() {
-        return foundedontrustcode;
-    }
-
-    public Company foundedontrustcode(Integer foundedontrustcode) {
-        this.foundedontrustcode = foundedontrustcode;
-        return this;
-    }
-
-    public void setFoundedontrustcode(Integer foundedontrustcode) {
-        this.foundedontrustcode = foundedontrustcode;
     }
 
     public Instant getClosedon() {
@@ -347,32 +262,6 @@ public class Company implements Serializable {
         this.totalfundingvnd = totalfundingvnd;
     }
 
-    public String getStockexchange() {
-        return stockexchange;
-    }
-
-    public Company stockexchange(String stockexchange) {
-        this.stockexchange = stockexchange;
-        return this;
-    }
-
-    public void setStockexchange(String stockexchange) {
-        this.stockexchange = stockexchange;
-    }
-
-    public String getStocksymbol() {
-        return stocksymbol;
-    }
-
-    public Company stocksymbol(String stocksymbol) {
-        this.stocksymbol = stocksymbol;
-        return this;
-    }
-
-    public void setStocksymbol(String stocksymbol) {
-        this.stocksymbol = stocksymbol;
-    }
-
     public Integer getNumberofinvestments() {
         return numberofinvestments;
     }
@@ -412,32 +301,6 @@ public class Company implements Serializable {
         this.updatedat = updatedat;
     }
 
-    public String getPermalinkaliases() {
-        return permalinkaliases;
-    }
-
-    public Company permalinkaliases(String permalinkaliases) {
-        this.permalinkaliases = permalinkaliases;
-        return this;
-    }
-
-    public void setPermalinkaliases(String permalinkaliases) {
-        this.permalinkaliases = permalinkaliases;
-    }
-
-    public String getInvestortype() {
-        return investortype;
-    }
-
-    public Company investortype(String investortype) {
-        this.investortype = investortype;
-        return this;
-    }
-
-    public void setInvestortype(String investortype) {
-        this.investortype = investortype;
-    }
-
     public String getContactemail() {
         return contactemail;
     }
@@ -462,84 +325,6 @@ public class Company implements Serializable {
 
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
-    }
-
-    public Integer getRank() {
-        return rank;
-    }
-
-    public Company rank(Integer rank) {
-        this.rank = rank;
-        return this;
-    }
-
-    public void setRank(Integer rank) {
-        this.rank = rank;
-    }
-
-    public Integer getPrimaryimageid() {
-        return primaryimageid;
-    }
-
-    public Company primaryimageid(Integer primaryimageid) {
-        this.primaryimageid = primaryimageid;
-        return this;
-    }
-
-    public void setPrimaryimageid(Integer primaryimageid) {
-        this.primaryimageid = primaryimageid;
-    }
-
-    public Integer getOwnedbyid() {
-        return ownedbyid;
-    }
-
-    public Company ownedbyid(Integer ownedbyid) {
-        this.ownedbyid = ownedbyid;
-        return this;
-    }
-
-    public void setOwnedbyid(Integer ownedbyid) {
-        this.ownedbyid = ownedbyid;
-    }
-
-    public Integer getHeadquartersid() {
-        return headquartersid;
-    }
-
-    public Company headquartersid(Integer headquartersid) {
-        this.headquartersid = headquartersid;
-        return this;
-    }
-
-    public void setHeadquartersid(Integer headquartersid) {
-        this.headquartersid = headquartersid;
-    }
-
-    public Integer getAcquiredbyid() {
-        return acquiredbyid;
-    }
-
-    public Company acquiredbyid(Integer acquiredbyid) {
-        this.acquiredbyid = acquiredbyid;
-        return this;
-    }
-
-    public void setAcquiredbyid(Integer acquiredbyid) {
-        this.acquiredbyid = acquiredbyid;
-    }
-
-    public Integer getIpoid() {
-        return ipoid;
-    }
-
-    public Company ipoid(Integer ipoid) {
-        this.ipoid = ipoid;
-        return this;
-    }
-
-    public void setIpoid(Integer ipoid) {
-        this.ipoid = ipoid;
     }
 
     public String getHomepageurl() {
@@ -633,30 +418,68 @@ public class Company implements Serializable {
         this.countrycode = countrycode;
     }
 
-    public User getOwner() {
-        return owner;
+    public Set<PersonCompanyRelation> getPeople() {
+        return people;
     }
 
-    public Company owner(User user) {
-        this.owner = user;
+    public Company people(Set<PersonCompanyRelation> personCompanyRelations) {
+        this.people = personCompanyRelations;
         return this;
     }
 
-    public void setOwner(User user) {
-        this.owner = user;
-    }
-
-    public User getAssignee() {
-        return assignee;
-    }
-
-    public Company assignee(User user) {
-        this.assignee = user;
+    public Company addPeople(PersonCompanyRelation personCompanyRelation) {
+        this.people.add(personCompanyRelation);
+        personCompanyRelation.setCompany(this);
         return this;
     }
 
-    public void setAssignee(User user) {
-        this.assignee = user;
+    public Company removePeople(PersonCompanyRelation personCompanyRelation) {
+        this.people.remove(personCompanyRelation);
+        personCompanyRelation.setCompany(null);
+        return this;
+    }
+
+    public void setPeople(Set<PersonCompanyRelation> personCompanyRelations) {
+        this.people = personCompanyRelations;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public Company createdBy(User user) {
+        this.createdBy = user;
+        return this;
+    }
+
+    public void setCreatedBy(User user) {
+        this.createdBy = user;
+    }
+
+    public User getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public Company updatedBy(User user) {
+        this.updatedBy = user;
+        return this;
+    }
+
+    public void setUpdatedBy(User user) {
+        this.updatedBy = user;
+    }
+
+    public User getAssignedTo() {
+        return assignedTo;
+    }
+
+    public Company assignedTo(User user) {
+        this.assignedTo = user;
+        return this;
+    }
+
+    public void setAssignedTo(User user) {
+        this.assignedTo = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -681,35 +504,21 @@ public class Company implements Serializable {
         return "Company{" +
             "id=" + getId() +
             ", uuid='" + getUuid() + "'" +
-            ", permalink='" + getPermalink() + "'" +
+            ", type='" + getType() + "'" +
             ", name='" + getName() + "'" +
-            ", alsoknownas='" + getAlsoknownas() + "'" +
             ", shortdescription='" + getShortdescription() + "'" +
             ", description='" + getDescription() + "'" +
-            ", profileimageid=" + getProfileimageid() +
-            ", primaryrole='" + getPrimaryrole() + "'" +
             ", foundedon='" + getFoundedon() + "'" +
-            ", foundedontrustcode=" + getFoundedontrustcode() +
             ", closedon='" + getClosedon() + "'" +
             ", numemployeesmin=" + getNumemployeesmin() +
             ", numemployeesmax=" + getNumemployeesmax() +
             ", totalfundingusd=" + getTotalfundingusd() +
             ", totalfundingvnd=" + getTotalfundingvnd() +
-            ", stockexchange='" + getStockexchange() + "'" +
-            ", stocksymbol='" + getStocksymbol() + "'" +
             ", numberofinvestments=" + getNumberofinvestments() +
             ", createdat='" + getCreatedat() + "'" +
             ", updatedat='" + getUpdatedat() + "'" +
-            ", permalinkaliases='" + getPermalinkaliases() + "'" +
-            ", investortype='" + getInvestortype() + "'" +
             ", contactemail='" + getContactemail() + "'" +
             ", phonenumber='" + getPhonenumber() + "'" +
-            ", rank=" + getRank() +
-            ", primaryimageid=" + getPrimaryimageid() +
-            ", ownedbyid=" + getOwnedbyid() +
-            ", headquartersid=" + getHeadquartersid() +
-            ", acquiredbyid=" + getAcquiredbyid() +
-            ", ipoid=" + getIpoid() +
             ", homepageurl='" + getHomepageurl() + "'" +
             ", facebookurl='" + getFacebookurl() + "'" +
             ", twitterurl='" + getTwitterurl() + "'" +

@@ -2,6 +2,7 @@ package com.vnsd.business.web.rest;
 
 import com.vnsd.business.VnstartupdirApp;
 import com.vnsd.business.domain.Company;
+import com.vnsd.business.domain.PersonCompanyRelation;
 import com.vnsd.business.domain.User;
 import com.vnsd.business.repository.CompanyRepository;
 import com.vnsd.business.service.CompanyService;
@@ -44,14 +45,11 @@ public class CompanyResourceIT {
     private static final String DEFAULT_UUID = "AAAAAAAAAA";
     private static final String UPDATED_UUID = "BBBBBBBBBB";
 
-    private static final String DEFAULT_PERMALINK = "AAAAAAAAAA";
-    private static final String UPDATED_PERMALINK = "BBBBBBBBBB";
+    private static final String DEFAULT_TYPE = "AAAAAAAAAA";
+    private static final String UPDATED_TYPE = "BBBBBBBBBB";
 
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
-
-    private static final String DEFAULT_ALSOKNOWNAS = "AAAAAAAAAA";
-    private static final String UPDATED_ALSOKNOWNAS = "BBBBBBBBBB";
 
     private static final String DEFAULT_SHORTDESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_SHORTDESCRIPTION = "BBBBBBBBBB";
@@ -59,20 +57,9 @@ public class CompanyResourceIT {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_PROFILEIMAGEID = 1;
-    private static final Integer UPDATED_PROFILEIMAGEID = 2;
-    private static final Integer SMALLER_PROFILEIMAGEID = 1 - 1;
-
-    private static final String DEFAULT_PRIMARYROLE = "AAAAAAAAAA";
-    private static final String UPDATED_PRIMARYROLE = "BBBBBBBBBB";
-
     private static final Instant DEFAULT_FOUNDEDON = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_FOUNDEDON = Instant.now().truncatedTo(ChronoUnit.MILLIS);
     private static final Instant SMALLER_FOUNDEDON = Instant.ofEpochMilli(-1L);
-
-    private static final Integer DEFAULT_FOUNDEDONTRUSTCODE = 1;
-    private static final Integer UPDATED_FOUNDEDONTRUSTCODE = 2;
-    private static final Integer SMALLER_FOUNDEDONTRUSTCODE = 1 - 1;
 
     private static final Instant DEFAULT_CLOSEDON = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_CLOSEDON = Instant.now().truncatedTo(ChronoUnit.MILLIS);
@@ -94,12 +81,6 @@ public class CompanyResourceIT {
     private static final Integer UPDATED_TOTALFUNDINGVND = 2;
     private static final Integer SMALLER_TOTALFUNDINGVND = 1 - 1;
 
-    private static final String DEFAULT_STOCKEXCHANGE = "AAAAAAAAAA";
-    private static final String UPDATED_STOCKEXCHANGE = "BBBBBBBBBB";
-
-    private static final String DEFAULT_STOCKSYMBOL = "AAAAAAAAAA";
-    private static final String UPDATED_STOCKSYMBOL = "BBBBBBBBBB";
-
     private static final Integer DEFAULT_NUMBEROFINVESTMENTS = 1;
     private static final Integer UPDATED_NUMBEROFINVESTMENTS = 2;
     private static final Integer SMALLER_NUMBEROFINVESTMENTS = 1 - 1;
@@ -112,41 +93,11 @@ public class CompanyResourceIT {
     private static final Instant UPDATED_UPDATEDAT = Instant.now().truncatedTo(ChronoUnit.MILLIS);
     private static final Instant SMALLER_UPDATEDAT = Instant.ofEpochMilli(-1L);
 
-    private static final String DEFAULT_PERMALINKALIASES = "AAAAAAAAAA";
-    private static final String UPDATED_PERMALINKALIASES = "BBBBBBBBBB";
-
-    private static final String DEFAULT_INVESTORTYPE = "AAAAAAAAAA";
-    private static final String UPDATED_INVESTORTYPE = "BBBBBBBBBB";
-
     private static final String DEFAULT_CONTACTEMAIL = "AAAAAAAAAA";
     private static final String UPDATED_CONTACTEMAIL = "BBBBBBBBBB";
 
     private static final String DEFAULT_PHONENUMBER = "AAAAAAAAAA";
     private static final String UPDATED_PHONENUMBER = "BBBBBBBBBB";
-
-    private static final Integer DEFAULT_RANK = 1;
-    private static final Integer UPDATED_RANK = 2;
-    private static final Integer SMALLER_RANK = 1 - 1;
-
-    private static final Integer DEFAULT_PRIMARYIMAGEID = 1;
-    private static final Integer UPDATED_PRIMARYIMAGEID = 2;
-    private static final Integer SMALLER_PRIMARYIMAGEID = 1 - 1;
-
-    private static final Integer DEFAULT_OWNEDBYID = 1;
-    private static final Integer UPDATED_OWNEDBYID = 2;
-    private static final Integer SMALLER_OWNEDBYID = 1 - 1;
-
-    private static final Integer DEFAULT_HEADQUARTERSID = 1;
-    private static final Integer UPDATED_HEADQUARTERSID = 2;
-    private static final Integer SMALLER_HEADQUARTERSID = 1 - 1;
-
-    private static final Integer DEFAULT_ACQUIREDBYID = 1;
-    private static final Integer UPDATED_ACQUIREDBYID = 2;
-    private static final Integer SMALLER_ACQUIREDBYID = 1 - 1;
-
-    private static final Integer DEFAULT_IPOID = 1;
-    private static final Integer UPDATED_IPOID = 2;
-    private static final Integer SMALLER_IPOID = 1 - 1;
 
     private static final String DEFAULT_HOMEPAGEURL = "AAAAAAAAAA";
     private static final String UPDATED_HOMEPAGEURL = "BBBBBBBBBB";
@@ -221,35 +172,21 @@ public class CompanyResourceIT {
     public static Company createEntity(EntityManager em) {
         Company company = new Company()
             .uuid(DEFAULT_UUID)
-            .permalink(DEFAULT_PERMALINK)
+            .type(DEFAULT_TYPE)
             .name(DEFAULT_NAME)
-            .alsoknownas(DEFAULT_ALSOKNOWNAS)
             .shortdescription(DEFAULT_SHORTDESCRIPTION)
             .description(DEFAULT_DESCRIPTION)
-            .profileimageid(DEFAULT_PROFILEIMAGEID)
-            .primaryrole(DEFAULT_PRIMARYROLE)
             .foundedon(DEFAULT_FOUNDEDON)
-            .foundedontrustcode(DEFAULT_FOUNDEDONTRUSTCODE)
             .closedon(DEFAULT_CLOSEDON)
             .numemployeesmin(DEFAULT_NUMEMPLOYEESMIN)
             .numemployeesmax(DEFAULT_NUMEMPLOYEESMAX)
             .totalfundingusd(DEFAULT_TOTALFUNDINGUSD)
             .totalfundingvnd(DEFAULT_TOTALFUNDINGVND)
-            .stockexchange(DEFAULT_STOCKEXCHANGE)
-            .stocksymbol(DEFAULT_STOCKSYMBOL)
             .numberofinvestments(DEFAULT_NUMBEROFINVESTMENTS)
             .createdat(DEFAULT_CREATEDAT)
             .updatedat(DEFAULT_UPDATEDAT)
-            .permalinkaliases(DEFAULT_PERMALINKALIASES)
-            .investortype(DEFAULT_INVESTORTYPE)
             .contactemail(DEFAULT_CONTACTEMAIL)
             .phonenumber(DEFAULT_PHONENUMBER)
-            .rank(DEFAULT_RANK)
-            .primaryimageid(DEFAULT_PRIMARYIMAGEID)
-            .ownedbyid(DEFAULT_OWNEDBYID)
-            .headquartersid(DEFAULT_HEADQUARTERSID)
-            .acquiredbyid(DEFAULT_ACQUIREDBYID)
-            .ipoid(DEFAULT_IPOID)
             .homepageurl(DEFAULT_HOMEPAGEURL)
             .facebookurl(DEFAULT_FACEBOOKURL)
             .twitterurl(DEFAULT_TWITTERURL)
@@ -268,35 +205,21 @@ public class CompanyResourceIT {
     public static Company createUpdatedEntity(EntityManager em) {
         Company company = new Company()
             .uuid(UPDATED_UUID)
-            .permalink(UPDATED_PERMALINK)
+            .type(UPDATED_TYPE)
             .name(UPDATED_NAME)
-            .alsoknownas(UPDATED_ALSOKNOWNAS)
             .shortdescription(UPDATED_SHORTDESCRIPTION)
             .description(UPDATED_DESCRIPTION)
-            .profileimageid(UPDATED_PROFILEIMAGEID)
-            .primaryrole(UPDATED_PRIMARYROLE)
             .foundedon(UPDATED_FOUNDEDON)
-            .foundedontrustcode(UPDATED_FOUNDEDONTRUSTCODE)
             .closedon(UPDATED_CLOSEDON)
             .numemployeesmin(UPDATED_NUMEMPLOYEESMIN)
             .numemployeesmax(UPDATED_NUMEMPLOYEESMAX)
             .totalfundingusd(UPDATED_TOTALFUNDINGUSD)
             .totalfundingvnd(UPDATED_TOTALFUNDINGVND)
-            .stockexchange(UPDATED_STOCKEXCHANGE)
-            .stocksymbol(UPDATED_STOCKSYMBOL)
             .numberofinvestments(UPDATED_NUMBEROFINVESTMENTS)
             .createdat(UPDATED_CREATEDAT)
             .updatedat(UPDATED_UPDATEDAT)
-            .permalinkaliases(UPDATED_PERMALINKALIASES)
-            .investortype(UPDATED_INVESTORTYPE)
             .contactemail(UPDATED_CONTACTEMAIL)
             .phonenumber(UPDATED_PHONENUMBER)
-            .rank(UPDATED_RANK)
-            .primaryimageid(UPDATED_PRIMARYIMAGEID)
-            .ownedbyid(UPDATED_OWNEDBYID)
-            .headquartersid(UPDATED_HEADQUARTERSID)
-            .acquiredbyid(UPDATED_ACQUIREDBYID)
-            .ipoid(UPDATED_IPOID)
             .homepageurl(UPDATED_HOMEPAGEURL)
             .facebookurl(UPDATED_FACEBOOKURL)
             .twitterurl(UPDATED_TWITTERURL)
@@ -329,35 +252,21 @@ public class CompanyResourceIT {
         assertThat(companyList).hasSize(databaseSizeBeforeCreate + 1);
         Company testCompany = companyList.get(companyList.size() - 1);
         assertThat(testCompany.getUuid()).isEqualTo(DEFAULT_UUID);
-        assertThat(testCompany.getPermalink()).isEqualTo(DEFAULT_PERMALINK);
+        assertThat(testCompany.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testCompany.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testCompany.getAlsoknownas()).isEqualTo(DEFAULT_ALSOKNOWNAS);
         assertThat(testCompany.getShortdescription()).isEqualTo(DEFAULT_SHORTDESCRIPTION);
         assertThat(testCompany.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
-        assertThat(testCompany.getProfileimageid()).isEqualTo(DEFAULT_PROFILEIMAGEID);
-        assertThat(testCompany.getPrimaryrole()).isEqualTo(DEFAULT_PRIMARYROLE);
         assertThat(testCompany.getFoundedon()).isEqualTo(DEFAULT_FOUNDEDON);
-        assertThat(testCompany.getFoundedontrustcode()).isEqualTo(DEFAULT_FOUNDEDONTRUSTCODE);
         assertThat(testCompany.getClosedon()).isEqualTo(DEFAULT_CLOSEDON);
         assertThat(testCompany.getNumemployeesmin()).isEqualTo(DEFAULT_NUMEMPLOYEESMIN);
         assertThat(testCompany.getNumemployeesmax()).isEqualTo(DEFAULT_NUMEMPLOYEESMAX);
         assertThat(testCompany.getTotalfundingusd()).isEqualTo(DEFAULT_TOTALFUNDINGUSD);
         assertThat(testCompany.getTotalfundingvnd()).isEqualTo(DEFAULT_TOTALFUNDINGVND);
-        assertThat(testCompany.getStockexchange()).isEqualTo(DEFAULT_STOCKEXCHANGE);
-        assertThat(testCompany.getStocksymbol()).isEqualTo(DEFAULT_STOCKSYMBOL);
         assertThat(testCompany.getNumberofinvestments()).isEqualTo(DEFAULT_NUMBEROFINVESTMENTS);
         assertThat(testCompany.getCreatedat()).isEqualTo(DEFAULT_CREATEDAT);
         assertThat(testCompany.getUpdatedat()).isEqualTo(DEFAULT_UPDATEDAT);
-        assertThat(testCompany.getPermalinkaliases()).isEqualTo(DEFAULT_PERMALINKALIASES);
-        assertThat(testCompany.getInvestortype()).isEqualTo(DEFAULT_INVESTORTYPE);
         assertThat(testCompany.getContactemail()).isEqualTo(DEFAULT_CONTACTEMAIL);
         assertThat(testCompany.getPhonenumber()).isEqualTo(DEFAULT_PHONENUMBER);
-        assertThat(testCompany.getRank()).isEqualTo(DEFAULT_RANK);
-        assertThat(testCompany.getPrimaryimageid()).isEqualTo(DEFAULT_PRIMARYIMAGEID);
-        assertThat(testCompany.getOwnedbyid()).isEqualTo(DEFAULT_OWNEDBYID);
-        assertThat(testCompany.getHeadquartersid()).isEqualTo(DEFAULT_HEADQUARTERSID);
-        assertThat(testCompany.getAcquiredbyid()).isEqualTo(DEFAULT_ACQUIREDBYID);
-        assertThat(testCompany.getIpoid()).isEqualTo(DEFAULT_IPOID);
         assertThat(testCompany.getHomepageurl()).isEqualTo(DEFAULT_HOMEPAGEURL);
         assertThat(testCompany.getFacebookurl()).isEqualTo(DEFAULT_FACEBOOKURL);
         assertThat(testCompany.getTwitterurl()).isEqualTo(DEFAULT_TWITTERURL);
@@ -409,10 +318,10 @@ public class CompanyResourceIT {
 
     @Test
     @Transactional
-    public void checkPermalinkIsRequired() throws Exception {
+    public void checkTypeIsRequired() throws Exception {
         int databaseSizeBeforeTest = companyRepository.findAll().size();
         // set the field null
-        company.setPermalink(null);
+        company.setType(null);
 
         // Create the Company, which fails.
         CompanyDTO companyDTO = companyMapper.toDto(company);
@@ -457,35 +366,21 @@ public class CompanyResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(company.getId().intValue())))
             .andExpect(jsonPath("$.[*].uuid").value(hasItem(DEFAULT_UUID.toString())))
-            .andExpect(jsonPath("$.[*].permalink").value(hasItem(DEFAULT_PERMALINK.toString())))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].alsoknownas").value(hasItem(DEFAULT_ALSOKNOWNAS.toString())))
             .andExpect(jsonPath("$.[*].shortdescription").value(hasItem(DEFAULT_SHORTDESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
-            .andExpect(jsonPath("$.[*].profileimageid").value(hasItem(DEFAULT_PROFILEIMAGEID)))
-            .andExpect(jsonPath("$.[*].primaryrole").value(hasItem(DEFAULT_PRIMARYROLE.toString())))
             .andExpect(jsonPath("$.[*].foundedon").value(hasItem(DEFAULT_FOUNDEDON.toString())))
-            .andExpect(jsonPath("$.[*].foundedontrustcode").value(hasItem(DEFAULT_FOUNDEDONTRUSTCODE)))
             .andExpect(jsonPath("$.[*].closedon").value(hasItem(DEFAULT_CLOSEDON.toString())))
             .andExpect(jsonPath("$.[*].numemployeesmin").value(hasItem(DEFAULT_NUMEMPLOYEESMIN)))
             .andExpect(jsonPath("$.[*].numemployeesmax").value(hasItem(DEFAULT_NUMEMPLOYEESMAX)))
             .andExpect(jsonPath("$.[*].totalfundingusd").value(hasItem(DEFAULT_TOTALFUNDINGUSD)))
             .andExpect(jsonPath("$.[*].totalfundingvnd").value(hasItem(DEFAULT_TOTALFUNDINGVND)))
-            .andExpect(jsonPath("$.[*].stockexchange").value(hasItem(DEFAULT_STOCKEXCHANGE.toString())))
-            .andExpect(jsonPath("$.[*].stocksymbol").value(hasItem(DEFAULT_STOCKSYMBOL.toString())))
             .andExpect(jsonPath("$.[*].numberofinvestments").value(hasItem(DEFAULT_NUMBEROFINVESTMENTS)))
             .andExpect(jsonPath("$.[*].createdat").value(hasItem(DEFAULT_CREATEDAT.toString())))
             .andExpect(jsonPath("$.[*].updatedat").value(hasItem(DEFAULT_UPDATEDAT.toString())))
-            .andExpect(jsonPath("$.[*].permalinkaliases").value(hasItem(DEFAULT_PERMALINKALIASES.toString())))
-            .andExpect(jsonPath("$.[*].investortype").value(hasItem(DEFAULT_INVESTORTYPE.toString())))
             .andExpect(jsonPath("$.[*].contactemail").value(hasItem(DEFAULT_CONTACTEMAIL.toString())))
             .andExpect(jsonPath("$.[*].phonenumber").value(hasItem(DEFAULT_PHONENUMBER.toString())))
-            .andExpect(jsonPath("$.[*].rank").value(hasItem(DEFAULT_RANK)))
-            .andExpect(jsonPath("$.[*].primaryimageid").value(hasItem(DEFAULT_PRIMARYIMAGEID)))
-            .andExpect(jsonPath("$.[*].ownedbyid").value(hasItem(DEFAULT_OWNEDBYID)))
-            .andExpect(jsonPath("$.[*].headquartersid").value(hasItem(DEFAULT_HEADQUARTERSID)))
-            .andExpect(jsonPath("$.[*].acquiredbyid").value(hasItem(DEFAULT_ACQUIREDBYID)))
-            .andExpect(jsonPath("$.[*].ipoid").value(hasItem(DEFAULT_IPOID)))
             .andExpect(jsonPath("$.[*].homepageurl").value(hasItem(DEFAULT_HOMEPAGEURL.toString())))
             .andExpect(jsonPath("$.[*].facebookurl").value(hasItem(DEFAULT_FACEBOOKURL.toString())))
             .andExpect(jsonPath("$.[*].twitterurl").value(hasItem(DEFAULT_TWITTERURL.toString())))
@@ -507,35 +402,21 @@ public class CompanyResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(company.getId().intValue()))
             .andExpect(jsonPath("$.uuid").value(DEFAULT_UUID.toString()))
-            .andExpect(jsonPath("$.permalink").value(DEFAULT_PERMALINK.toString()))
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.alsoknownas").value(DEFAULT_ALSOKNOWNAS.toString()))
             .andExpect(jsonPath("$.shortdescription").value(DEFAULT_SHORTDESCRIPTION.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
-            .andExpect(jsonPath("$.profileimageid").value(DEFAULT_PROFILEIMAGEID))
-            .andExpect(jsonPath("$.primaryrole").value(DEFAULT_PRIMARYROLE.toString()))
             .andExpect(jsonPath("$.foundedon").value(DEFAULT_FOUNDEDON.toString()))
-            .andExpect(jsonPath("$.foundedontrustcode").value(DEFAULT_FOUNDEDONTRUSTCODE))
             .andExpect(jsonPath("$.closedon").value(DEFAULT_CLOSEDON.toString()))
             .andExpect(jsonPath("$.numemployeesmin").value(DEFAULT_NUMEMPLOYEESMIN))
             .andExpect(jsonPath("$.numemployeesmax").value(DEFAULT_NUMEMPLOYEESMAX))
             .andExpect(jsonPath("$.totalfundingusd").value(DEFAULT_TOTALFUNDINGUSD))
             .andExpect(jsonPath("$.totalfundingvnd").value(DEFAULT_TOTALFUNDINGVND))
-            .andExpect(jsonPath("$.stockexchange").value(DEFAULT_STOCKEXCHANGE.toString()))
-            .andExpect(jsonPath("$.stocksymbol").value(DEFAULT_STOCKSYMBOL.toString()))
             .andExpect(jsonPath("$.numberofinvestments").value(DEFAULT_NUMBEROFINVESTMENTS))
             .andExpect(jsonPath("$.createdat").value(DEFAULT_CREATEDAT.toString()))
             .andExpect(jsonPath("$.updatedat").value(DEFAULT_UPDATEDAT.toString()))
-            .andExpect(jsonPath("$.permalinkaliases").value(DEFAULT_PERMALINKALIASES.toString()))
-            .andExpect(jsonPath("$.investortype").value(DEFAULT_INVESTORTYPE.toString()))
             .andExpect(jsonPath("$.contactemail").value(DEFAULT_CONTACTEMAIL.toString()))
             .andExpect(jsonPath("$.phonenumber").value(DEFAULT_PHONENUMBER.toString()))
-            .andExpect(jsonPath("$.rank").value(DEFAULT_RANK))
-            .andExpect(jsonPath("$.primaryimageid").value(DEFAULT_PRIMARYIMAGEID))
-            .andExpect(jsonPath("$.ownedbyid").value(DEFAULT_OWNEDBYID))
-            .andExpect(jsonPath("$.headquartersid").value(DEFAULT_HEADQUARTERSID))
-            .andExpect(jsonPath("$.acquiredbyid").value(DEFAULT_ACQUIREDBYID))
-            .andExpect(jsonPath("$.ipoid").value(DEFAULT_IPOID))
             .andExpect(jsonPath("$.homepageurl").value(DEFAULT_HOMEPAGEURL.toString()))
             .andExpect(jsonPath("$.facebookurl").value(DEFAULT_FACEBOOKURL.toString()))
             .andExpect(jsonPath("$.twitterurl").value(DEFAULT_TWITTERURL.toString()))
@@ -586,41 +467,41 @@ public class CompanyResourceIT {
 
     @Test
     @Transactional
-    public void getAllCompaniesByPermalinkIsEqualToSomething() throws Exception {
+    public void getAllCompaniesByTypeIsEqualToSomething() throws Exception {
         // Initialize the database
         companyRepository.saveAndFlush(company);
 
-        // Get all the companyList where permalink equals to DEFAULT_PERMALINK
-        defaultCompanyShouldBeFound("permalink.equals=" + DEFAULT_PERMALINK);
+        // Get all the companyList where type equals to DEFAULT_TYPE
+        defaultCompanyShouldBeFound("type.equals=" + DEFAULT_TYPE);
 
-        // Get all the companyList where permalink equals to UPDATED_PERMALINK
-        defaultCompanyShouldNotBeFound("permalink.equals=" + UPDATED_PERMALINK);
+        // Get all the companyList where type equals to UPDATED_TYPE
+        defaultCompanyShouldNotBeFound("type.equals=" + UPDATED_TYPE);
     }
 
     @Test
     @Transactional
-    public void getAllCompaniesByPermalinkIsInShouldWork() throws Exception {
+    public void getAllCompaniesByTypeIsInShouldWork() throws Exception {
         // Initialize the database
         companyRepository.saveAndFlush(company);
 
-        // Get all the companyList where permalink in DEFAULT_PERMALINK or UPDATED_PERMALINK
-        defaultCompanyShouldBeFound("permalink.in=" + DEFAULT_PERMALINK + "," + UPDATED_PERMALINK);
+        // Get all the companyList where type in DEFAULT_TYPE or UPDATED_TYPE
+        defaultCompanyShouldBeFound("type.in=" + DEFAULT_TYPE + "," + UPDATED_TYPE);
 
-        // Get all the companyList where permalink equals to UPDATED_PERMALINK
-        defaultCompanyShouldNotBeFound("permalink.in=" + UPDATED_PERMALINK);
+        // Get all the companyList where type equals to UPDATED_TYPE
+        defaultCompanyShouldNotBeFound("type.in=" + UPDATED_TYPE);
     }
 
     @Test
     @Transactional
-    public void getAllCompaniesByPermalinkIsNullOrNotNull() throws Exception {
+    public void getAllCompaniesByTypeIsNullOrNotNull() throws Exception {
         // Initialize the database
         companyRepository.saveAndFlush(company);
 
-        // Get all the companyList where permalink is not null
-        defaultCompanyShouldBeFound("permalink.specified=true");
+        // Get all the companyList where type is not null
+        defaultCompanyShouldBeFound("type.specified=true");
 
-        // Get all the companyList where permalink is null
-        defaultCompanyShouldNotBeFound("permalink.specified=false");
+        // Get all the companyList where type is null
+        defaultCompanyShouldNotBeFound("type.specified=false");
     }
 
     @Test
@@ -660,45 +541,6 @@ public class CompanyResourceIT {
 
         // Get all the companyList where name is null
         defaultCompanyShouldNotBeFound("name.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByAlsoknownasIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where alsoknownas equals to DEFAULT_ALSOKNOWNAS
-        defaultCompanyShouldBeFound("alsoknownas.equals=" + DEFAULT_ALSOKNOWNAS);
-
-        // Get all the companyList where alsoknownas equals to UPDATED_ALSOKNOWNAS
-        defaultCompanyShouldNotBeFound("alsoknownas.equals=" + UPDATED_ALSOKNOWNAS);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByAlsoknownasIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where alsoknownas in DEFAULT_ALSOKNOWNAS or UPDATED_ALSOKNOWNAS
-        defaultCompanyShouldBeFound("alsoknownas.in=" + DEFAULT_ALSOKNOWNAS + "," + UPDATED_ALSOKNOWNAS);
-
-        // Get all the companyList where alsoknownas equals to UPDATED_ALSOKNOWNAS
-        defaultCompanyShouldNotBeFound("alsoknownas.in=" + UPDATED_ALSOKNOWNAS);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByAlsoknownasIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where alsoknownas is not null
-        defaultCompanyShouldBeFound("alsoknownas.specified=true");
-
-        // Get all the companyList where alsoknownas is null
-        defaultCompanyShouldNotBeFound("alsoknownas.specified=false");
     }
 
     @Test
@@ -781,137 +623,6 @@ public class CompanyResourceIT {
 
     @Test
     @Transactional
-    public void getAllCompaniesByProfileimageidIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where profileimageid equals to DEFAULT_PROFILEIMAGEID
-        defaultCompanyShouldBeFound("profileimageid.equals=" + DEFAULT_PROFILEIMAGEID);
-
-        // Get all the companyList where profileimageid equals to UPDATED_PROFILEIMAGEID
-        defaultCompanyShouldNotBeFound("profileimageid.equals=" + UPDATED_PROFILEIMAGEID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByProfileimageidIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where profileimageid in DEFAULT_PROFILEIMAGEID or UPDATED_PROFILEIMAGEID
-        defaultCompanyShouldBeFound("profileimageid.in=" + DEFAULT_PROFILEIMAGEID + "," + UPDATED_PROFILEIMAGEID);
-
-        // Get all the companyList where profileimageid equals to UPDATED_PROFILEIMAGEID
-        defaultCompanyShouldNotBeFound("profileimageid.in=" + UPDATED_PROFILEIMAGEID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByProfileimageidIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where profileimageid is not null
-        defaultCompanyShouldBeFound("profileimageid.specified=true");
-
-        // Get all the companyList where profileimageid is null
-        defaultCompanyShouldNotBeFound("profileimageid.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByProfileimageidIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where profileimageid is greater than or equal to DEFAULT_PROFILEIMAGEID
-        defaultCompanyShouldBeFound("profileimageid.greaterThanOrEqual=" + DEFAULT_PROFILEIMAGEID);
-
-        // Get all the companyList where profileimageid is greater than or equal to UPDATED_PROFILEIMAGEID
-        defaultCompanyShouldNotBeFound("profileimageid.greaterThanOrEqual=" + UPDATED_PROFILEIMAGEID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByProfileimageidIsLessThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where profileimageid is less than or equal to DEFAULT_PROFILEIMAGEID
-        defaultCompanyShouldBeFound("profileimageid.lessThanOrEqual=" + DEFAULT_PROFILEIMAGEID);
-
-        // Get all the companyList where profileimageid is less than or equal to SMALLER_PROFILEIMAGEID
-        defaultCompanyShouldNotBeFound("profileimageid.lessThanOrEqual=" + SMALLER_PROFILEIMAGEID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByProfileimageidIsLessThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where profileimageid is less than DEFAULT_PROFILEIMAGEID
-        defaultCompanyShouldNotBeFound("profileimageid.lessThan=" + DEFAULT_PROFILEIMAGEID);
-
-        // Get all the companyList where profileimageid is less than UPDATED_PROFILEIMAGEID
-        defaultCompanyShouldBeFound("profileimageid.lessThan=" + UPDATED_PROFILEIMAGEID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByProfileimageidIsGreaterThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where profileimageid is greater than DEFAULT_PROFILEIMAGEID
-        defaultCompanyShouldNotBeFound("profileimageid.greaterThan=" + DEFAULT_PROFILEIMAGEID);
-
-        // Get all the companyList where profileimageid is greater than SMALLER_PROFILEIMAGEID
-        defaultCompanyShouldBeFound("profileimageid.greaterThan=" + SMALLER_PROFILEIMAGEID);
-    }
-
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByPrimaryroleIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where primaryrole equals to DEFAULT_PRIMARYROLE
-        defaultCompanyShouldBeFound("primaryrole.equals=" + DEFAULT_PRIMARYROLE);
-
-        // Get all the companyList where primaryrole equals to UPDATED_PRIMARYROLE
-        defaultCompanyShouldNotBeFound("primaryrole.equals=" + UPDATED_PRIMARYROLE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByPrimaryroleIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where primaryrole in DEFAULT_PRIMARYROLE or UPDATED_PRIMARYROLE
-        defaultCompanyShouldBeFound("primaryrole.in=" + DEFAULT_PRIMARYROLE + "," + UPDATED_PRIMARYROLE);
-
-        // Get all the companyList where primaryrole equals to UPDATED_PRIMARYROLE
-        defaultCompanyShouldNotBeFound("primaryrole.in=" + UPDATED_PRIMARYROLE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByPrimaryroleIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where primaryrole is not null
-        defaultCompanyShouldBeFound("primaryrole.specified=true");
-
-        // Get all the companyList where primaryrole is null
-        defaultCompanyShouldNotBeFound("primaryrole.specified=false");
-    }
-
-    @Test
-    @Transactional
     public void getAllCompaniesByFoundedonIsEqualToSomething() throws Exception {
         // Initialize the database
         companyRepository.saveAndFlush(company);
@@ -948,98 +659,6 @@ public class CompanyResourceIT {
         // Get all the companyList where foundedon is null
         defaultCompanyShouldNotBeFound("foundedon.specified=false");
     }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByFoundedontrustcodeIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where foundedontrustcode equals to DEFAULT_FOUNDEDONTRUSTCODE
-        defaultCompanyShouldBeFound("foundedontrustcode.equals=" + DEFAULT_FOUNDEDONTRUSTCODE);
-
-        // Get all the companyList where foundedontrustcode equals to UPDATED_FOUNDEDONTRUSTCODE
-        defaultCompanyShouldNotBeFound("foundedontrustcode.equals=" + UPDATED_FOUNDEDONTRUSTCODE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByFoundedontrustcodeIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where foundedontrustcode in DEFAULT_FOUNDEDONTRUSTCODE or UPDATED_FOUNDEDONTRUSTCODE
-        defaultCompanyShouldBeFound("foundedontrustcode.in=" + DEFAULT_FOUNDEDONTRUSTCODE + "," + UPDATED_FOUNDEDONTRUSTCODE);
-
-        // Get all the companyList where foundedontrustcode equals to UPDATED_FOUNDEDONTRUSTCODE
-        defaultCompanyShouldNotBeFound("foundedontrustcode.in=" + UPDATED_FOUNDEDONTRUSTCODE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByFoundedontrustcodeIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where foundedontrustcode is not null
-        defaultCompanyShouldBeFound("foundedontrustcode.specified=true");
-
-        // Get all the companyList where foundedontrustcode is null
-        defaultCompanyShouldNotBeFound("foundedontrustcode.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByFoundedontrustcodeIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where foundedontrustcode is greater than or equal to DEFAULT_FOUNDEDONTRUSTCODE
-        defaultCompanyShouldBeFound("foundedontrustcode.greaterThanOrEqual=" + DEFAULT_FOUNDEDONTRUSTCODE);
-
-        // Get all the companyList where foundedontrustcode is greater than or equal to UPDATED_FOUNDEDONTRUSTCODE
-        defaultCompanyShouldNotBeFound("foundedontrustcode.greaterThanOrEqual=" + UPDATED_FOUNDEDONTRUSTCODE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByFoundedontrustcodeIsLessThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where foundedontrustcode is less than or equal to DEFAULT_FOUNDEDONTRUSTCODE
-        defaultCompanyShouldBeFound("foundedontrustcode.lessThanOrEqual=" + DEFAULT_FOUNDEDONTRUSTCODE);
-
-        // Get all the companyList where foundedontrustcode is less than or equal to SMALLER_FOUNDEDONTRUSTCODE
-        defaultCompanyShouldNotBeFound("foundedontrustcode.lessThanOrEqual=" + SMALLER_FOUNDEDONTRUSTCODE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByFoundedontrustcodeIsLessThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where foundedontrustcode is less than DEFAULT_FOUNDEDONTRUSTCODE
-        defaultCompanyShouldNotBeFound("foundedontrustcode.lessThan=" + DEFAULT_FOUNDEDONTRUSTCODE);
-
-        // Get all the companyList where foundedontrustcode is less than UPDATED_FOUNDEDONTRUSTCODE
-        defaultCompanyShouldBeFound("foundedontrustcode.lessThan=" + UPDATED_FOUNDEDONTRUSTCODE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByFoundedontrustcodeIsGreaterThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where foundedontrustcode is greater than DEFAULT_FOUNDEDONTRUSTCODE
-        defaultCompanyShouldNotBeFound("foundedontrustcode.greaterThan=" + DEFAULT_FOUNDEDONTRUSTCODE);
-
-        // Get all the companyList where foundedontrustcode is greater than SMALLER_FOUNDEDONTRUSTCODE
-        defaultCompanyShouldBeFound("foundedontrustcode.greaterThan=" + SMALLER_FOUNDEDONTRUSTCODE);
-    }
-
 
     @Test
     @Transactional
@@ -1450,84 +1069,6 @@ public class CompanyResourceIT {
 
     @Test
     @Transactional
-    public void getAllCompaniesByStockexchangeIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where stockexchange equals to DEFAULT_STOCKEXCHANGE
-        defaultCompanyShouldBeFound("stockexchange.equals=" + DEFAULT_STOCKEXCHANGE);
-
-        // Get all the companyList where stockexchange equals to UPDATED_STOCKEXCHANGE
-        defaultCompanyShouldNotBeFound("stockexchange.equals=" + UPDATED_STOCKEXCHANGE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByStockexchangeIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where stockexchange in DEFAULT_STOCKEXCHANGE or UPDATED_STOCKEXCHANGE
-        defaultCompanyShouldBeFound("stockexchange.in=" + DEFAULT_STOCKEXCHANGE + "," + UPDATED_STOCKEXCHANGE);
-
-        // Get all the companyList where stockexchange equals to UPDATED_STOCKEXCHANGE
-        defaultCompanyShouldNotBeFound("stockexchange.in=" + UPDATED_STOCKEXCHANGE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByStockexchangeIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where stockexchange is not null
-        defaultCompanyShouldBeFound("stockexchange.specified=true");
-
-        // Get all the companyList where stockexchange is null
-        defaultCompanyShouldNotBeFound("stockexchange.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByStocksymbolIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where stocksymbol equals to DEFAULT_STOCKSYMBOL
-        defaultCompanyShouldBeFound("stocksymbol.equals=" + DEFAULT_STOCKSYMBOL);
-
-        // Get all the companyList where stocksymbol equals to UPDATED_STOCKSYMBOL
-        defaultCompanyShouldNotBeFound("stocksymbol.equals=" + UPDATED_STOCKSYMBOL);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByStocksymbolIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where stocksymbol in DEFAULT_STOCKSYMBOL or UPDATED_STOCKSYMBOL
-        defaultCompanyShouldBeFound("stocksymbol.in=" + DEFAULT_STOCKSYMBOL + "," + UPDATED_STOCKSYMBOL);
-
-        // Get all the companyList where stocksymbol equals to UPDATED_STOCKSYMBOL
-        defaultCompanyShouldNotBeFound("stocksymbol.in=" + UPDATED_STOCKSYMBOL);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByStocksymbolIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where stocksymbol is not null
-        defaultCompanyShouldBeFound("stocksymbol.specified=true");
-
-        // Get all the companyList where stocksymbol is null
-        defaultCompanyShouldNotBeFound("stocksymbol.specified=false");
-    }
-
-    @Test
-    @Transactional
     public void getAllCompaniesByNumberofinvestmentsIsEqualToSomething() throws Exception {
         // Initialize the database
         companyRepository.saveAndFlush(company);
@@ -1698,84 +1239,6 @@ public class CompanyResourceIT {
 
     @Test
     @Transactional
-    public void getAllCompaniesByPermalinkaliasesIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where permalinkaliases equals to DEFAULT_PERMALINKALIASES
-        defaultCompanyShouldBeFound("permalinkaliases.equals=" + DEFAULT_PERMALINKALIASES);
-
-        // Get all the companyList where permalinkaliases equals to UPDATED_PERMALINKALIASES
-        defaultCompanyShouldNotBeFound("permalinkaliases.equals=" + UPDATED_PERMALINKALIASES);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByPermalinkaliasesIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where permalinkaliases in DEFAULT_PERMALINKALIASES or UPDATED_PERMALINKALIASES
-        defaultCompanyShouldBeFound("permalinkaliases.in=" + DEFAULT_PERMALINKALIASES + "," + UPDATED_PERMALINKALIASES);
-
-        // Get all the companyList where permalinkaliases equals to UPDATED_PERMALINKALIASES
-        defaultCompanyShouldNotBeFound("permalinkaliases.in=" + UPDATED_PERMALINKALIASES);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByPermalinkaliasesIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where permalinkaliases is not null
-        defaultCompanyShouldBeFound("permalinkaliases.specified=true");
-
-        // Get all the companyList where permalinkaliases is null
-        defaultCompanyShouldNotBeFound("permalinkaliases.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByInvestortypeIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where investortype equals to DEFAULT_INVESTORTYPE
-        defaultCompanyShouldBeFound("investortype.equals=" + DEFAULT_INVESTORTYPE);
-
-        // Get all the companyList where investortype equals to UPDATED_INVESTORTYPE
-        defaultCompanyShouldNotBeFound("investortype.equals=" + UPDATED_INVESTORTYPE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByInvestortypeIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where investortype in DEFAULT_INVESTORTYPE or UPDATED_INVESTORTYPE
-        defaultCompanyShouldBeFound("investortype.in=" + DEFAULT_INVESTORTYPE + "," + UPDATED_INVESTORTYPE);
-
-        // Get all the companyList where investortype equals to UPDATED_INVESTORTYPE
-        defaultCompanyShouldNotBeFound("investortype.in=" + UPDATED_INVESTORTYPE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByInvestortypeIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where investortype is not null
-        defaultCompanyShouldBeFound("investortype.specified=true");
-
-        // Get all the companyList where investortype is null
-        defaultCompanyShouldNotBeFound("investortype.specified=false");
-    }
-
-    @Test
-    @Transactional
     public void getAllCompaniesByContactemailIsEqualToSomething() throws Exception {
         // Initialize the database
         companyRepository.saveAndFlush(company);
@@ -1851,558 +1314,6 @@ public class CompanyResourceIT {
         // Get all the companyList where phonenumber is null
         defaultCompanyShouldNotBeFound("phonenumber.specified=false");
     }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByRankIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where rank equals to DEFAULT_RANK
-        defaultCompanyShouldBeFound("rank.equals=" + DEFAULT_RANK);
-
-        // Get all the companyList where rank equals to UPDATED_RANK
-        defaultCompanyShouldNotBeFound("rank.equals=" + UPDATED_RANK);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByRankIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where rank in DEFAULT_RANK or UPDATED_RANK
-        defaultCompanyShouldBeFound("rank.in=" + DEFAULT_RANK + "," + UPDATED_RANK);
-
-        // Get all the companyList where rank equals to UPDATED_RANK
-        defaultCompanyShouldNotBeFound("rank.in=" + UPDATED_RANK);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByRankIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where rank is not null
-        defaultCompanyShouldBeFound("rank.specified=true");
-
-        // Get all the companyList where rank is null
-        defaultCompanyShouldNotBeFound("rank.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByRankIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where rank is greater than or equal to DEFAULT_RANK
-        defaultCompanyShouldBeFound("rank.greaterThanOrEqual=" + DEFAULT_RANK);
-
-        // Get all the companyList where rank is greater than or equal to UPDATED_RANK
-        defaultCompanyShouldNotBeFound("rank.greaterThanOrEqual=" + UPDATED_RANK);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByRankIsLessThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where rank is less than or equal to DEFAULT_RANK
-        defaultCompanyShouldBeFound("rank.lessThanOrEqual=" + DEFAULT_RANK);
-
-        // Get all the companyList where rank is less than or equal to SMALLER_RANK
-        defaultCompanyShouldNotBeFound("rank.lessThanOrEqual=" + SMALLER_RANK);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByRankIsLessThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where rank is less than DEFAULT_RANK
-        defaultCompanyShouldNotBeFound("rank.lessThan=" + DEFAULT_RANK);
-
-        // Get all the companyList where rank is less than UPDATED_RANK
-        defaultCompanyShouldBeFound("rank.lessThan=" + UPDATED_RANK);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByRankIsGreaterThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where rank is greater than DEFAULT_RANK
-        defaultCompanyShouldNotBeFound("rank.greaterThan=" + DEFAULT_RANK);
-
-        // Get all the companyList where rank is greater than SMALLER_RANK
-        defaultCompanyShouldBeFound("rank.greaterThan=" + SMALLER_RANK);
-    }
-
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByPrimaryimageidIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where primaryimageid equals to DEFAULT_PRIMARYIMAGEID
-        defaultCompanyShouldBeFound("primaryimageid.equals=" + DEFAULT_PRIMARYIMAGEID);
-
-        // Get all the companyList where primaryimageid equals to UPDATED_PRIMARYIMAGEID
-        defaultCompanyShouldNotBeFound("primaryimageid.equals=" + UPDATED_PRIMARYIMAGEID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByPrimaryimageidIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where primaryimageid in DEFAULT_PRIMARYIMAGEID or UPDATED_PRIMARYIMAGEID
-        defaultCompanyShouldBeFound("primaryimageid.in=" + DEFAULT_PRIMARYIMAGEID + "," + UPDATED_PRIMARYIMAGEID);
-
-        // Get all the companyList where primaryimageid equals to UPDATED_PRIMARYIMAGEID
-        defaultCompanyShouldNotBeFound("primaryimageid.in=" + UPDATED_PRIMARYIMAGEID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByPrimaryimageidIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where primaryimageid is not null
-        defaultCompanyShouldBeFound("primaryimageid.specified=true");
-
-        // Get all the companyList where primaryimageid is null
-        defaultCompanyShouldNotBeFound("primaryimageid.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByPrimaryimageidIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where primaryimageid is greater than or equal to DEFAULT_PRIMARYIMAGEID
-        defaultCompanyShouldBeFound("primaryimageid.greaterThanOrEqual=" + DEFAULT_PRIMARYIMAGEID);
-
-        // Get all the companyList where primaryimageid is greater than or equal to UPDATED_PRIMARYIMAGEID
-        defaultCompanyShouldNotBeFound("primaryimageid.greaterThanOrEqual=" + UPDATED_PRIMARYIMAGEID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByPrimaryimageidIsLessThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where primaryimageid is less than or equal to DEFAULT_PRIMARYIMAGEID
-        defaultCompanyShouldBeFound("primaryimageid.lessThanOrEqual=" + DEFAULT_PRIMARYIMAGEID);
-
-        // Get all the companyList where primaryimageid is less than or equal to SMALLER_PRIMARYIMAGEID
-        defaultCompanyShouldNotBeFound("primaryimageid.lessThanOrEqual=" + SMALLER_PRIMARYIMAGEID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByPrimaryimageidIsLessThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where primaryimageid is less than DEFAULT_PRIMARYIMAGEID
-        defaultCompanyShouldNotBeFound("primaryimageid.lessThan=" + DEFAULT_PRIMARYIMAGEID);
-
-        // Get all the companyList where primaryimageid is less than UPDATED_PRIMARYIMAGEID
-        defaultCompanyShouldBeFound("primaryimageid.lessThan=" + UPDATED_PRIMARYIMAGEID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByPrimaryimageidIsGreaterThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where primaryimageid is greater than DEFAULT_PRIMARYIMAGEID
-        defaultCompanyShouldNotBeFound("primaryimageid.greaterThan=" + DEFAULT_PRIMARYIMAGEID);
-
-        // Get all the companyList where primaryimageid is greater than SMALLER_PRIMARYIMAGEID
-        defaultCompanyShouldBeFound("primaryimageid.greaterThan=" + SMALLER_PRIMARYIMAGEID);
-    }
-
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByOwnedbyidIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ownedbyid equals to DEFAULT_OWNEDBYID
-        defaultCompanyShouldBeFound("ownedbyid.equals=" + DEFAULT_OWNEDBYID);
-
-        // Get all the companyList where ownedbyid equals to UPDATED_OWNEDBYID
-        defaultCompanyShouldNotBeFound("ownedbyid.equals=" + UPDATED_OWNEDBYID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByOwnedbyidIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ownedbyid in DEFAULT_OWNEDBYID or UPDATED_OWNEDBYID
-        defaultCompanyShouldBeFound("ownedbyid.in=" + DEFAULT_OWNEDBYID + "," + UPDATED_OWNEDBYID);
-
-        // Get all the companyList where ownedbyid equals to UPDATED_OWNEDBYID
-        defaultCompanyShouldNotBeFound("ownedbyid.in=" + UPDATED_OWNEDBYID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByOwnedbyidIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ownedbyid is not null
-        defaultCompanyShouldBeFound("ownedbyid.specified=true");
-
-        // Get all the companyList where ownedbyid is null
-        defaultCompanyShouldNotBeFound("ownedbyid.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByOwnedbyidIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ownedbyid is greater than or equal to DEFAULT_OWNEDBYID
-        defaultCompanyShouldBeFound("ownedbyid.greaterThanOrEqual=" + DEFAULT_OWNEDBYID);
-
-        // Get all the companyList where ownedbyid is greater than or equal to UPDATED_OWNEDBYID
-        defaultCompanyShouldNotBeFound("ownedbyid.greaterThanOrEqual=" + UPDATED_OWNEDBYID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByOwnedbyidIsLessThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ownedbyid is less than or equal to DEFAULT_OWNEDBYID
-        defaultCompanyShouldBeFound("ownedbyid.lessThanOrEqual=" + DEFAULT_OWNEDBYID);
-
-        // Get all the companyList where ownedbyid is less than or equal to SMALLER_OWNEDBYID
-        defaultCompanyShouldNotBeFound("ownedbyid.lessThanOrEqual=" + SMALLER_OWNEDBYID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByOwnedbyidIsLessThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ownedbyid is less than DEFAULT_OWNEDBYID
-        defaultCompanyShouldNotBeFound("ownedbyid.lessThan=" + DEFAULT_OWNEDBYID);
-
-        // Get all the companyList where ownedbyid is less than UPDATED_OWNEDBYID
-        defaultCompanyShouldBeFound("ownedbyid.lessThan=" + UPDATED_OWNEDBYID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByOwnedbyidIsGreaterThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ownedbyid is greater than DEFAULT_OWNEDBYID
-        defaultCompanyShouldNotBeFound("ownedbyid.greaterThan=" + DEFAULT_OWNEDBYID);
-
-        // Get all the companyList where ownedbyid is greater than SMALLER_OWNEDBYID
-        defaultCompanyShouldBeFound("ownedbyid.greaterThan=" + SMALLER_OWNEDBYID);
-    }
-
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByHeadquartersidIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where headquartersid equals to DEFAULT_HEADQUARTERSID
-        defaultCompanyShouldBeFound("headquartersid.equals=" + DEFAULT_HEADQUARTERSID);
-
-        // Get all the companyList where headquartersid equals to UPDATED_HEADQUARTERSID
-        defaultCompanyShouldNotBeFound("headquartersid.equals=" + UPDATED_HEADQUARTERSID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByHeadquartersidIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where headquartersid in DEFAULT_HEADQUARTERSID or UPDATED_HEADQUARTERSID
-        defaultCompanyShouldBeFound("headquartersid.in=" + DEFAULT_HEADQUARTERSID + "," + UPDATED_HEADQUARTERSID);
-
-        // Get all the companyList where headquartersid equals to UPDATED_HEADQUARTERSID
-        defaultCompanyShouldNotBeFound("headquartersid.in=" + UPDATED_HEADQUARTERSID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByHeadquartersidIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where headquartersid is not null
-        defaultCompanyShouldBeFound("headquartersid.specified=true");
-
-        // Get all the companyList where headquartersid is null
-        defaultCompanyShouldNotBeFound("headquartersid.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByHeadquartersidIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where headquartersid is greater than or equal to DEFAULT_HEADQUARTERSID
-        defaultCompanyShouldBeFound("headquartersid.greaterThanOrEqual=" + DEFAULT_HEADQUARTERSID);
-
-        // Get all the companyList where headquartersid is greater than or equal to UPDATED_HEADQUARTERSID
-        defaultCompanyShouldNotBeFound("headquartersid.greaterThanOrEqual=" + UPDATED_HEADQUARTERSID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByHeadquartersidIsLessThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where headquartersid is less than or equal to DEFAULT_HEADQUARTERSID
-        defaultCompanyShouldBeFound("headquartersid.lessThanOrEqual=" + DEFAULT_HEADQUARTERSID);
-
-        // Get all the companyList where headquartersid is less than or equal to SMALLER_HEADQUARTERSID
-        defaultCompanyShouldNotBeFound("headquartersid.lessThanOrEqual=" + SMALLER_HEADQUARTERSID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByHeadquartersidIsLessThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where headquartersid is less than DEFAULT_HEADQUARTERSID
-        defaultCompanyShouldNotBeFound("headquartersid.lessThan=" + DEFAULT_HEADQUARTERSID);
-
-        // Get all the companyList where headquartersid is less than UPDATED_HEADQUARTERSID
-        defaultCompanyShouldBeFound("headquartersid.lessThan=" + UPDATED_HEADQUARTERSID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByHeadquartersidIsGreaterThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where headquartersid is greater than DEFAULT_HEADQUARTERSID
-        defaultCompanyShouldNotBeFound("headquartersid.greaterThan=" + DEFAULT_HEADQUARTERSID);
-
-        // Get all the companyList where headquartersid is greater than SMALLER_HEADQUARTERSID
-        defaultCompanyShouldBeFound("headquartersid.greaterThan=" + SMALLER_HEADQUARTERSID);
-    }
-
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByAcquiredbyidIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where acquiredbyid equals to DEFAULT_ACQUIREDBYID
-        defaultCompanyShouldBeFound("acquiredbyid.equals=" + DEFAULT_ACQUIREDBYID);
-
-        // Get all the companyList where acquiredbyid equals to UPDATED_ACQUIREDBYID
-        defaultCompanyShouldNotBeFound("acquiredbyid.equals=" + UPDATED_ACQUIREDBYID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByAcquiredbyidIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where acquiredbyid in DEFAULT_ACQUIREDBYID or UPDATED_ACQUIREDBYID
-        defaultCompanyShouldBeFound("acquiredbyid.in=" + DEFAULT_ACQUIREDBYID + "," + UPDATED_ACQUIREDBYID);
-
-        // Get all the companyList where acquiredbyid equals to UPDATED_ACQUIREDBYID
-        defaultCompanyShouldNotBeFound("acquiredbyid.in=" + UPDATED_ACQUIREDBYID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByAcquiredbyidIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where acquiredbyid is not null
-        defaultCompanyShouldBeFound("acquiredbyid.specified=true");
-
-        // Get all the companyList where acquiredbyid is null
-        defaultCompanyShouldNotBeFound("acquiredbyid.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByAcquiredbyidIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where acquiredbyid is greater than or equal to DEFAULT_ACQUIREDBYID
-        defaultCompanyShouldBeFound("acquiredbyid.greaterThanOrEqual=" + DEFAULT_ACQUIREDBYID);
-
-        // Get all the companyList where acquiredbyid is greater than or equal to UPDATED_ACQUIREDBYID
-        defaultCompanyShouldNotBeFound("acquiredbyid.greaterThanOrEqual=" + UPDATED_ACQUIREDBYID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByAcquiredbyidIsLessThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where acquiredbyid is less than or equal to DEFAULT_ACQUIREDBYID
-        defaultCompanyShouldBeFound("acquiredbyid.lessThanOrEqual=" + DEFAULT_ACQUIREDBYID);
-
-        // Get all the companyList where acquiredbyid is less than or equal to SMALLER_ACQUIREDBYID
-        defaultCompanyShouldNotBeFound("acquiredbyid.lessThanOrEqual=" + SMALLER_ACQUIREDBYID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByAcquiredbyidIsLessThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where acquiredbyid is less than DEFAULT_ACQUIREDBYID
-        defaultCompanyShouldNotBeFound("acquiredbyid.lessThan=" + DEFAULT_ACQUIREDBYID);
-
-        // Get all the companyList where acquiredbyid is less than UPDATED_ACQUIREDBYID
-        defaultCompanyShouldBeFound("acquiredbyid.lessThan=" + UPDATED_ACQUIREDBYID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByAcquiredbyidIsGreaterThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where acquiredbyid is greater than DEFAULT_ACQUIREDBYID
-        defaultCompanyShouldNotBeFound("acquiredbyid.greaterThan=" + DEFAULT_ACQUIREDBYID);
-
-        // Get all the companyList where acquiredbyid is greater than SMALLER_ACQUIREDBYID
-        defaultCompanyShouldBeFound("acquiredbyid.greaterThan=" + SMALLER_ACQUIREDBYID);
-    }
-
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByIpoidIsEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ipoid equals to DEFAULT_IPOID
-        defaultCompanyShouldBeFound("ipoid.equals=" + DEFAULT_IPOID);
-
-        // Get all the companyList where ipoid equals to UPDATED_IPOID
-        defaultCompanyShouldNotBeFound("ipoid.equals=" + UPDATED_IPOID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByIpoidIsInShouldWork() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ipoid in DEFAULT_IPOID or UPDATED_IPOID
-        defaultCompanyShouldBeFound("ipoid.in=" + DEFAULT_IPOID + "," + UPDATED_IPOID);
-
-        // Get all the companyList where ipoid equals to UPDATED_IPOID
-        defaultCompanyShouldNotBeFound("ipoid.in=" + UPDATED_IPOID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByIpoidIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ipoid is not null
-        defaultCompanyShouldBeFound("ipoid.specified=true");
-
-        // Get all the companyList where ipoid is null
-        defaultCompanyShouldNotBeFound("ipoid.specified=false");
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByIpoidIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ipoid is greater than or equal to DEFAULT_IPOID
-        defaultCompanyShouldBeFound("ipoid.greaterThanOrEqual=" + DEFAULT_IPOID);
-
-        // Get all the companyList where ipoid is greater than or equal to UPDATED_IPOID
-        defaultCompanyShouldNotBeFound("ipoid.greaterThanOrEqual=" + UPDATED_IPOID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByIpoidIsLessThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ipoid is less than or equal to DEFAULT_IPOID
-        defaultCompanyShouldBeFound("ipoid.lessThanOrEqual=" + DEFAULT_IPOID);
-
-        // Get all the companyList where ipoid is less than or equal to SMALLER_IPOID
-        defaultCompanyShouldNotBeFound("ipoid.lessThanOrEqual=" + SMALLER_IPOID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByIpoidIsLessThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ipoid is less than DEFAULT_IPOID
-        defaultCompanyShouldNotBeFound("ipoid.lessThan=" + DEFAULT_IPOID);
-
-        // Get all the companyList where ipoid is less than UPDATED_IPOID
-        defaultCompanyShouldBeFound("ipoid.lessThan=" + UPDATED_IPOID);
-    }
-
-    @Test
-    @Transactional
-    public void getAllCompaniesByIpoidIsGreaterThanSomething() throws Exception {
-        // Initialize the database
-        companyRepository.saveAndFlush(company);
-
-        // Get all the companyList where ipoid is greater than DEFAULT_IPOID
-        defaultCompanyShouldNotBeFound("ipoid.greaterThan=" + DEFAULT_IPOID);
-
-        // Get all the companyList where ipoid is greater than SMALLER_IPOID
-        defaultCompanyShouldBeFound("ipoid.greaterThan=" + SMALLER_IPOID);
-    }
-
 
     @Test
     @Transactional
@@ -2679,41 +1590,81 @@ public class CompanyResourceIT {
 
     @Test
     @Transactional
-    public void getAllCompaniesByOwnerIsEqualToSomething() throws Exception {
+    public void getAllCompaniesByPeopleIsEqualToSomething() throws Exception {
         // Initialize the database
         companyRepository.saveAndFlush(company);
-        User owner = UserResourceIT.createEntity(em);
-        em.persist(owner);
+        PersonCompanyRelation people = PersonCompanyRelationResourceIT.createEntity(em);
+        em.persist(people);
         em.flush();
-        company.setOwner(owner);
+        company.addPeople(people);
         companyRepository.saveAndFlush(company);
-        Long ownerId = owner.getId();
+        Long peopleId = people.getId();
 
-        // Get all the companyList where owner equals to ownerId
-        defaultCompanyShouldBeFound("ownerId.equals=" + ownerId);
+        // Get all the companyList where people equals to peopleId
+        defaultCompanyShouldBeFound("peopleId.equals=" + peopleId);
 
-        // Get all the companyList where owner equals to ownerId + 1
-        defaultCompanyShouldNotBeFound("ownerId.equals=" + (ownerId + 1));
+        // Get all the companyList where people equals to peopleId + 1
+        defaultCompanyShouldNotBeFound("peopleId.equals=" + (peopleId + 1));
     }
 
 
     @Test
     @Transactional
-    public void getAllCompaniesByAssigneeIsEqualToSomething() throws Exception {
+    public void getAllCompaniesByCreatedByIsEqualToSomething() throws Exception {
         // Initialize the database
         companyRepository.saveAndFlush(company);
-        User assignee = UserResourceIT.createEntity(em);
-        em.persist(assignee);
+        User createdBy = UserResourceIT.createEntity(em);
+        em.persist(createdBy);
         em.flush();
-        company.setAssignee(assignee);
+        company.setCreatedBy(createdBy);
         companyRepository.saveAndFlush(company);
-        Long assigneeId = assignee.getId();
+        Long createdById = createdBy.getId();
 
-        // Get all the companyList where assignee equals to assigneeId
-        defaultCompanyShouldBeFound("assigneeId.equals=" + assigneeId);
+        // Get all the companyList where createdBy equals to createdById
+        defaultCompanyShouldBeFound("createdById.equals=" + createdById);
 
-        // Get all the companyList where assignee equals to assigneeId + 1
-        defaultCompanyShouldNotBeFound("assigneeId.equals=" + (assigneeId + 1));
+        // Get all the companyList where createdBy equals to createdById + 1
+        defaultCompanyShouldNotBeFound("createdById.equals=" + (createdById + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllCompaniesByUpdatedByIsEqualToSomething() throws Exception {
+        // Initialize the database
+        companyRepository.saveAndFlush(company);
+        User updatedBy = UserResourceIT.createEntity(em);
+        em.persist(updatedBy);
+        em.flush();
+        company.setUpdatedBy(updatedBy);
+        companyRepository.saveAndFlush(company);
+        Long updatedById = updatedBy.getId();
+
+        // Get all the companyList where updatedBy equals to updatedById
+        defaultCompanyShouldBeFound("updatedById.equals=" + updatedById);
+
+        // Get all the companyList where updatedBy equals to updatedById + 1
+        defaultCompanyShouldNotBeFound("updatedById.equals=" + (updatedById + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllCompaniesByAssignedToIsEqualToSomething() throws Exception {
+        // Initialize the database
+        companyRepository.saveAndFlush(company);
+        User assignedTo = UserResourceIT.createEntity(em);
+        em.persist(assignedTo);
+        em.flush();
+        company.setAssignedTo(assignedTo);
+        companyRepository.saveAndFlush(company);
+        Long assignedToId = assignedTo.getId();
+
+        // Get all the companyList where assignedTo equals to assignedToId
+        defaultCompanyShouldBeFound("assignedToId.equals=" + assignedToId);
+
+        // Get all the companyList where assignedTo equals to assignedToId + 1
+        defaultCompanyShouldNotBeFound("assignedToId.equals=" + (assignedToId + 1));
     }
 
     /**
@@ -2725,35 +1676,21 @@ public class CompanyResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(company.getId().intValue())))
             .andExpect(jsonPath("$.[*].uuid").value(hasItem(DEFAULT_UUID)))
-            .andExpect(jsonPath("$.[*].permalink").value(hasItem(DEFAULT_PERMALINK)))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].alsoknownas").value(hasItem(DEFAULT_ALSOKNOWNAS)))
             .andExpect(jsonPath("$.[*].shortdescription").value(hasItem(DEFAULT_SHORTDESCRIPTION)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
-            .andExpect(jsonPath("$.[*].profileimageid").value(hasItem(DEFAULT_PROFILEIMAGEID)))
-            .andExpect(jsonPath("$.[*].primaryrole").value(hasItem(DEFAULT_PRIMARYROLE)))
             .andExpect(jsonPath("$.[*].foundedon").value(hasItem(DEFAULT_FOUNDEDON.toString())))
-            .andExpect(jsonPath("$.[*].foundedontrustcode").value(hasItem(DEFAULT_FOUNDEDONTRUSTCODE)))
             .andExpect(jsonPath("$.[*].closedon").value(hasItem(DEFAULT_CLOSEDON.toString())))
             .andExpect(jsonPath("$.[*].numemployeesmin").value(hasItem(DEFAULT_NUMEMPLOYEESMIN)))
             .andExpect(jsonPath("$.[*].numemployeesmax").value(hasItem(DEFAULT_NUMEMPLOYEESMAX)))
             .andExpect(jsonPath("$.[*].totalfundingusd").value(hasItem(DEFAULT_TOTALFUNDINGUSD)))
             .andExpect(jsonPath("$.[*].totalfundingvnd").value(hasItem(DEFAULT_TOTALFUNDINGVND)))
-            .andExpect(jsonPath("$.[*].stockexchange").value(hasItem(DEFAULT_STOCKEXCHANGE)))
-            .andExpect(jsonPath("$.[*].stocksymbol").value(hasItem(DEFAULT_STOCKSYMBOL)))
             .andExpect(jsonPath("$.[*].numberofinvestments").value(hasItem(DEFAULT_NUMBEROFINVESTMENTS)))
             .andExpect(jsonPath("$.[*].createdat").value(hasItem(DEFAULT_CREATEDAT.toString())))
             .andExpect(jsonPath("$.[*].updatedat").value(hasItem(DEFAULT_UPDATEDAT.toString())))
-            .andExpect(jsonPath("$.[*].permalinkaliases").value(hasItem(DEFAULT_PERMALINKALIASES)))
-            .andExpect(jsonPath("$.[*].investortype").value(hasItem(DEFAULT_INVESTORTYPE)))
             .andExpect(jsonPath("$.[*].contactemail").value(hasItem(DEFAULT_CONTACTEMAIL)))
             .andExpect(jsonPath("$.[*].phonenumber").value(hasItem(DEFAULT_PHONENUMBER)))
-            .andExpect(jsonPath("$.[*].rank").value(hasItem(DEFAULT_RANK)))
-            .andExpect(jsonPath("$.[*].primaryimageid").value(hasItem(DEFAULT_PRIMARYIMAGEID)))
-            .andExpect(jsonPath("$.[*].ownedbyid").value(hasItem(DEFAULT_OWNEDBYID)))
-            .andExpect(jsonPath("$.[*].headquartersid").value(hasItem(DEFAULT_HEADQUARTERSID)))
-            .andExpect(jsonPath("$.[*].acquiredbyid").value(hasItem(DEFAULT_ACQUIREDBYID)))
-            .andExpect(jsonPath("$.[*].ipoid").value(hasItem(DEFAULT_IPOID)))
             .andExpect(jsonPath("$.[*].homepageurl").value(hasItem(DEFAULT_HOMEPAGEURL)))
             .andExpect(jsonPath("$.[*].facebookurl").value(hasItem(DEFAULT_FACEBOOKURL)))
             .andExpect(jsonPath("$.[*].twitterurl").value(hasItem(DEFAULT_TWITTERURL)))
@@ -2809,35 +1746,21 @@ public class CompanyResourceIT {
         em.detach(updatedCompany);
         updatedCompany
             .uuid(UPDATED_UUID)
-            .permalink(UPDATED_PERMALINK)
+            .type(UPDATED_TYPE)
             .name(UPDATED_NAME)
-            .alsoknownas(UPDATED_ALSOKNOWNAS)
             .shortdescription(UPDATED_SHORTDESCRIPTION)
             .description(UPDATED_DESCRIPTION)
-            .profileimageid(UPDATED_PROFILEIMAGEID)
-            .primaryrole(UPDATED_PRIMARYROLE)
             .foundedon(UPDATED_FOUNDEDON)
-            .foundedontrustcode(UPDATED_FOUNDEDONTRUSTCODE)
             .closedon(UPDATED_CLOSEDON)
             .numemployeesmin(UPDATED_NUMEMPLOYEESMIN)
             .numemployeesmax(UPDATED_NUMEMPLOYEESMAX)
             .totalfundingusd(UPDATED_TOTALFUNDINGUSD)
             .totalfundingvnd(UPDATED_TOTALFUNDINGVND)
-            .stockexchange(UPDATED_STOCKEXCHANGE)
-            .stocksymbol(UPDATED_STOCKSYMBOL)
             .numberofinvestments(UPDATED_NUMBEROFINVESTMENTS)
             .createdat(UPDATED_CREATEDAT)
             .updatedat(UPDATED_UPDATEDAT)
-            .permalinkaliases(UPDATED_PERMALINKALIASES)
-            .investortype(UPDATED_INVESTORTYPE)
             .contactemail(UPDATED_CONTACTEMAIL)
             .phonenumber(UPDATED_PHONENUMBER)
-            .rank(UPDATED_RANK)
-            .primaryimageid(UPDATED_PRIMARYIMAGEID)
-            .ownedbyid(UPDATED_OWNEDBYID)
-            .headquartersid(UPDATED_HEADQUARTERSID)
-            .acquiredbyid(UPDATED_ACQUIREDBYID)
-            .ipoid(UPDATED_IPOID)
             .homepageurl(UPDATED_HOMEPAGEURL)
             .facebookurl(UPDATED_FACEBOOKURL)
             .twitterurl(UPDATED_TWITTERURL)
@@ -2857,35 +1780,21 @@ public class CompanyResourceIT {
         assertThat(companyList).hasSize(databaseSizeBeforeUpdate);
         Company testCompany = companyList.get(companyList.size() - 1);
         assertThat(testCompany.getUuid()).isEqualTo(UPDATED_UUID);
-        assertThat(testCompany.getPermalink()).isEqualTo(UPDATED_PERMALINK);
+        assertThat(testCompany.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testCompany.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testCompany.getAlsoknownas()).isEqualTo(UPDATED_ALSOKNOWNAS);
         assertThat(testCompany.getShortdescription()).isEqualTo(UPDATED_SHORTDESCRIPTION);
         assertThat(testCompany.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testCompany.getProfileimageid()).isEqualTo(UPDATED_PROFILEIMAGEID);
-        assertThat(testCompany.getPrimaryrole()).isEqualTo(UPDATED_PRIMARYROLE);
         assertThat(testCompany.getFoundedon()).isEqualTo(UPDATED_FOUNDEDON);
-        assertThat(testCompany.getFoundedontrustcode()).isEqualTo(UPDATED_FOUNDEDONTRUSTCODE);
         assertThat(testCompany.getClosedon()).isEqualTo(UPDATED_CLOSEDON);
         assertThat(testCompany.getNumemployeesmin()).isEqualTo(UPDATED_NUMEMPLOYEESMIN);
         assertThat(testCompany.getNumemployeesmax()).isEqualTo(UPDATED_NUMEMPLOYEESMAX);
         assertThat(testCompany.getTotalfundingusd()).isEqualTo(UPDATED_TOTALFUNDINGUSD);
         assertThat(testCompany.getTotalfundingvnd()).isEqualTo(UPDATED_TOTALFUNDINGVND);
-        assertThat(testCompany.getStockexchange()).isEqualTo(UPDATED_STOCKEXCHANGE);
-        assertThat(testCompany.getStocksymbol()).isEqualTo(UPDATED_STOCKSYMBOL);
         assertThat(testCompany.getNumberofinvestments()).isEqualTo(UPDATED_NUMBEROFINVESTMENTS);
         assertThat(testCompany.getCreatedat()).isEqualTo(UPDATED_CREATEDAT);
         assertThat(testCompany.getUpdatedat()).isEqualTo(UPDATED_UPDATEDAT);
-        assertThat(testCompany.getPermalinkaliases()).isEqualTo(UPDATED_PERMALINKALIASES);
-        assertThat(testCompany.getInvestortype()).isEqualTo(UPDATED_INVESTORTYPE);
         assertThat(testCompany.getContactemail()).isEqualTo(UPDATED_CONTACTEMAIL);
         assertThat(testCompany.getPhonenumber()).isEqualTo(UPDATED_PHONENUMBER);
-        assertThat(testCompany.getRank()).isEqualTo(UPDATED_RANK);
-        assertThat(testCompany.getPrimaryimageid()).isEqualTo(UPDATED_PRIMARYIMAGEID);
-        assertThat(testCompany.getOwnedbyid()).isEqualTo(UPDATED_OWNEDBYID);
-        assertThat(testCompany.getHeadquartersid()).isEqualTo(UPDATED_HEADQUARTERSID);
-        assertThat(testCompany.getAcquiredbyid()).isEqualTo(UPDATED_ACQUIREDBYID);
-        assertThat(testCompany.getIpoid()).isEqualTo(UPDATED_IPOID);
         assertThat(testCompany.getHomepageurl()).isEqualTo(UPDATED_HOMEPAGEURL);
         assertThat(testCompany.getFacebookurl()).isEqualTo(UPDATED_FACEBOOKURL);
         assertThat(testCompany.getTwitterurl()).isEqualTo(UPDATED_TWITTERURL);

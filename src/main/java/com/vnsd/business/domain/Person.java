@@ -1,10 +1,13 @@
 package com.vnsd.business.domain;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Person.
@@ -25,10 +28,6 @@ public class Person implements Serializable {
     private String uuid;
 
     @NotNull
-    @Column(name = "permalink", nullable = false)
-    private String permalink;
-
-    @NotNull
     @Column(name = "firstname", nullable = false)
     private String firstname;
 
@@ -36,23 +35,8 @@ public class Person implements Serializable {
     @Column(name = "lastname", nullable = false)
     private String lastname;
 
-    @Column(name = "alsoknownas")
-    private String alsoknownas;
-
-    @Column(name = "bio")
-    private String bio;
-
-    @Column(name = "profileimageid")
-    private Integer profileimageid;
-
-    @Column(name = "roleinvestor")
-    private Boolean roleinvestor;
-
     @Column(name = "bornon")
     private Instant bornon;
-
-    @Column(name = "bornontrustcode")
-    private Integer bornontrustcode;
 
     @Column(name = "diedon")
     private Instant diedon;
@@ -63,23 +47,8 @@ public class Person implements Serializable {
     @Column(name = "updatedat")
     private Instant updatedat;
 
-    @Column(name = "permalinkaliases")
-    private String permalinkaliases;
-
     @Column(name = "gender")
     private String gender;
-
-    @Column(name = "rank")
-    private Integer rank;
-
-    @Column(name = "primaryaffiliationid")
-    private Integer primaryaffiliationid;
-
-    @Column(name = "primarylocationid")
-    private Integer primarylocationid;
-
-    @Column(name = "primaryimageid")
-    private Integer primaryimageid;
 
     @Column(name = "title")
     private String title;
@@ -105,6 +74,21 @@ public class Person implements Serializable {
     @Column(name = "countrycode")
     private String countrycode;
 
+    @OneToMany(mappedBy = "person")
+    private Set<PersonCompanyRelation> companies = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties("people")
+    private User createdBy;
+
+    @ManyToOne
+    @JsonIgnoreProperties("people")
+    private User updatedBy;
+
+    @ManyToOne
+    @JsonIgnoreProperties("people")
+    private User assignedTo;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -125,19 +109,6 @@ public class Person implements Serializable {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
-    }
-
-    public String getPermalink() {
-        return permalink;
-    }
-
-    public Person permalink(String permalink) {
-        this.permalink = permalink;
-        return this;
-    }
-
-    public void setPermalink(String permalink) {
-        this.permalink = permalink;
     }
 
     public String getFirstname() {
@@ -166,58 +137,6 @@ public class Person implements Serializable {
         this.lastname = lastname;
     }
 
-    public String getAlsoknownas() {
-        return alsoknownas;
-    }
-
-    public Person alsoknownas(String alsoknownas) {
-        this.alsoknownas = alsoknownas;
-        return this;
-    }
-
-    public void setAlsoknownas(String alsoknownas) {
-        this.alsoknownas = alsoknownas;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public Person bio(String bio) {
-        this.bio = bio;
-        return this;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public Integer getProfileimageid() {
-        return profileimageid;
-    }
-
-    public Person profileimageid(Integer profileimageid) {
-        this.profileimageid = profileimageid;
-        return this;
-    }
-
-    public void setProfileimageid(Integer profileimageid) {
-        this.profileimageid = profileimageid;
-    }
-
-    public Boolean isRoleinvestor() {
-        return roleinvestor;
-    }
-
-    public Person roleinvestor(Boolean roleinvestor) {
-        this.roleinvestor = roleinvestor;
-        return this;
-    }
-
-    public void setRoleinvestor(Boolean roleinvestor) {
-        this.roleinvestor = roleinvestor;
-    }
-
     public Instant getBornon() {
         return bornon;
     }
@@ -229,19 +148,6 @@ public class Person implements Serializable {
 
     public void setBornon(Instant bornon) {
         this.bornon = bornon;
-    }
-
-    public Integer getBornontrustcode() {
-        return bornontrustcode;
-    }
-
-    public Person bornontrustcode(Integer bornontrustcode) {
-        this.bornontrustcode = bornontrustcode;
-        return this;
-    }
-
-    public void setBornontrustcode(Integer bornontrustcode) {
-        this.bornontrustcode = bornontrustcode;
     }
 
     public Instant getDiedon() {
@@ -283,19 +189,6 @@ public class Person implements Serializable {
         this.updatedat = updatedat;
     }
 
-    public String getPermalinkaliases() {
-        return permalinkaliases;
-    }
-
-    public Person permalinkaliases(String permalinkaliases) {
-        this.permalinkaliases = permalinkaliases;
-        return this;
-    }
-
-    public void setPermalinkaliases(String permalinkaliases) {
-        this.permalinkaliases = permalinkaliases;
-    }
-
     public String getGender() {
         return gender;
     }
@@ -307,58 +200,6 @@ public class Person implements Serializable {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public Integer getRank() {
-        return rank;
-    }
-
-    public Person rank(Integer rank) {
-        this.rank = rank;
-        return this;
-    }
-
-    public void setRank(Integer rank) {
-        this.rank = rank;
-    }
-
-    public Integer getPrimaryaffiliationid() {
-        return primaryaffiliationid;
-    }
-
-    public Person primaryaffiliationid(Integer primaryaffiliationid) {
-        this.primaryaffiliationid = primaryaffiliationid;
-        return this;
-    }
-
-    public void setPrimaryaffiliationid(Integer primaryaffiliationid) {
-        this.primaryaffiliationid = primaryaffiliationid;
-    }
-
-    public Integer getPrimarylocationid() {
-        return primarylocationid;
-    }
-
-    public Person primarylocationid(Integer primarylocationid) {
-        this.primarylocationid = primarylocationid;
-        return this;
-    }
-
-    public void setPrimarylocationid(Integer primarylocationid) {
-        this.primarylocationid = primarylocationid;
-    }
-
-    public Integer getPrimaryimageid() {
-        return primaryimageid;
-    }
-
-    public Person primaryimageid(Integer primaryimageid) {
-        this.primaryimageid = primaryimageid;
-        return this;
-    }
-
-    public void setPrimaryimageid(Integer primaryimageid) {
-        this.primaryimageid = primaryimageid;
     }
 
     public String getTitle() {
@@ -464,6 +305,70 @@ public class Person implements Serializable {
     public void setCountrycode(String countrycode) {
         this.countrycode = countrycode;
     }
+
+    public Set<PersonCompanyRelation> getCompanies() {
+        return companies;
+    }
+
+    public Person companies(Set<PersonCompanyRelation> personCompanyRelations) {
+        this.companies = personCompanyRelations;
+        return this;
+    }
+
+    public Person addCompanies(PersonCompanyRelation personCompanyRelation) {
+        this.companies.add(personCompanyRelation);
+        personCompanyRelation.setPerson(this);
+        return this;
+    }
+
+    public Person removeCompanies(PersonCompanyRelation personCompanyRelation) {
+        this.companies.remove(personCompanyRelation);
+        personCompanyRelation.setPerson(null);
+        return this;
+    }
+
+    public void setCompanies(Set<PersonCompanyRelation> personCompanyRelations) {
+        this.companies = personCompanyRelations;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public Person createdBy(User user) {
+        this.createdBy = user;
+        return this;
+    }
+
+    public void setCreatedBy(User user) {
+        this.createdBy = user;
+    }
+
+    public User getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public Person updatedBy(User user) {
+        this.updatedBy = user;
+        return this;
+    }
+
+    public void setUpdatedBy(User user) {
+        this.updatedBy = user;
+    }
+
+    public User getAssignedTo() {
+        return assignedTo;
+    }
+
+    public Person assignedTo(User user) {
+        this.assignedTo = user;
+        return this;
+    }
+
+    public void setAssignedTo(User user) {
+        this.assignedTo = user;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -487,24 +392,13 @@ public class Person implements Serializable {
         return "Person{" +
             "id=" + getId() +
             ", uuid='" + getUuid() + "'" +
-            ", permalink='" + getPermalink() + "'" +
             ", firstname='" + getFirstname() + "'" +
             ", lastname='" + getLastname() + "'" +
-            ", alsoknownas='" + getAlsoknownas() + "'" +
-            ", bio='" + getBio() + "'" +
-            ", profileimageid=" + getProfileimageid() +
-            ", roleinvestor='" + isRoleinvestor() + "'" +
             ", bornon='" + getBornon() + "'" +
-            ", bornontrustcode=" + getBornontrustcode() +
             ", diedon='" + getDiedon() + "'" +
             ", createdat='" + getCreatedat() + "'" +
             ", updatedat='" + getUpdatedat() + "'" +
-            ", permalinkaliases='" + getPermalinkaliases() + "'" +
             ", gender='" + getGender() + "'" +
-            ", rank=" + getRank() +
-            ", primaryaffiliationid=" + getPrimaryaffiliationid() +
-            ", primarylocationid=" + getPrimarylocationid() +
-            ", primaryimageid=" + getPrimaryimageid() +
             ", title='" + getTitle() + "'" +
             ", homepageurl='" + getHomepageurl() + "'" +
             ", facebookurl='" + getFacebookurl() + "'" +

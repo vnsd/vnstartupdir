@@ -13,10 +13,13 @@ import java.util.List;
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Long>, JpaSpecificationExecutor<Company> {
 
-    @Query("select company from Company company where company.owner.login = ?#{principal.username}")
-    List<Company> findByOwnerIsCurrentUser();
+    @Query("select company from Company company where company.createdBy.login = ?#{principal.username}")
+    List<Company> findByCreatedByIsCurrentUser();
 
-    @Query("select company from Company company where company.assignee.login = ?#{principal.username}")
-    List<Company> findByAssigneeIsCurrentUser();
+    @Query("select company from Company company where company.updatedBy.login = ?#{principal.username}")
+    List<Company> findByUpdatedByIsCurrentUser();
+
+    @Query("select company from Company company where company.assignedTo.login = ?#{principal.username}")
+    List<Company> findByAssignedToIsCurrentUser();
 
 }

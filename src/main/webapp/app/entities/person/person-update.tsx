@@ -8,6 +8,8 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { IUser } from 'app/shared/model/user.model';
+import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './person.reducer';
 import { IPerson } from 'app/shared/model/person.model';
 // tslint:disable-next-line:no-unused-variable
@@ -18,12 +20,18 @@ export interface IPersonUpdateProps extends StateProps, DispatchProps, RouteComp
 
 export interface IPersonUpdateState {
   isNew: boolean;
+  createdById: string;
+  updatedById: string;
+  assignedToId: string;
 }
 
 export class PersonUpdate extends React.Component<IPersonUpdateProps, IPersonUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
+      createdById: '0',
+      updatedById: '0',
+      assignedToId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -40,6 +48,8 @@ export class PersonUpdate extends React.Component<IPersonUpdateProps, IPersonUpd
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
+
+    this.props.getUsers();
   }
 
   saveEntity = (event, errors, values) => {
@@ -68,7 +78,7 @@ export class PersonUpdate extends React.Component<IPersonUpdateProps, IPersonUpd
   };
 
   render() {
-    const { personEntity, loading, updating } = this.props;
+    const { personEntity, users, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -108,19 +118,6 @@ export class PersonUpdate extends React.Component<IPersonUpdateProps, IPersonUpd
                   />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="permalinkLabel" for="person-permalink">
-                    <Translate contentKey="vnstartupdirApp.person.permalink">Permalink</Translate>
-                  </Label>
-                  <AvField
-                    id="person-permalink"
-                    type="text"
-                    name="permalink"
-                    validate={{
-                      required: { value: true, errorMessage: translate('entity.validation.required') }
-                    }}
-                  />
-                </AvGroup>
-                <AvGroup>
                   <Label id="firstnameLabel" for="person-firstname">
                     <Translate contentKey="vnstartupdirApp.person.firstname">Firstname</Translate>
                   </Label>
@@ -147,30 +144,6 @@ export class PersonUpdate extends React.Component<IPersonUpdateProps, IPersonUpd
                   />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="alsoknownasLabel" for="person-alsoknownas">
-                    <Translate contentKey="vnstartupdirApp.person.alsoknownas">Alsoknownas</Translate>
-                  </Label>
-                  <AvField id="person-alsoknownas" type="text" name="alsoknownas" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="bioLabel" for="person-bio">
-                    <Translate contentKey="vnstartupdirApp.person.bio">Bio</Translate>
-                  </Label>
-                  <AvField id="person-bio" type="text" name="bio" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="profileimageidLabel" for="person-profileimageid">
-                    <Translate contentKey="vnstartupdirApp.person.profileimageid">Profileimageid</Translate>
-                  </Label>
-                  <AvField id="person-profileimageid" type="string" className="form-control" name="profileimageid" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="roleinvestorLabel" check>
-                    <AvInput id="person-roleinvestor" type="checkbox" className="form-control" name="roleinvestor" />
-                    <Translate contentKey="vnstartupdirApp.person.roleinvestor">Roleinvestor</Translate>
-                  </Label>
-                </AvGroup>
-                <AvGroup>
                   <Label id="bornonLabel" for="person-bornon">
                     <Translate contentKey="vnstartupdirApp.person.bornon">Bornon</Translate>
                   </Label>
@@ -182,12 +155,6 @@ export class PersonUpdate extends React.Component<IPersonUpdateProps, IPersonUpd
                     placeholder={'YYYY-MM-DD HH:mm'}
                     value={isNew ? null : convertDateTimeFromServer(this.props.personEntity.bornon)}
                   />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="bornontrustcodeLabel" for="person-bornontrustcode">
-                    <Translate contentKey="vnstartupdirApp.person.bornontrustcode">Bornontrustcode</Translate>
-                  </Label>
-                  <AvField id="person-bornontrustcode" type="string" className="form-control" name="bornontrustcode" />
                 </AvGroup>
                 <AvGroup>
                   <Label id="diedonLabel" for="person-diedon">
@@ -229,40 +196,10 @@ export class PersonUpdate extends React.Component<IPersonUpdateProps, IPersonUpd
                   />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="permalinkaliasesLabel" for="person-permalinkaliases">
-                    <Translate contentKey="vnstartupdirApp.person.permalinkaliases">Permalinkaliases</Translate>
-                  </Label>
-                  <AvField id="person-permalinkaliases" type="text" name="permalinkaliases" />
-                </AvGroup>
-                <AvGroup>
                   <Label id="genderLabel" for="person-gender">
                     <Translate contentKey="vnstartupdirApp.person.gender">Gender</Translate>
                   </Label>
                   <AvField id="person-gender" type="text" name="gender" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="rankLabel" for="person-rank">
-                    <Translate contentKey="vnstartupdirApp.person.rank">Rank</Translate>
-                  </Label>
-                  <AvField id="person-rank" type="string" className="form-control" name="rank" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="primaryaffiliationidLabel" for="person-primaryaffiliationid">
-                    <Translate contentKey="vnstartupdirApp.person.primaryaffiliationid">Primaryaffiliationid</Translate>
-                  </Label>
-                  <AvField id="person-primaryaffiliationid" type="string" className="form-control" name="primaryaffiliationid" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="primarylocationidLabel" for="person-primarylocationid">
-                    <Translate contentKey="vnstartupdirApp.person.primarylocationid">Primarylocationid</Translate>
-                  </Label>
-                  <AvField id="person-primarylocationid" type="string" className="form-control" name="primarylocationid" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="primaryimageidLabel" for="person-primaryimageid">
-                    <Translate contentKey="vnstartupdirApp.person.primaryimageid">Primaryimageid</Translate>
-                  </Label>
-                  <AvField id="person-primaryimageid" type="string" className="form-control" name="primaryimageid" />
                 </AvGroup>
                 <AvGroup>
                   <Label id="titleLabel" for="person-title">
@@ -312,6 +249,51 @@ export class PersonUpdate extends React.Component<IPersonUpdateProps, IPersonUpd
                   </Label>
                   <AvField id="person-countrycode" type="text" name="countrycode" />
                 </AvGroup>
+                <AvGroup>
+                  <Label for="person-createdBy">
+                    <Translate contentKey="vnstartupdirApp.person.createdBy">Created By</Translate>
+                  </Label>
+                  <AvInput id="person-createdBy" type="select" className="form-control" name="createdById">
+                    <option value="" key="0" />
+                    {users
+                      ? users.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
+                <AvGroup>
+                  <Label for="person-updatedBy">
+                    <Translate contentKey="vnstartupdirApp.person.updatedBy">Updated By</Translate>
+                  </Label>
+                  <AvInput id="person-updatedBy" type="select" className="form-control" name="updatedById">
+                    <option value="" key="0" />
+                    {users
+                      ? users.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
+                <AvGroup>
+                  <Label for="person-assignedTo">
+                    <Translate contentKey="vnstartupdirApp.person.assignedTo">Assigned To</Translate>
+                  </Label>
+                  <AvInput id="person-assignedTo" type="select" className="form-control" name="assignedToId">
+                    <option value="" key="0" />
+                    {users
+                      ? users.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/person" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;
@@ -335,6 +317,7 @@ export class PersonUpdate extends React.Component<IPersonUpdateProps, IPersonUpd
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
+  users: storeState.userManagement.users,
   personEntity: storeState.person.entity,
   loading: storeState.person.loading,
   updating: storeState.person.updating,
@@ -342,6 +325,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getUsers,
   getEntity,
   updateEntity,
   createEntity,

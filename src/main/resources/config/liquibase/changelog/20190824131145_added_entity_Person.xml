@@ -19,10 +19,6 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="permalink" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
             <column name="firstname" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
@@ -31,27 +27,7 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="alsoknownas" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="bio" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="profileimageid" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="roleinvestor" type="boolean">
-                <constraints nullable="true" />
-            </column>
-
             <column name="bornon" type="datetime">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="bornontrustcode" type="integer">
                 <constraints nullable="true" />
             </column>
 
@@ -67,27 +43,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="permalinkaliases" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
             <column name="gender" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="rank" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="primaryaffiliationid" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="primarylocationid" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="primaryimageid" type="integer">
                 <constraints nullable="true" />
             </column>
 
@@ -123,6 +79,18 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="created_by_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="updated_by_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="assigned_to_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
@@ -152,24 +120,13 @@
                   tableName="person">
             <column name="id" type="numeric"/>
             <column name="uuid" type="string"/>
-            <column name="permalink" type="string"/>
             <column name="firstname" type="string"/>
             <column name="lastname" type="string"/>
-            <column name="alsoknownas" type="string"/>
-            <column name="bio" type="string"/>
-            <column name="profileimageid" type="numeric"/>
-            <column name="roleinvestor" type="boolean"/>
             <column name="bornon" type="datetime"/>
-            <column name="bornontrustcode" type="numeric"/>
             <column name="diedon" type="datetime"/>
             <column name="createdat" type="datetime"/>
             <column name="updatedat" type="datetime"/>
-            <column name="permalinkaliases" type="string"/>
             <column name="gender" type="string"/>
-            <column name="rank" type="numeric"/>
-            <column name="primaryaffiliationid" type="numeric"/>
-            <column name="primarylocationid" type="numeric"/>
-            <column name="primaryimageid" type="numeric"/>
             <column name="title" type="string"/>
             <column name="homepageurl" type="string"/>
             <column name="facebookurl" type="string"/>

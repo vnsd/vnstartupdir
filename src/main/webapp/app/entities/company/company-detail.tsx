@@ -35,23 +35,17 @@ export class CompanyDetail extends React.Component<ICompanyDetailProps> {
             </dt>
             <dd>{companyEntity.uuid}</dd>
             <dt>
-              <span id="permalink">
-                <Translate contentKey="vnstartupdirApp.company.permalink">Permalink</Translate>
+              <span id="type">
+                <Translate contentKey="vnstartupdirApp.company.type">Type</Translate>
               </span>
             </dt>
-            <dd>{companyEntity.permalink}</dd>
+            <dd>{companyEntity.type}</dd>
             <dt>
               <span id="name">
                 <Translate contentKey="vnstartupdirApp.company.name">Name</Translate>
               </span>
             </dt>
             <dd>{companyEntity.name}</dd>
-            <dt>
-              <span id="alsoknownas">
-                <Translate contentKey="vnstartupdirApp.company.alsoknownas">Alsoknownas</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.alsoknownas}</dd>
             <dt>
               <span id="shortdescription">
                 <Translate contentKey="vnstartupdirApp.company.shortdescription">Shortdescription</Translate>
@@ -65,18 +59,6 @@ export class CompanyDetail extends React.Component<ICompanyDetailProps> {
             </dt>
             <dd>{companyEntity.description}</dd>
             <dt>
-              <span id="profileimageid">
-                <Translate contentKey="vnstartupdirApp.company.profileimageid">Profileimageid</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.profileimageid}</dd>
-            <dt>
-              <span id="primaryrole">
-                <Translate contentKey="vnstartupdirApp.company.primaryrole">Primaryrole</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.primaryrole}</dd>
-            <dt>
               <span id="foundedon">
                 <Translate contentKey="vnstartupdirApp.company.foundedon">Foundedon</Translate>
               </span>
@@ -84,12 +66,6 @@ export class CompanyDetail extends React.Component<ICompanyDetailProps> {
             <dd>
               <TextFormat value={companyEntity.foundedon} type="date" format={APP_DATE_FORMAT} />
             </dd>
-            <dt>
-              <span id="foundedontrustcode">
-                <Translate contentKey="vnstartupdirApp.company.foundedontrustcode">Foundedontrustcode</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.foundedontrustcode}</dd>
             <dt>
               <span id="closedon">
                 <Translate contentKey="vnstartupdirApp.company.closedon">Closedon</Translate>
@@ -123,18 +99,6 @@ export class CompanyDetail extends React.Component<ICompanyDetailProps> {
             </dt>
             <dd>{companyEntity.totalfundingvnd}</dd>
             <dt>
-              <span id="stockexchange">
-                <Translate contentKey="vnstartupdirApp.company.stockexchange">Stockexchange</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.stockexchange}</dd>
-            <dt>
-              <span id="stocksymbol">
-                <Translate contentKey="vnstartupdirApp.company.stocksymbol">Stocksymbol</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.stocksymbol}</dd>
-            <dt>
               <span id="numberofinvestments">
                 <Translate contentKey="vnstartupdirApp.company.numberofinvestments">Numberofinvestments</Translate>
               </span>
@@ -157,18 +121,6 @@ export class CompanyDetail extends React.Component<ICompanyDetailProps> {
               <TextFormat value={companyEntity.updatedat} type="date" format={APP_DATE_FORMAT} />
             </dd>
             <dt>
-              <span id="permalinkaliases">
-                <Translate contentKey="vnstartupdirApp.company.permalinkaliases">Permalinkaliases</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.permalinkaliases}</dd>
-            <dt>
-              <span id="investortype">
-                <Translate contentKey="vnstartupdirApp.company.investortype">Investortype</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.investortype}</dd>
-            <dt>
               <span id="contactemail">
                 <Translate contentKey="vnstartupdirApp.company.contactemail">Contactemail</Translate>
               </span>
@@ -180,42 +132,6 @@ export class CompanyDetail extends React.Component<ICompanyDetailProps> {
               </span>
             </dt>
             <dd>{companyEntity.phonenumber}</dd>
-            <dt>
-              <span id="rank">
-                <Translate contentKey="vnstartupdirApp.company.rank">Rank</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.rank}</dd>
-            <dt>
-              <span id="primaryimageid">
-                <Translate contentKey="vnstartupdirApp.company.primaryimageid">Primaryimageid</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.primaryimageid}</dd>
-            <dt>
-              <span id="ownedbyid">
-                <Translate contentKey="vnstartupdirApp.company.ownedbyid">Ownedbyid</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.ownedbyid}</dd>
-            <dt>
-              <span id="headquartersid">
-                <Translate contentKey="vnstartupdirApp.company.headquartersid">Headquartersid</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.headquartersid}</dd>
-            <dt>
-              <span id="acquiredbyid">
-                <Translate contentKey="vnstartupdirApp.company.acquiredbyid">Acquiredbyid</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.acquiredbyid}</dd>
-            <dt>
-              <span id="ipoid">
-                <Translate contentKey="vnstartupdirApp.company.ipoid">Ipoid</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.ipoid}</dd>
             <dt>
               <span id="homepageurl">
                 <Translate contentKey="vnstartupdirApp.company.homepageurl">Homepageurl</Translate>
@@ -259,13 +175,17 @@ export class CompanyDetail extends React.Component<ICompanyDetailProps> {
             </dt>
             <dd>{companyEntity.countrycode}</dd>
             <dt>
-              <Translate contentKey="vnstartupdirApp.company.owner">Owner</Translate>
+              <Translate contentKey="vnstartupdirApp.company.createdBy">Created By</Translate>
             </dt>
-            <dd>{companyEntity.ownerId ? companyEntity.ownerId : ''}</dd>
+            <dd>{companyEntity.createdById ? companyEntity.createdById : ''}</dd>
             <dt>
-              <Translate contentKey="vnstartupdirApp.company.assignee">Assignee</Translate>
+              <Translate contentKey="vnstartupdirApp.company.updatedBy">Updated By</Translate>
             </dt>
-            <dd>{companyEntity.assigneeId ? companyEntity.assigneeId : ''}</dd>
+            <dd>{companyEntity.updatedById ? companyEntity.updatedById : ''}</dd>
+            <dt>
+              <Translate contentKey="vnstartupdirApp.company.assignedTo">Assigned To</Translate>
+            </dt>
+            <dd>{companyEntity.assignedToId ? companyEntity.assignedToId : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/company" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

@@ -20,16 +20,18 @@ export interface ICompanyUpdateProps extends StateProps, DispatchProps, RouteCom
 
 export interface ICompanyUpdateState {
   isNew: boolean;
-  ownerId: string;
-  assigneeId: string;
+  createdById: string;
+  updatedById: string;
+  assignedToId: string;
 }
 
 export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompanyUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
-      ownerId: '0',
-      assigneeId: '0',
+      createdById: '0',
+      updatedById: '0',
+      assignedToId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -114,13 +116,13 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                   />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="permalinkLabel" for="company-permalink">
-                    <Translate contentKey="vnstartupdirApp.company.permalink">Permalink</Translate>
+                  <Label id="typeLabel" for="company-type">
+                    <Translate contentKey="vnstartupdirApp.company.type">Type</Translate>
                   </Label>
                   <AvField
-                    id="company-permalink"
+                    id="company-type"
                     type="text"
-                    name="permalink"
+                    name="type"
                     validate={{
                       required: { value: true, errorMessage: translate('entity.validation.required') }
                     }}
@@ -140,12 +142,6 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                   />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="alsoknownasLabel" for="company-alsoknownas">
-                    <Translate contentKey="vnstartupdirApp.company.alsoknownas">Alsoknownas</Translate>
-                  </Label>
-                  <AvField id="company-alsoknownas" type="text" name="alsoknownas" />
-                </AvGroup>
-                <AvGroup>
                   <Label id="shortdescriptionLabel" for="company-shortdescription">
                     <Translate contentKey="vnstartupdirApp.company.shortdescription">Shortdescription</Translate>
                   </Label>
@@ -156,18 +152,6 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                     <Translate contentKey="vnstartupdirApp.company.description">Description</Translate>
                   </Label>
                   <AvField id="company-description" type="text" name="description" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="profileimageidLabel" for="company-profileimageid">
-                    <Translate contentKey="vnstartupdirApp.company.profileimageid">Profileimageid</Translate>
-                  </Label>
-                  <AvField id="company-profileimageid" type="string" className="form-control" name="profileimageid" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="primaryroleLabel" for="company-primaryrole">
-                    <Translate contentKey="vnstartupdirApp.company.primaryrole">Primaryrole</Translate>
-                  </Label>
-                  <AvField id="company-primaryrole" type="text" name="primaryrole" />
                 </AvGroup>
                 <AvGroup>
                   <Label id="foundedonLabel" for="company-foundedon">
@@ -181,12 +165,6 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                     placeholder={'YYYY-MM-DD HH:mm'}
                     value={isNew ? null : convertDateTimeFromServer(this.props.companyEntity.foundedon)}
                   />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="foundedontrustcodeLabel" for="company-foundedontrustcode">
-                    <Translate contentKey="vnstartupdirApp.company.foundedontrustcode">Foundedontrustcode</Translate>
-                  </Label>
-                  <AvField id="company-foundedontrustcode" type="string" className="form-control" name="foundedontrustcode" />
                 </AvGroup>
                 <AvGroup>
                   <Label id="closedonLabel" for="company-closedon">
@@ -226,18 +204,6 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                   <AvField id="company-totalfundingvnd" type="string" className="form-control" name="totalfundingvnd" />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="stockexchangeLabel" for="company-stockexchange">
-                    <Translate contentKey="vnstartupdirApp.company.stockexchange">Stockexchange</Translate>
-                  </Label>
-                  <AvField id="company-stockexchange" type="text" name="stockexchange" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="stocksymbolLabel" for="company-stocksymbol">
-                    <Translate contentKey="vnstartupdirApp.company.stocksymbol">Stocksymbol</Translate>
-                  </Label>
-                  <AvField id="company-stocksymbol" type="text" name="stocksymbol" />
-                </AvGroup>
-                <AvGroup>
                   <Label id="numberofinvestmentsLabel" for="company-numberofinvestments">
                     <Translate contentKey="vnstartupdirApp.company.numberofinvestments">Numberofinvestments</Translate>
                   </Label>
@@ -270,18 +236,6 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                   />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="permalinkaliasesLabel" for="company-permalinkaliases">
-                    <Translate contentKey="vnstartupdirApp.company.permalinkaliases">Permalinkaliases</Translate>
-                  </Label>
-                  <AvField id="company-permalinkaliases" type="text" name="permalinkaliases" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="investortypeLabel" for="company-investortype">
-                    <Translate contentKey="vnstartupdirApp.company.investortype">Investortype</Translate>
-                  </Label>
-                  <AvField id="company-investortype" type="text" name="investortype" />
-                </AvGroup>
-                <AvGroup>
                   <Label id="contactemailLabel" for="company-contactemail">
                     <Translate contentKey="vnstartupdirApp.company.contactemail">Contactemail</Translate>
                   </Label>
@@ -292,42 +246,6 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                     <Translate contentKey="vnstartupdirApp.company.phonenumber">Phonenumber</Translate>
                   </Label>
                   <AvField id="company-phonenumber" type="text" name="phonenumber" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="rankLabel" for="company-rank">
-                    <Translate contentKey="vnstartupdirApp.company.rank">Rank</Translate>
-                  </Label>
-                  <AvField id="company-rank" type="string" className="form-control" name="rank" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="primaryimageidLabel" for="company-primaryimageid">
-                    <Translate contentKey="vnstartupdirApp.company.primaryimageid">Primaryimageid</Translate>
-                  </Label>
-                  <AvField id="company-primaryimageid" type="string" className="form-control" name="primaryimageid" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="ownedbyidLabel" for="company-ownedbyid">
-                    <Translate contentKey="vnstartupdirApp.company.ownedbyid">Ownedbyid</Translate>
-                  </Label>
-                  <AvField id="company-ownedbyid" type="string" className="form-control" name="ownedbyid" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="headquartersidLabel" for="company-headquartersid">
-                    <Translate contentKey="vnstartupdirApp.company.headquartersid">Headquartersid</Translate>
-                  </Label>
-                  <AvField id="company-headquartersid" type="string" className="form-control" name="headquartersid" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="acquiredbyidLabel" for="company-acquiredbyid">
-                    <Translate contentKey="vnstartupdirApp.company.acquiredbyid">Acquiredbyid</Translate>
-                  </Label>
-                  <AvField id="company-acquiredbyid" type="string" className="form-control" name="acquiredbyid" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="ipoidLabel" for="company-ipoid">
-                    <Translate contentKey="vnstartupdirApp.company.ipoid">Ipoid</Translate>
-                  </Label>
-                  <AvField id="company-ipoid" type="string" className="form-control" name="ipoid" />
                 </AvGroup>
                 <AvGroup>
                   <Label id="homepageurlLabel" for="company-homepageurl">
@@ -372,10 +290,10 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                   <AvField id="company-countrycode" type="text" name="countrycode" />
                 </AvGroup>
                 <AvGroup>
-                  <Label for="company-owner">
-                    <Translate contentKey="vnstartupdirApp.company.owner">Owner</Translate>
+                  <Label for="company-createdBy">
+                    <Translate contentKey="vnstartupdirApp.company.createdBy">Created By</Translate>
                   </Label>
-                  <AvInput id="company-owner" type="select" className="form-control" name="ownerId">
+                  <AvInput id="company-createdBy" type="select" className="form-control" name="createdById">
                     <option value="" key="0" />
                     {users
                       ? users.map(otherEntity => (
@@ -387,10 +305,25 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                   </AvInput>
                 </AvGroup>
                 <AvGroup>
-                  <Label for="company-assignee">
-                    <Translate contentKey="vnstartupdirApp.company.assignee">Assignee</Translate>
+                  <Label for="company-updatedBy">
+                    <Translate contentKey="vnstartupdirApp.company.updatedBy">Updated By</Translate>
                   </Label>
-                  <AvInput id="company-assignee" type="select" className="form-control" name="assigneeId">
+                  <AvInput id="company-updatedBy" type="select" className="form-control" name="updatedById">
+                    <option value="" key="0" />
+                    {users
+                      ? users.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
+                <AvGroup>
+                  <Label for="company-assignedTo">
+                    <Translate contentKey="vnstartupdirApp.company.assignedTo">Assigned To</Translate>
+                  </Label>
+                  <AvInput id="company-assignedTo" type="select" className="form-control" name="assignedToId">
                     <option value="" key="0" />
                     {users
                       ? users.map(otherEntity => (
