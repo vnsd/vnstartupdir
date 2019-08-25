@@ -71,6 +71,14 @@ entity Person{
 entity PersonCompanyRelation{
  relationCode String
 }
+
+relationship OneToMany{
+Company{people} to PersonCompanyRelation
+}
+relationship OneToMany{
+Person{companies} to PersonCompanyRelation
+}
+
 relationship ManyToOne{
  PersonCompanyRelation{company} to Company,
  PersonCompanyRelation{person} to Person
