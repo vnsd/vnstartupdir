@@ -22,9 +22,9 @@ public class PersonCompanyRelation implements Serializable {
     @Column(name = "relation_code")
     private String relationCode;
 
-    @ManyToOne
+    @ManyToOne()
     @JsonIgnoreProperties("personCompanyRelations")
-    @Column(name = "organization_id")
+    @JoinColumn(name = "organization_id")
     private Company company;
 
     @ManyToOne
