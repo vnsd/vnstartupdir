@@ -5,10 +5,12 @@ import com.vnsd.business.service.dto.CompanyDTO;
 
 import org.mapstruct.*;
 
+import java.time.Instant;
+
 /**
  * Mapper for the entity {@link Company} and its DTO {@link CompanyDTO}.
  */
-@Mapper(componentModel = "spring", uses = {UserMapper.class})
+//@Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface CompanyMapper extends EntityMapper<CompanyDTO, Company> {
 
     @Mapping(source = "createdBy.id", target = "createdById")
@@ -21,7 +23,7 @@ public interface CompanyMapper extends EntityMapper<CompanyDTO, Company> {
     @Mapping(source = "createdById", target = "createdBy")
     @Mapping(source = "updatedById", target = "updatedBy")
     @Mapping(source = "assignedToId", target = "assignedTo")
-    Company toEntity(CompanyDTO companyDTO);
+    //Company toEntity(CompanyDTO companyDTO);
 
     default Company fromId(Long id) {
         if (id == null) {
@@ -31,4 +33,5 @@ public interface CompanyMapper extends EntityMapper<CompanyDTO, Company> {
         company.setId(id);
         return company;
     }
+
 }

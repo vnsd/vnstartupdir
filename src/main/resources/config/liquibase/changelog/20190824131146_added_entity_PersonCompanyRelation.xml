@@ -11,7 +11,7 @@
         Added the entity PersonCompanyRelation.
     -->
     <changeSet id="20190824131146-1" author="jhipster">
-        <createTable tableName="person_company_relation">
+        <createTable tableName="person_organization_relation">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -19,15 +19,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="company_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="person_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="company_id" type="bigint">
+            <column name="organization_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
@@ -55,9 +47,9 @@
     -->
     <changeSet id="20190824131146-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/person_company_relation.csv"
+                  file="config/liquibase/fake-data/person_organization_relation.csv"
                   separator=";"
-                  tableName="person_company_relation">
+                  tableName="person_organization_relation">
             <column name="id" type="numeric"/>
             <column name="relation_code" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->

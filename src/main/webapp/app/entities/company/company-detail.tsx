@@ -24,28 +24,14 @@ export class CompanyDetail extends React.Component<ICompanyDetailProps> {
     return (
       <Row>
         <Col md="8">
-          <h2>
-            <Translate contentKey="vnstartupdirApp.company.detail.title">Company</Translate> [<b>{companyEntity.id}</b>]
-          </h2>
+          <h2>{companyEntity.name}</h2>
           <dl className="jh-entity-details">
-            <dt>
-              <span id="uuid">
-                <Translate contentKey="vnstartupdirApp.company.uuid">Uuid</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.uuid}</dd>
             <dt>
               <span id="type">
                 <Translate contentKey="vnstartupdirApp.company.type">Type</Translate>
               </span>
             </dt>
             <dd>{companyEntity.type}</dd>
-            <dt>
-              <span id="name">
-                <Translate contentKey="vnstartupdirApp.company.name">Name</Translate>
-              </span>
-            </dt>
-            <dd>{companyEntity.name}</dd>
             <dt>
               <span id="shortdescription">
                 <Translate contentKey="vnstartupdirApp.company.shortdescription">Shortdescription</Translate>
@@ -105,22 +91,6 @@ export class CompanyDetail extends React.Component<ICompanyDetailProps> {
             </dt>
             <dd>{companyEntity.numberofinvestments}</dd>
             <dt>
-              <span id="createdat">
-                <Translate contentKey="vnstartupdirApp.company.createdat">Createdat</Translate>
-              </span>
-            </dt>
-            <dd>
-              <TextFormat value={companyEntity.createdat} type="date" format={APP_DATE_FORMAT} />
-            </dd>
-            <dt>
-              <span id="updatedat">
-                <Translate contentKey="vnstartupdirApp.company.updatedat">Updatedat</Translate>
-              </span>
-            </dt>
-            <dd>
-              <TextFormat value={companyEntity.updatedat} type="date" format={APP_DATE_FORMAT} />
-            </dd>
-            <dt>
               <span id="contactemail">
                 <Translate contentKey="vnstartupdirApp.company.contactemail">Contactemail</Translate>
               </span>
@@ -175,17 +145,33 @@ export class CompanyDetail extends React.Component<ICompanyDetailProps> {
             </dt>
             <dd>{companyEntity.countrycode}</dd>
             <dt>
+              <Translate contentKey="vnstartupdirApp.company.assignedTo">Assigned To</Translate>
+            </dt>
+            <dd>{companyEntity.assignedToId ? companyEntity.assignedToId : ''}</dd>
+            <dt>
               <Translate contentKey="vnstartupdirApp.company.createdBy">Created By</Translate>
             </dt>
             <dd>{companyEntity.createdById ? companyEntity.createdById : ''}</dd>
+            <dt>
+              <span id="createdat">
+                <Translate contentKey="vnstartupdirApp.company.createdat">Createdat</Translate>
+              </span>
+            </dt>
+            <dd>
+              <TextFormat value={companyEntity.createdat} type="date" format={APP_DATE_FORMAT} />
+            </dd>
             <dt>
               <Translate contentKey="vnstartupdirApp.company.updatedBy">Updated By</Translate>
             </dt>
             <dd>{companyEntity.updatedById ? companyEntity.updatedById : ''}</dd>
             <dt>
-              <Translate contentKey="vnstartupdirApp.company.assignedTo">Assigned To</Translate>
+              <span id="updatedat">
+                <Translate contentKey="vnstartupdirApp.company.updatedat">Updatedat</Translate>
+              </span>
             </dt>
-            <dd>{companyEntity.assignedToId ? companyEntity.assignedToId : ''}</dd>
+            <dd>
+              <TextFormat value={companyEntity.updatedat} type="date" format={APP_DATE_FORMAT} />
+            </dd>
           </dl>
           <Button tag={Link} to="/entity/company" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

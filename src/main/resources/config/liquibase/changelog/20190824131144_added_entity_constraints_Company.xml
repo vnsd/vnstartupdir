@@ -7,22 +7,22 @@
         Added the constraints for entity Company.
     -->
     <changeSet id="20190824131144-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="created_by_id"
-                                 baseTableName="company"
-                                 constraintName="fk_company_created_by_id"
+                                 baseTableName="organization"
+                                 constraintName="fk_organization_created_by_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
         <addForeignKeyConstraint baseColumnNames="updated_by_id"
-                                 baseTableName="company"
-                                 constraintName="fk_company_updated_by_id"
+                                 baseTableName="organization"
+                                 constraintName="fk_organization_updated_by_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
         <addForeignKeyConstraint baseColumnNames="assigned_to_id"
-                                 baseTableName="company"
-                                 constraintName="fk_company_assigned_to_id"
+                                 baseTableName="organization"
+                                 constraintName="fk_organization_assigned_to_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 

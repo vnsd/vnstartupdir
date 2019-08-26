@@ -7,28 +7,16 @@
         Added the constraints for entity PersonCompanyRelation.
     -->
     <changeSet id="20190824131146-2" author="jhipster">
-        
-        <addForeignKeyConstraint baseColumnNames="company_id"
-                                 baseTableName="person_company_relation"
-                                 constraintName="fk_person_company_relation_company_id"
+
+        <addForeignKeyConstraint baseColumnNames="organization_id"
+                                 baseTableName="person_organization_relation"
+                                 constraintName="fk_person_organization_relation_organization_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="company"/>
+                                 referencedTableName="organization"/>
 
         <addForeignKeyConstraint baseColumnNames="person_id"
-                                 baseTableName="person_company_relation"
-                                 constraintName="fk_person_company_relation_person_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="person"/>
-
-        <addForeignKeyConstraint baseColumnNames="company_id"
-                                 baseTableName="person_company_relation"
-                                 constraintName="fk_person_company_relation_company_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="company"/>
-
-        <addForeignKeyConstraint baseColumnNames="person_id"
-                                 baseTableName="person_company_relation"
-                                 constraintName="fk_person_company_relation_person_id"
+                                 baseTableName="person_organization_relation"
+                                 constraintName="fk_person_organization_relation_person_id"
                                  referencedColumnNames="id"
                                  referencedTableName="person"/>
 

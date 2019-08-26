@@ -68,9 +68,6 @@ export class Person extends React.Component<IPersonProps, IPersonState> {
                   <th className="hand" onClick={this.sort('id')}>
                     <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('uuid')}>
-                    <Translate contentKey="vnstartupdirApp.person.uuid">Uuid</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
                   <th className="hand" onClick={this.sort('firstname')}>
                     <Translate contentKey="vnstartupdirApp.person.firstname">Firstname</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
@@ -80,47 +77,14 @@ export class Person extends React.Component<IPersonProps, IPersonState> {
                   <th className="hand" onClick={this.sort('bornon')}>
                     <Translate contentKey="vnstartupdirApp.person.bornon">Bornon</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('diedon')}>
-                    <Translate contentKey="vnstartupdirApp.person.diedon">Diedon</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('createdat')}>
-                    <Translate contentKey="vnstartupdirApp.person.createdat">Createdat</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('updatedat')}>
-                    <Translate contentKey="vnstartupdirApp.person.updatedat">Updatedat</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('gender')}>
-                    <Translate contentKey="vnstartupdirApp.person.gender">Gender</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('title')}>
-                    <Translate contentKey="vnstartupdirApp.person.title">Title</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
                   <th className="hand" onClick={this.sort('homepageurl')}>
                     <Translate contentKey="vnstartupdirApp.person.homepageurl">Homepageurl</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th className="hand" onClick={this.sort('facebookurl')}>
                     <Translate contentKey="vnstartupdirApp.person.facebookurl">Facebookurl</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('twitterurl')}>
-                    <Translate contentKey="vnstartupdirApp.person.twitterurl">Twitterurl</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('linkedinurl')}>
-                    <Translate contentKey="vnstartupdirApp.person.linkedinurl">Linkedinurl</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
                   <th className="hand" onClick={this.sort('cityname')}>
                     <Translate contentKey="vnstartupdirApp.person.cityname">Cityname</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('regionname')}>
-                    <Translate contentKey="vnstartupdirApp.person.regionname">Regionname</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('countrycode')}>
-                    <Translate contentKey="vnstartupdirApp.person.countrycode">Countrycode</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th>
-                    <Translate contentKey="vnstartupdirApp.person.createdBy">Created By</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th>
-                    <Translate contentKey="vnstartupdirApp.person.updatedBy">Updated By</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
                     <Translate contentKey="vnstartupdirApp.person.assignedTo">Assigned To</Translate> <FontAwesomeIcon icon="sort" />
@@ -136,52 +100,25 @@ export class Person extends React.Component<IPersonProps, IPersonState> {
                         {person.id}
                       </Button>
                     </td>
-                    <td>{person.uuid}</td>
                     <td>{person.firstname}</td>
                     <td>{person.lastname}</td>
                     <td>
                       <TextFormat type="date" value={person.bornon} format={APP_DATE_FORMAT} />
                     </td>
-                    <td>
-                      <TextFormat type="date" value={person.diedon} format={APP_DATE_FORMAT} />
-                    </td>
-                    <td>
-                      <TextFormat type="date" value={person.createdat} format={APP_DATE_FORMAT} />
-                    </td>
-                    <td>
-                      <TextFormat type="date" value={person.updatedat} format={APP_DATE_FORMAT} />
-                    </td>
-                    <td>{person.gender}</td>
-                    <td>{person.title}</td>
                     <td>{person.homepageurl}</td>
                     <td>{person.facebookurl}</td>
-                    <td>{person.twitterurl}</td>
-                    <td>{person.linkedinurl}</td>
                     <td>{person.cityname}</td>
-                    <td>{person.regionname}</td>
-                    <td>{person.countrycode}</td>
-                    <td>{person.createdById ? person.createdById : ''}</td>
-                    <td>{person.updatedById ? person.updatedById : ''}</td>
                     <td>{person.assignedToId ? person.assignedToId : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${person.id}`} color="info" size="sm">
                           <FontAwesomeIcon icon="eye" />{' '}
-                          <span className="d-none d-md-inline">
-                            <Translate contentKey="entity.action.view">View</Translate>
-                          </span>
                         </Button>
                         <Button tag={Link} to={`${match.url}/${person.id}/edit`} color="primary" size="sm">
                           <FontAwesomeIcon icon="pencil-alt" />{' '}
-                          <span className="d-none d-md-inline">
-                            <Translate contentKey="entity.action.edit">Edit</Translate>
-                          </span>
                         </Button>
                         <Button tag={Link} to={`${match.url}/${person.id}/delete`} color="danger" size="sm">
                           <FontAwesomeIcon icon="trash" />{' '}
-                          <span className="d-none d-md-inline">
-                            <Translate contentKey="entity.action.delete">Delete</Translate>
-                          </span>
                         </Button>
                       </div>
                     </td>

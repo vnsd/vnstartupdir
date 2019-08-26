@@ -5,13 +5,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-
-
     <!--
         Added the entity Company.
     -->
     <changeSet id="20190824131144-1" author="jhipster">
-        <createTable tableName="company">
+        <createTable tableName="organization">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -19,7 +17,7 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="type" type="varchar(255)">
+            <column name="primary_role" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
@@ -27,7 +25,7 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="shortdescription" type="varchar(255)">
+            <column name="short_description" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -35,75 +33,75 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="foundedon" type="datetime">
+            <column name="founded_on" type="datetime">
                 <constraints nullable="true" />
             </column>
 
-            <column name="closedon" type="datetime">
+            <column name="closed_on" type="datetime">
                 <constraints nullable="true" />
             </column>
 
-            <column name="numemployeesmin" type="integer">
+            <column name="num_employees_min" type="integer">
                 <constraints nullable="true" />
             </column>
 
-            <column name="numemployeesmax" type="integer">
+            <column name="num_employees_max" type="integer">
                 <constraints nullable="true" />
             </column>
 
-            <column name="totalfundingusd" type="integer">
+            <column name="total_funding_usd" type="integer">
                 <constraints nullable="true" />
             </column>
 
-            <column name="totalfundingvnd" type="integer">
+            <column name="total_funding_vnd" type="integer">
                 <constraints nullable="true" />
             </column>
 
-            <column name="numberofinvestments" type="integer">
+            <column name="number_of_investments" type="integer">
                 <constraints nullable="true" />
             </column>
 
-            <column name="createdat" type="datetime">
+            <column name="created_at" type="datetime">
                 <constraints nullable="true" />
             </column>
 
-            <column name="updatedat" type="datetime">
+            <column name="updated_at" type="datetime">
                 <constraints nullable="true" />
             </column>
 
-            <column name="contactemail" type="varchar(255)">
+            <column name="contact_email" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="phonenumber" type="varchar(255)">
+            <column name="phone_number" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="homepageurl" type="varchar(255)">
+            <column name="homepage_url" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="facebookurl" type="varchar(255)">
+            <column name="facebook_url" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="twitterurl" type="varchar(255)">
+            <column name="twitter_url" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="linkedinurl" type="varchar(255)">
+            <column name="linkedin_url" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="cityname" type="varchar(255)">
+            <column name="city_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="regionname" type="varchar(255)">
+            <column name="region_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="countrycode" type="varchar(255)">
+            <column name="country_code" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -122,10 +120,10 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
-        <dropDefaultValue tableName="company" columnName="foundedon" columnDataType="datetime"/>
-        <dropDefaultValue tableName="company" columnName="closedon" columnDataType="datetime"/>
-        <dropDefaultValue tableName="company" columnName="createdat" columnDataType="datetime"/>
-        <dropDefaultValue tableName="company" columnName="updatedat" columnDataType="datetime"/>
+        <dropDefaultValue tableName="organization" columnName="founded_on" columnDataType="datetime"/>
+        <dropDefaultValue tableName="organization" columnName="closed_on" columnDataType="datetime"/>
+        <dropDefaultValue tableName="organization" columnName="created_at" columnDataType="datetime"/>
+        <dropDefaultValue tableName="organization" columnName="updated_at" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20190824131144-1-relations" author="jhipster">
@@ -143,33 +141,33 @@
     -->
     <changeSet id="20190824131144-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/company.csv"
+                  file="config/liquibase/fake-data/organization.csv"
                   separator=";"
-                  tableName="company">
+                  tableName="organization">
             <column name="id" type="numeric"/>
             <column name="uuid" type="string"/>
-            <column name="type" type="string"/>
+            <column name="primary_role" type="string"/>
             <column name="name" type="string"/>
-            <column name="shortdescription" type="string"/>
+            <column name="short_description" type="string"/>
             <column name="description" type="string"/>
-            <column name="foundedon" type="datetime"/>
-            <column name="closedon" type="datetime"/>
-            <column name="numemployeesmin" type="numeric"/>
-            <column name="numemployeesmax" type="numeric"/>
-            <column name="totalfundingusd" type="numeric"/>
-            <column name="totalfundingvnd" type="numeric"/>
-            <column name="numberofinvestments" type="numeric"/>
-            <column name="createdat" type="datetime"/>
-            <column name="updatedat" type="datetime"/>
-            <column name="contactemail" type="string"/>
-            <column name="phonenumber" type="string"/>
-            <column name="homepageurl" type="string"/>
-            <column name="facebookurl" type="string"/>
-            <column name="twitterurl" type="string"/>
-            <column name="linkedinurl" type="string"/>
-            <column name="cityname" type="string"/>
-            <column name="regionname" type="string"/>
-            <column name="countrycode" type="string"/>
+            <column name="founded_on" type="datetime"/>
+            <column name="closed_on" type="datetime"/>
+            <column name="num_employees_min" type="numeric"/>
+            <column name="num_employees_max" type="numeric"/>
+            <column name="total_funding_usd" type="numeric"/>
+            <column name="total_funding_vnd" type="numeric"/>
+            <column name="number_of_investments" type="numeric"/>
+            <column name="created_at" type="datetime"/>
+            <column name="updated_at" type="datetime"/>
+            <column name="contact_email" type="string"/>
+            <column name="phone_number" type="string"/>
+            <column name="homepage_url" type="string"/>
+            <column name="facebook_url" type="string"/>
+            <column name="twitter_url" type="string"/>
+            <column name="linkedin_url" type="string"/>
+            <column name="city_name" type="string"/>
+            <column name="region_name" type="string"/>
+            <column name="country_code" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

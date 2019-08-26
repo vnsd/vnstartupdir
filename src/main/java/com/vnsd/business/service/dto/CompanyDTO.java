@@ -60,7 +60,6 @@ public class CompanyDTO implements Serializable {
 
     private String countrycode;
 
-
     private Long createdById;
 
     private Long updatedById;

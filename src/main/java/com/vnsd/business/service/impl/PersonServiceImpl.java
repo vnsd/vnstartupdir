@@ -1,5 +1,9 @@
 package com.vnsd.business.service.impl;
 
+import com.vnsd.business.domain.Company;
+import com.vnsd.business.domain.User;
+import com.vnsd.business.repository.UserRepository;
+import com.vnsd.business.security.SecurityUtils;
 import com.vnsd.business.service.PersonService;
 import com.vnsd.business.domain.Person;
 import com.vnsd.business.repository.PersonRepository;
@@ -13,7 +17,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Service Implementation for managing {@link Person}.
@@ -25,11 +31,13 @@ public class PersonServiceImpl implements PersonService {
     private final Logger log = LoggerFactory.getLogger(PersonServiceImpl.class);
 
     private final PersonRepository personRepository;
+    private final UserRepository userRepository;
 
     private final PersonMapper personMapper;
 
-    public PersonServiceImpl(PersonRepository personRepository, PersonMapper personMapper) {
+    public PersonServiceImpl(PersonRepository personRepository,UserRepository userRepository, PersonMapper personMapper) {
         this.personRepository = personRepository;
+        this.userRepository = userRepository;
         this.personMapper = personMapper;
     }
 
@@ -42,9 +50,20 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public PersonDTO save(PersonDTO personDTO) {
         log.debug("Request to save Person : {}", personDTO);
-        Person person = personMapper.toEntity(personDTO);
+        User currentUser = getCurrentUser().orElse(null);
+        Person person;
+        if (personDTO.getId() == null) { // Create
+            person = new Person(UUID.randomUUID(), Instant.now(), currentUser);
+        }else{ // Update
+            person = personRepository.findById(personDTO.getId()).get();
+        }
+        personMapper.update(person, personDTO,  currentUser, Instant.now() );
         person = personRepository.save(person);
         return personMapper.toDto(person);
+    }
+
+    private Optional<User> getCurrentUser(){
+        return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneByLogin);
     }
 
     /**

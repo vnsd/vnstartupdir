@@ -19,27 +19,27 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="firstname" type="varchar(255)">
+            <column name="first_name" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
-            <column name="lastname" type="varchar(255)">
+            <column name="last_name" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
-            <column name="bornon" type="datetime">
+            <column name="born_on" type="datetime">
                 <constraints nullable="true" />
             </column>
 
-            <column name="diedon" type="datetime">
+            <column name="died_on" type="datetime">
                 <constraints nullable="true" />
             </column>
 
-            <column name="createdat" type="datetime">
+            <column name="created_at" type="datetime">
                 <constraints nullable="true" />
             </column>
 
-            <column name="updatedat" type="datetime">
+            <column name="updated_at" type="datetime">
                 <constraints nullable="true" />
             </column>
 
@@ -51,31 +51,31 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="homepageurl" type="varchar(255)">
+            <column name="homepage_url" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="facebookurl" type="varchar(255)">
+            <column name="facebook_url" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="twitterurl" type="varchar(255)">
+            <column name="twitter_url" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="linkedinurl" type="varchar(255)">
+            <column name="linkedin_url" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="cityname" type="varchar(255)">
+            <column name="city_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="regionname" type="varchar(255)">
+            <column name="region_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="countrycode" type="varchar(255)">
+            <column name="country_code" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -94,10 +94,10 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
-        <dropDefaultValue tableName="person" columnName="bornon" columnDataType="datetime"/>
-        <dropDefaultValue tableName="person" columnName="diedon" columnDataType="datetime"/>
-        <dropDefaultValue tableName="person" columnName="createdat" columnDataType="datetime"/>
-        <dropDefaultValue tableName="person" columnName="updatedat" columnDataType="datetime"/>
+        <dropDefaultValue tableName="person" columnName="born_on" columnDataType="datetime"/>
+        <dropDefaultValue tableName="person" columnName="died_on" columnDataType="datetime"/>
+        <dropDefaultValue tableName="person" columnName="created_at" columnDataType="datetime"/>
+        <dropDefaultValue tableName="person" columnName="updated_at" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20190824131145-1-relations" author="jhipster">
@@ -120,21 +120,21 @@
                   tableName="person">
             <column name="id" type="numeric"/>
             <column name="uuid" type="string"/>
-            <column name="firstname" type="string"/>
-            <column name="lastname" type="string"/>
-            <column name="bornon" type="datetime"/>
-            <column name="diedon" type="datetime"/>
-            <column name="createdat" type="datetime"/>
-            <column name="updatedat" type="datetime"/>
+            <column name="first_name" type="string"/>
+            <column name="last_name" type="string"/>
+            <column name="born_on" type="datetime"/>
+            <column name="died_on" type="datetime"/>
+            <column name="created_at" type="datetime"/>
+            <column name="updated_at" type="datetime"/>
             <column name="gender" type="string"/>
             <column name="title" type="string"/>
-            <column name="homepageurl" type="string"/>
-            <column name="facebookurl" type="string"/>
-            <column name="twitterurl" type="string"/>
-            <column name="linkedinurl" type="string"/>
-            <column name="cityname" type="string"/>
-            <column name="regionname" type="string"/>
-            <column name="countrycode" type="string"/>
+            <column name="homepage_url" type="string"/>
+            <column name="facebook_url" type="string"/>
+            <column name="twitter_url" type="string"/>
+            <column name="linkedin_url" type="string"/>
+            <column name="city_name" type="string"/>
+            <column name="region_name" type="string"/>
+            <column name="country_code" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

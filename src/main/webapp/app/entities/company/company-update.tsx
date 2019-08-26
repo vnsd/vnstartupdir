@@ -103,19 +103,6 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                   </AvGroup>
                 ) : null}
                 <AvGroup>
-                  <Label id="uuidLabel" for="company-uuid">
-                    <Translate contentKey="vnstartupdirApp.company.uuid">Uuid</Translate>
-                  </Label>
-                  <AvField
-                    id="company-uuid"
-                    type="text"
-                    name="uuid"
-                    validate={{
-                      required: { value: true, errorMessage: translate('entity.validation.required') }
-                    }}
-                  />
-                </AvGroup>
-                <AvGroup>
                   <Label id="typeLabel" for="company-type">
                     <Translate contentKey="vnstartupdirApp.company.type">Type</Translate>
                   </Label>
@@ -145,13 +132,13 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                   <Label id="shortdescriptionLabel" for="company-shortdescription">
                     <Translate contentKey="vnstartupdirApp.company.shortdescription">Shortdescription</Translate>
                   </Label>
-                  <AvField id="company-shortdescription" type="text" name="shortdescription" />
+                  <AvField id="company-shortdescription" type="textarea" name="shortdescription" />
                 </AvGroup>
                 <AvGroup>
                   <Label id="descriptionLabel" for="company-description">
                     <Translate contentKey="vnstartupdirApp.company.description">Description</Translate>
                   </Label>
-                  <AvField id="company-description" type="text" name="description" />
+                  <AvField id="company-description" type="textarea" name="description" />
                 </AvGroup>
                 <AvGroup>
                   <Label id="foundedonLabel" for="company-foundedon">
@@ -210,32 +197,6 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                   <AvField id="company-numberofinvestments" type="string" className="form-control" name="numberofinvestments" />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="createdatLabel" for="company-createdat">
-                    <Translate contentKey="vnstartupdirApp.company.createdat">Createdat</Translate>
-                  </Label>
-                  <AvInput
-                    id="company-createdat"
-                    type="datetime-local"
-                    className="form-control"
-                    name="createdat"
-                    placeholder={'YYYY-MM-DD HH:mm'}
-                    value={isNew ? null : convertDateTimeFromServer(this.props.companyEntity.createdat)}
-                  />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="updatedatLabel" for="company-updatedat">
-                    <Translate contentKey="vnstartupdirApp.company.updatedat">Updatedat</Translate>
-                  </Label>
-                  <AvInput
-                    id="company-updatedat"
-                    type="datetime-local"
-                    className="form-control"
-                    name="updatedat"
-                    placeholder={'YYYY-MM-DD HH:mm'}
-                    value={isNew ? null : convertDateTimeFromServer(this.props.companyEntity.updatedat)}
-                  />
-                </AvGroup>
-                <AvGroup>
                   <Label id="contactemailLabel" for="company-contactemail">
                     <Translate contentKey="vnstartupdirApp.company.contactemail">Contactemail</Translate>
                   </Label>
@@ -290,36 +251,6 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                   <AvField id="company-countrycode" type="text" name="countrycode" />
                 </AvGroup>
                 <AvGroup>
-                  <Label for="company-createdBy">
-                    <Translate contentKey="vnstartupdirApp.company.createdBy">Created By</Translate>
-                  </Label>
-                  <AvInput id="company-createdBy" type="select" className="form-control" name="createdById">
-                    <option value="" key="0" />
-                    {users
-                      ? users.map(otherEntity => (
-                          <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.id}
-                          </option>
-                        ))
-                      : null}
-                  </AvInput>
-                </AvGroup>
-                <AvGroup>
-                  <Label for="company-updatedBy">
-                    <Translate contentKey="vnstartupdirApp.company.updatedBy">Updated By</Translate>
-                  </Label>
-                  <AvInput id="company-updatedBy" type="select" className="form-control" name="updatedById">
-                    <option value="" key="0" />
-                    {users
-                      ? users.map(otherEntity => (
-                          <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.id}
-                          </option>
-                        ))
-                      : null}
-                  </AvInput>
-                </AvGroup>
-                <AvGroup>
                   <Label for="company-assignedTo">
                     <Translate contentKey="vnstartupdirApp.company.assignedTo">Assigned To</Translate>
                   </Label>
@@ -328,7 +259,7 @@ export class CompanyUpdate extends React.Component<ICompanyUpdateProps, ICompany
                     {users
                       ? users.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.id}
+                            {otherEntity.firstName} {otherEntity.lastName}
                           </option>
                         ))
                       : null}

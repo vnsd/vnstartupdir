@@ -8,12 +8,13 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * A Company.
  */
 @Entity
-@Table(name = "company")
+@Table(name = "organization")
 public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,71 +29,71 @@ public class Company implements Serializable {
     private String uuid;
 
     @NotNull
-    @Column(name = "type", nullable = false)
+    @Column(name = "primary_role", nullable = false)
     private String type;
 
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "shortdescription")
+    @Column(name = "short_description")
     private String shortdescription;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "foundedon")
+    @Column(name = "founded_on")
     private Instant foundedon;
 
-    @Column(name = "closedon")
+    @Column(name = "closed_on")
     private Instant closedon;
 
-    @Column(name = "numemployeesmin")
+    @Column(name = "num_employees_min")
     private Integer numemployeesmin;
 
-    @Column(name = "numemployeesmax")
+    @Column(name = "num_employees_max")
     private Integer numemployeesmax;
 
-    @Column(name = "totalfundingusd")
+    @Column(name = "total_funding_usd")
     private Integer totalfundingusd;
 
-    @Column(name = "totalfundingvnd")
+    @Column(name = "total_funding_vnd")
     private Integer totalfundingvnd;
 
-    @Column(name = "numberofinvestments")
+    @Column(name = "number_of_investments")
     private Integer numberofinvestments;
 
-    @Column(name = "createdat")
+    @Column(name = "created_at")
     private Instant createdat;
 
-    @Column(name = "updatedat")
+    @Column(name = "updated_at")
     private Instant updatedat;
 
-    @Column(name = "contactemail")
+    @Column(name = "contact_email")
     private String contactemail;
 
-    @Column(name = "phonenumber")
+    @Column(name = "phone_number")
     private String phonenumber;
 
-    @Column(name = "homepageurl")
+    @Column(name = "homepage_url")
     private String homepageurl;
 
-    @Column(name = "facebookurl")
+    @Column(name = "facebook_url")
     private String facebookurl;
 
-    @Column(name = "twitterurl")
+    @Column(name = "twitter_url")
     private String twitterurl;
 
-    @Column(name = "linkedinurl")
+    @Column(name = "linkedin_url")
     private String linkedinurl;
 
-    @Column(name = "cityname")
+    @Column(name = "city_name")
     private String cityname;
 
-    @Column(name = "regionname")
+    @Column(name = "region_name")
     private String regionname;
 
-    @Column(name = "countrycode")
+    @Column(name = "country_code")
     private String countrycode;
 
     @OneToMany(mappedBy = "company")
@@ -109,6 +110,14 @@ public class Company implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("companies")
     private User assignedTo;
+
+    public Company(){}
+
+    public Company(@NotNull UUID uuid, Instant createdat, User createdBy) {
+        this.uuid = uuid.toString();
+        this.createdat = createdat;
+        this.createdBy = createdBy;
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

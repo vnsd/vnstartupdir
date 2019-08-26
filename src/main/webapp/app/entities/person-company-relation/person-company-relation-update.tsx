@@ -23,8 +23,6 @@ export interface IPersonCompanyRelationUpdateProps extends StateProps, DispatchP
 export interface IPersonCompanyRelationUpdateState {
   isNew: boolean;
   companyId: string;
-  companyId: string;
-  personId: string;
   personId: string;
 }
 
@@ -33,8 +31,6 @@ export class PersonCompanyRelationUpdate extends React.Component<IPersonCompanyR
     super(props);
     this.state = {
       companyId: '0',
-      companyId: '0',
-      personId: '0',
       personId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };

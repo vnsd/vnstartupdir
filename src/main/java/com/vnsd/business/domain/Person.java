@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * A Person.
@@ -28,23 +29,23 @@ public class Person implements Serializable {
     private String uuid;
 
     @NotNull
-    @Column(name = "firstname", nullable = false)
+    @Column(name = "first_name", nullable = false)
     private String firstname;
 
     @NotNull
-    @Column(name = "lastname", nullable = false)
+    @Column(name = "last_name", nullable = false)
     private String lastname;
 
-    @Column(name = "bornon")
+    @Column(name = "born_on")
     private Instant bornon;
 
-    @Column(name = "diedon")
+    @Column(name = "died_on")
     private Instant diedon;
 
-    @Column(name = "createdat")
+    @Column(name = "created_at")
     private Instant createdat;
 
-    @Column(name = "updatedat")
+    @Column(name = "updated_at")
     private Instant updatedat;
 
     @Column(name = "gender")
@@ -53,25 +54,25 @@ public class Person implements Serializable {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "homepageurl")
+    @Column(name = "homepage_url")
     private String homepageurl;
 
-    @Column(name = "facebookurl")
+    @Column(name = "facebook_url")
     private String facebookurl;
 
-    @Column(name = "twitterurl")
+    @Column(name = "twitter_url")
     private String twitterurl;
 
-    @Column(name = "linkedinurl")
+    @Column(name = "linkedin_url")
     private String linkedinurl;
 
-    @Column(name = "cityname")
+    @Column(name = "city_name")
     private String cityname;
 
-    @Column(name = "regionname")
+    @Column(name = "region_name")
     private String regionname;
 
-    @Column(name = "countrycode")
+    @Column(name = "country_code")
     private String countrycode;
 
     @OneToMany(mappedBy = "person")
@@ -89,6 +90,13 @@ public class Person implements Serializable {
     @JsonIgnoreProperties("people")
     private User assignedTo;
 
+    public Person(){}
+
+    public Person(@NotNull UUID uuid, Instant createdat, User createdBy) {
+        this.uuid = uuid.toString();
+        this.createdat = createdat;
+        this.createdBy = createdBy;
+    }
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;

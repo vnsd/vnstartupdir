@@ -1,8 +1,11 @@
 package com.vnsd.business.service.impl;
 
+import com.vnsd.business.domain.User;
+import com.vnsd.business.security.SecurityUtils;
 import com.vnsd.business.service.CompanyService;
 import com.vnsd.business.domain.Company;
 import com.vnsd.business.repository.CompanyRepository;
+import com.vnsd.business.repository.UserRepository;
 import com.vnsd.business.service.dto.CompanyDTO;
 import com.vnsd.business.service.mapper.CompanyMapper;
 import org.slf4j.Logger;
@@ -13,7 +16,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Service Implementation for managing {@link Company}.
@@ -26,10 +31,13 @@ public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyRepository companyRepository;
 
+    private final UserRepository userRepository;
+
     private final CompanyMapper companyMapper;
 
-    public CompanyServiceImpl(CompanyRepository companyRepository, CompanyMapper companyMapper) {
+    public CompanyServiceImpl(CompanyRepository companyRepository, UserRepository userRepository, CompanyMapper companyMapper) {
         this.companyRepository = companyRepository;
+        this.userRepository = userRepository;
         this.companyMapper = companyMapper;
     }
 
@@ -42,9 +50,20 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public CompanyDTO save(CompanyDTO companyDTO) {
         log.debug("Request to save Company : {}", companyDTO);
-        Company company = companyMapper.toEntity(companyDTO);
+        User currentUser = getCurrentUser().orElse(null);
+        Company company;
+        if (companyDTO.getId() == null) { // Create
+            company = new Company(UUID.randomUUID(), Instant.now(), currentUser);
+        }else{ // Update
+            company = companyRepository.findById(companyDTO.getId()).get();
+        }
+        companyMapper.update(company, companyDTO,  currentUser, Instant.now() );
         company = companyRepository.save(company);
         return companyMapper.toDto(company);
+    }
+
+    private Optional<User> getCurrentUser(){
+        return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneByLogin);
     }
 
     /**
