@@ -24,7 +24,7 @@ public class PersonCompanyRelation implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("personCompanyRelations")
-    @Column(name = "company_code")
+    @Column(name = "organization_id")
     private Company company;
 
     @ManyToOne
