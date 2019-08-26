@@ -1,16 +1,27 @@
 package com.vnsd.business.service;
 
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+import com.sendgrid.helpers.mail.Mail;
+import com.sendgrid.helpers.mail.objects.Content;
+import com.sendgrid.helpers.mail.objects.Email;
 import com.vnsd.business.domain.User;
 
 import io.github.jhipster.config.JHipsterProperties;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import javax.mail.internet.MimeMessage;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.core.env.Environment;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -32,28 +43,42 @@ public class MailService {
 
     private static final String BASE_URL = "baseUrl";
 
-    private final JHipsterProperties jHipsterProperties;
+    @Autowired
+    private Environment env;
 
-    private final JavaMailSender javaMailSender;
+    @Autowired
+    private   JHipsterProperties jHipsterProperties;
 
-    private final MessageSource messageSource;
+    @Autowired
+    private   JavaMailSender javaMailSender;
 
-    private final SpringTemplateEngine templateEngine;
+    @Autowired
+    private   MessageSource messageSource;
 
-    public MailService(JHipsterProperties jHipsterProperties, JavaMailSender javaMailSender,
-            MessageSource messageSource, SpringTemplateEngine templateEngine) {
+    @Autowired
+    private   SpringTemplateEngine templateEngine;
 
-        this.jHipsterProperties = jHipsterProperties;
-        this.javaMailSender = javaMailSender;
-        this.messageSource = messageSource;
-        this.templateEngine = templateEngine;
-    }
+//    public MailService(JHipsterProperties jHipsterProperties, JavaMailSender javaMailSender,
+//            MessageSource messageSource, SpringTemplateEngine templateEngine) {
+//
+//        this.jHipsterProperties = jHipsterProperties;
+//        this.javaMailSender = javaMailSender;
+//        this.messageSource = messageSource;
+//        this.templateEngine = templateEngine;
+//    }
 
     @Async
     public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
-        log.debug("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
-            isMultipart, isHtml, to, subject, content);
+        log.debug("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}", isMultipart, isHtml, to, subject, content);
 
+        if ("SendGrid".equals(env.getProperty("MAIL_SENDER"))) {
+            sendViaGrid(to, subject, content, isMultipart, isHtml);
+        }else{
+            sendViaJavaMail(to, subject, content, isMultipart, isHtml);
+        }
+    }
+
+    public void sendViaJavaMail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
         // Prepare message using a Spring helper
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
@@ -70,6 +95,23 @@ public class MailService {
             } else {
                 log.warn("Email could not be sent to user '{}': {}", to, e.getMessage());
             }
+        }
+    }
+
+    public void sendViaGrid(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
+        try {
+            Mail mail = new Mail(new Email(jHipsterProperties.getMail().getFrom()), subject, new Email(to), new Content("text/html", content));
+
+            SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
+            Request request = new Request();
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            Response response = sg.api(request);
+
+            log.info("Email sent Via Grid");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

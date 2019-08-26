@@ -68,13 +68,14 @@ public class MailServiceIT {
     @Captor
     private ArgumentCaptor<MimeMessage> messageCaptor;
 
+    @Autowired
     private MailService mailService;
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
         doNothing().when(javaMailSender).send(any(MimeMessage.class));
-        mailService = new MailService(jHipsterProperties, javaMailSender, messageSource, templateEngine);
+//        mailService = new MailService(jHipsterProperties, javaMailSender, messageSource, templateEngine);
     }
 
     @Test
