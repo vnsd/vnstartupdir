@@ -35,6 +35,8 @@
     "enableTranslation": true,
     "nativeLanguage": "en",
     "languages": ["en", "vi"],
-    "blueprints": []
+    "blueprints": [],
+    "herokuAppName": "vnstartupdir",
+    "herokuDeployType": "jar"
   }
 }
