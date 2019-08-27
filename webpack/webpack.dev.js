@@ -50,7 +50,7 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
         '/h2-console',
         '/auth'
       ],
-      target: `http${options.tls ? 's' : ''}://localhost:9090`,
+      target: 'https://vnstartupdir.herokuapp.com',
       secure: false,
       changeOrigin: options.tls
     }],
