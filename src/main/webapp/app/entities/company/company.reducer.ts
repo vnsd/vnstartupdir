@@ -1,12 +1,5 @@
 import axios from 'axios';
-import {
-  parseHeaderForLinks,
-  loadMoreDataWhenScrolled,
-  ICrudGetAction,
-  ICrudGetAllAction,
-  ICrudPutAction,
-  ICrudDeleteAction
-} from 'react-jhipster';
+import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction, ICrudDeleteAction } from 'react-jhipster';
 
 import { cleanEntity } from 'app/shared/util/entity-utils';
 import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
@@ -69,13 +62,10 @@ export default (state: CompanyState = initialState, action): CompanyState => {
         errorMessage: action.payload
       };
     case SUCCESS(ACTION_TYPES.FETCH_COMPANY_LIST):
-      const links = parseHeaderForLinks(action.payload.headers.link);
-
       return {
         ...state,
         loading: false,
-        links,
-        entities: loadMoreDataWhenScrolled(state.entities, action.payload.data, links),
+        entities: action.payload.data,
         totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_COMPANY):
@@ -133,6 +123,7 @@ export const createEntity: ICrudPutAction<ICompany> = entity => async dispatch =
     type: ACTION_TYPES.CREATE_COMPANY,
     payload: axios.post(apiUrl, cleanEntity(entity))
   });
+  dispatch(getEntities());
   return result;
 };
 
@@ -141,6 +132,7 @@ export const updateEntity: ICrudPutAction<ICompany> = entity => async dispatch =
     type: ACTION_TYPES.UPDATE_COMPANY,
     payload: axios.put(apiUrl, cleanEntity(entity))
   });
+  dispatch(getEntities());
   return result;
 };
 
@@ -150,6 +142,7 @@ export const deleteEntity: ICrudDeleteAction<ICompany> = id => async dispatch =>
     type: ACTION_TYPES.DELETE_COMPANY,
     payload: axios.delete(requestUrl)
   });
+  dispatch(getEntities());
   return result;
 };
 
