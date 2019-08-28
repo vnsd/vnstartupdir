@@ -56,7 +56,6 @@ export const App = (props: IAppProps) => {
             </ErrorBoundary>
           </Card>
           <Footer />
-          Companies
         </div>
       </div>
     </Router>
