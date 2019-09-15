@@ -389,7 +389,7 @@ public class CompanyResourceIT {
             .andExpect(jsonPath("$.[*].regionname").value(hasItem(DEFAULT_REGIONNAME.toString())))
             .andExpect(jsonPath("$.[*].countrycode").value(hasItem(DEFAULT_COUNTRYCODE.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getCompany() throws Exception {
@@ -1779,7 +1779,7 @@ public class CompanyResourceIT {
         List<Company> companyList = companyRepository.findAll();
         assertThat(companyList).hasSize(databaseSizeBeforeUpdate);
         Company testCompany = companyList.get(companyList.size() - 1);
-        assertThat(testCompany.getUuid()).isEqualTo(UPDATED_UUID);
+        assertThat(testCompany.getUuid()).isEqualTo(DEFAULT_UUID);
         assertThat(testCompany.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testCompany.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCompany.getShortdescription()).isEqualTo(UPDATED_SHORTDESCRIPTION);

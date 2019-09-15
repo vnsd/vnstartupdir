@@ -1,6 +1,9 @@
 package com.vnsd.business.service.impl;
 
+import com.vnsd.business.domain.PersonCompanyRelation;
 import com.vnsd.business.domain.User;
+import com.vnsd.business.repository.PersonCompanyRelationRepository;
+import com.vnsd.business.repository.PersonRepository;
 import com.vnsd.business.security.SecurityUtils;
 import com.vnsd.business.service.CompanyService;
 import com.vnsd.business.domain.Company;
@@ -31,12 +34,19 @@ public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyRepository companyRepository;
 
+    private final PersonRepository personRepository;
+
+    private final PersonCompanyRelationRepository relationRepository;
+
     private final UserRepository userRepository;
 
     private final CompanyMapper companyMapper;
 
-    public CompanyServiceImpl(CompanyRepository companyRepository, UserRepository userRepository, CompanyMapper companyMapper) {
+    public CompanyServiceImpl(CompanyRepository companyRepository, PersonRepository personRepository,
+                              PersonCompanyRelationRepository relationRepository, UserRepository userRepository, CompanyMapper companyMapper) {
         this.companyRepository = companyRepository;
+        this.personRepository = personRepository;
+        this.relationRepository = relationRepository;
         this.userRepository = userRepository;
         this.companyMapper = companyMapper;
     }
@@ -51,18 +61,23 @@ public class CompanyServiceImpl implements CompanyService {
     public CompanyDTO save(CompanyDTO companyDTO) {
         log.debug("Request to save Company : {}", companyDTO);
         User currentUser = getCurrentUser().orElse(null);
-        Company company;
+        final Company company;
         if (companyDTO.getId() == null) { // Create
             company = new Company(UUID.randomUUID(), Instant.now(), currentUser);
-        }else{ // Update
+        } else { // Update
             company = companyRepository.findById(companyDTO.getId()).get();
+            relationRepository.deleteAll(company.getPeople());
         }
-        companyMapper.update(company, companyDTO,  currentUser, Instant.now() );
-        company = companyRepository.save(company);
-        return companyMapper.toDto(company);
+        companyMapper.update(company, companyDTO, currentUser, Instant.now());
+
+        // Relation
+        companyDTO.getPeople().forEach((r, ps) -> ps.forEach(p -> relationRepository.save(new PersonCompanyRelation(r, company, personRepository.findById(p).get()))));
+
+        Company newCompany = companyRepository.save(company);
+        return companyMapper.toDto(newCompany);
     }
 
-    private Optional<User> getCurrentUser(){
+    private Optional<User> getCurrentUser() {
         return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneByLogin);
     }
 

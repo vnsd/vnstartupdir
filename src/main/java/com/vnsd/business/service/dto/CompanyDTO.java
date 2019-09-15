@@ -2,6 +2,8 @@ package com.vnsd.business.service.dto;
 import java.time.Instant;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -65,6 +67,16 @@ public class CompanyDTO implements Serializable {
     private Long updatedById;
 
     private Long assignedToId;
+
+    private Map<String, Collection<Long>> people;
+
+    public Map<String, Collection<Long>> getPeople() {
+        return people;
+    }
+
+    public void setPeople(Map<String, Collection<Long>> people) {
+        this.people = people;
+    }
 
     public Long getId() {
         return id;

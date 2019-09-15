@@ -38,19 +38,11 @@ export class PersonCompanyRelationDetail extends React.Component<IPersonCompanyR
             <dt>
               <Translate contentKey="vnstartupdirApp.personCompanyRelation.company">Company</Translate>
             </dt>
-            <dd>{personCompanyRelationEntity.company ? personCompanyRelationEntity.company.id : ''}</dd>
+            <dd>{personCompanyRelationEntity.company ? personCompanyRelationEntity.company.name : ''}</dd>
             <dt>
               <Translate contentKey="vnstartupdirApp.personCompanyRelation.person">Person</Translate>
             </dt>
-            <dd>{personCompanyRelationEntity.person ? personCompanyRelationEntity.person.id : ''}</dd>
-            <dt>
-              <Translate contentKey="vnstartupdirApp.personCompanyRelation.company">Company</Translate>
-            </dt>
-            <dd>{personCompanyRelationEntity.company ? personCompanyRelationEntity.company.id : ''}</dd>
-            <dt>
-              <Translate contentKey="vnstartupdirApp.personCompanyRelation.person">Person</Translate>
-            </dt>
-            <dd>{personCompanyRelationEntity.person ? personCompanyRelationEntity.person.id : ''}</dd>
+            <dd>{personCompanyRelationEntity.person ? personCompanyRelationEntity.person.firstname : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/person-company-relation" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

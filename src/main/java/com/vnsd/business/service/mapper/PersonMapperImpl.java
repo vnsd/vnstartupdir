@@ -66,7 +66,7 @@ public class PersonMapperImpl implements PersonMapper {
         personDTO.setUpdatedById( personUpdatedById( person ) );
         personDTO.setCreatedById( personCreatedById( person ) );
         personDTO.setId( person.getId() );
-        personDTO.setUuid( person.getUuid().toString() );
+        personDTO.setUuid( person.getUuid()==null ? null: person.getUuid().toString() );
         personDTO.setFirstname( person.getFirstname() );
         personDTO.setLastname( person.getLastname() );
         personDTO.setBornon( person.getBornon() );

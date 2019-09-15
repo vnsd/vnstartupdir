@@ -31,6 +31,14 @@ public class PersonCompanyRelation implements Serializable {
     @JsonIgnoreProperties("personCompanyRelations")
     private Person person;
 
+    public PersonCompanyRelation(){}
+
+    public PersonCompanyRelation(String relationCode, Company company, Person person) {
+        this.relationCode = relationCode;
+        this.company = company;
+        this.person = person;
+    }
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;

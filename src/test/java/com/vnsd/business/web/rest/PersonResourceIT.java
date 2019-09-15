@@ -335,7 +335,7 @@ public class PersonResourceIT {
             .andExpect(jsonPath("$.[*].regionname").value(hasItem(DEFAULT_REGIONNAME.toString())))
             .andExpect(jsonPath("$.[*].countrycode").value(hasItem(DEFAULT_COUNTRYCODE.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getPerson() throws Exception {
@@ -1166,7 +1166,7 @@ public class PersonResourceIT {
         List<Person> personList = personRepository.findAll();
         assertThat(personList).hasSize(databaseSizeBeforeUpdate);
         Person testPerson = personList.get(personList.size() - 1);
-        assertThat(testPerson.getUuid()).isEqualTo(UPDATED_UUID);
+        assertThat(testPerson.getUuid()).isEqualTo(DEFAULT_UUID);
         assertThat(testPerson.getFirstname()).isEqualTo(UPDATED_FIRSTNAME);
         assertThat(testPerson.getLastname()).isEqualTo(UPDATED_LASTNAME);
         assertThat(testPerson.getBornon()).isEqualTo(UPDATED_BORNON);

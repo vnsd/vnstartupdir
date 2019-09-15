@@ -117,7 +117,7 @@ export class PersonCompanyRelationUpdate extends React.Component<IPersonCompanyR
                     {companies
                       ? companies.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.id}
+                            {otherEntity.name}
                           </option>
                         ))
                       : null}
@@ -132,37 +132,7 @@ export class PersonCompanyRelationUpdate extends React.Component<IPersonCompanyR
                     {people
                       ? people.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.id}
-                          </option>
-                        ))
-                      : null}
-                  </AvInput>
-                </AvGroup>
-                <AvGroup>
-                  <Label for="person-company-relation-company">
-                    <Translate contentKey="vnstartupdirApp.personCompanyRelation.company">Company</Translate>
-                  </Label>
-                  <AvInput id="person-company-relation-company" type="select" className="form-control" name="company.id">
-                    <option value="" key="0" />
-                    {companies
-                      ? companies.map(otherEntity => (
-                          <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.id}
-                          </option>
-                        ))
-                      : null}
-                  </AvInput>
-                </AvGroup>
-                <AvGroup>
-                  <Label for="person-company-relation-person">
-                    <Translate contentKey="vnstartupdirApp.personCompanyRelation.person">Person</Translate>
-                  </Label>
-                  <AvInput id="person-company-relation-person" type="select" className="form-control" name="person.id">
-                    <option value="" key="0" />
-                    {people
-                      ? people.map(otherEntity => (
-                          <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.id}
+                            {otherEntity.firstname} {otherEntity.lastname}
                           </option>
                         ))
                       : null}
